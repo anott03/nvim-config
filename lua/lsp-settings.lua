@@ -82,6 +82,7 @@ local set_languages = function()
   vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 end
 
+-- currently not being used since I'm using lspsaga
 local function lspRename()
   local current_word = vim.fn.expand("<cword>")
   local plenary_window = require('plenary.window.float').percentage_range_window(0.5, 0.2)
