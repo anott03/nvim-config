@@ -1,4 +1,4 @@
--- local plugins
+-- local plugins so that I can work on them
 local vim = vim
 local local_plugin = function(name) vim.cmd('set rtp+=$HOME/dev/nvim/' .. name) end
 local_plugin('termight.nvim')
