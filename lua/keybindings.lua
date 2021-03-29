@@ -7,7 +7,7 @@ end
 vim.g.mapleader = ' '
 local function telescope(cmd)
   require('plenary.reload').reload_module('telescope')
-  vim.cmd('Telescop ' .. cmd)
+  vim.cmd('Telescope ' .. cmd)
 end
 
 -- fuzzy file picker
@@ -60,30 +60,36 @@ remap("v", ">", ">gv")
 -- disabling ex mode
 remap("n", "Q", "<nop")
 -- file tree
--- remap("n", "<leader>e", "<CMD>Lex<CR>", {})
-remap("n", "<leader>e", "<CMD>CocCommand explorer<CR>")
+remap("n", "<leader>e", "<CMD>Lex<CR>")
 
 -- lsp
-remap("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
+remap("n", "gtd", "<CMD>lua vim.lsp.buf.definition()<CR>")
 remap("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
 remap("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
 remap("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
 remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
 remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
-remap("n", "<leader>K", '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
-remap("n", "<leader>rr", "<CMD>lua require('lsp-settings').lspRename()<CR>'")
-remap("n", "<leader>a", "<CMD>lua require('lsp-settings').lsp_code_actions()<CR>'")
+remap("n", "<leader>w", '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>')
+
+-- remap("n", "<leader>K", '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+remap("n", "<leader>K", "<CMD>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>")
+remap("n", "<leader>rr", "<CMD>lua require('lspsaga.rename').rename()<CR>")
+remap("n", "<leader>a", "<CMD>lua require('lspsaga.codeaction').code_action()<CR>")
+remap("n", "<leader>gf", "<CMD>lua require('lspsaga.provider').lsp_finder()<CR>")
+remap("n", "K", "<CMD>lua require('lspsaga.hover').render_hover_doc()<CR>")
+remap("n", "<leader>gk", "<CMD>lua require('lspsaga.signaturehelp').signature_help()<CR>")
+remap("n", "gd", "<CMD>lua require('lspsaga.provider').preview_definition()<CR>")
 
 -- coc.nvim
-remap("n", "<leader>rn", "<Plug>(coc-rename)")
-remap("n", "<leader>w", "<CMD>CocSearch <C-R>=expand('<cword>')<CR><CR>")
+-- remap("n", "<leader>rn", "<Plug>(coc-rename)")
+-- remap("n", "<leader>w", "<CMD>CocSearch <C-R>=expand('<cword>')<CR><CR>")
 
 -- git
 -- remap("n", "<leader>gc", "<CMD>GBranches<CR>")
 remap("n", "<leader>gc", "<CMD>Telescope git_branches<CR>")
-remap("n", "<leader>gh", "<CMD>diffget //3")
-remap("n", "<leader>gu", "<CMD>diffget //2")
+remap("n", "<leader>gh", "<CMD>diffget //3<CR>")
+remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
 remap("n", "<leader>gs", "<CMD>G<CR>")
 
 -- termight
@@ -97,5 +103,4 @@ remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
 
 return {
   telescope = telescope,
-  frecency = frecency
 }

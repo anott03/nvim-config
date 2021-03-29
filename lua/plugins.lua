@@ -1,53 +1,3 @@
-local plugins = {
-  -- language support
-  {'sheerun/vim-polyglot', nil},
-  {'neovimhaskell/haskell-vim', nil},
-  -- {'fatih/vim-go', {['do'] = '\':GoUpdateBinaries\''}},
-  {'neoclide/vim-jsx-improve', nil},
-  {'anott03/vim-react-snippets', nil},
-  {'mattn/emmet-vim', nil},
-  {'rust-lang/rust.vim', nil},
-
-  -- nvim-lsp
-  {'neovim/nvim-lspconfig', nil},
-  {'nvim-lua/completion-nvim', nil},
-  {'tjdevries/lsp_extensions.nvim', nil},
-
-  -- colorschemes
-  {'gruvbox-community/gruvbox', nil},
-  {'joshdick/onedark.vim', nil},
-  {'tjdevries/colorbuddy.vim', nil},
-  {'tjdevries/gruvbuddy.nvim', nil},
-  -- { 'ntk148v/vim-horizon', nil},
-  -- {'vim-airline/vim-airline', nil},
-  -- {'vim-airline/vim-airline-themes', nil},
-
-  -- utilities
-  {'junegunn/fzf', {['do'] = '{ -> fzf#install() }'}},
-  {'junegunn/fzf.vim', nil},
-  {'preservim/nerdcommenter', nil},
-  {'nvim-lua/popup.nvim', nil},
-  {'neoclide/coc.nvim', {branch = '\'release\''}},
-  {'mbbill/undotree', nil},
-  {'kyazdani42/nvim-web-devicons', nil},
-  {'nvim-treesitter/nvim-treesitter', nil},
-  {'nvim-treesitter/playground'},
-  {'norcalli/nvim-terminal.lua', nil},
-  {'nvim-lua/lsp_extensions.nvim', nil},
-
-  -- git
-  {'tpope/vim-fugitive', nil},
-  {'stsewd/fzf-checkout.vim', nil},
-
-  {'nvim-telescope/telescope-frecency.nvim', nil},
-  {'tami5/sql.nvim', nil},
-
-  -- fun
-  {'ThePrimeagen/vim-be-good', nil},
-}
-
-require('lua-vim-plug')(plugins)
-
 -- local plugins
 local vim = vim
 local local_plugin = function(name) vim.cmd('set rtp+=$HOME/dev/nvim/' .. name) end
@@ -56,6 +6,53 @@ local_plugin('telescope.nvim')
 local_plugin('plenary.nvim')
 local_plugin('popup.nvim')
 local_plugin('lsp-status.nvim')
+local_plugin('harpoon')
+local_plugin('telescope-frecency.nvim')
+local_plugin('hop.nvim')
+local_plugin('neovim-irc-ui')
 
--- telescope plugins
-require('telescope').load_extension('frecency')
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use 'neoclide/vim-jsx-improve'
+  use 'anott03/vim-react-snippets'
+  use 'mattn/emmet-vim'
+  use 'rust-lang/rust.vim'
+  use {'glepnir/lspsaga.nvim', branch = 'main'}
+
+  -- nvim-lsp
+  use 'neovim/nvim-lspconfig'
+  use 'nvim-lua/completion-nvim'
+  use 'tjdevries/lsp_extensions.nvim'
+
+  -- colorschemes
+  use 'gruvbox-community/gruvbox'
+  use 'joshdick/onedark.vim'
+  use 'tjdevries/colorbuddy.vim'
+  use 'tjdevries/gruvbuddy.nvim'
+  use 'neoclide/coc.nvim'
+
+  -- utilities
+  use 'preservim/nerdcommenter'
+  use 'nvim-lua/popup.nvim'
+  use 'mbbill/undotree'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/playground'
+  use 'norcalli/nvim-terminal.lua'
+  use 'mhinz/vim-startify'
+  use 'tjdevries/express_line.nvim'
+  use 'vimwiki/vimwiki'
+
+  -- git
+  use 'tpope/vim-fugitive'
+  use 'stsewd/fzf-checkout.vim'
+
+  use 'tami5/sql.nvim'
+
+  -- fun
+  use 'ThePrimeagen/vim-be-good'
+end)
+
+-- color stuff
+-- require('terminal').setup()
+

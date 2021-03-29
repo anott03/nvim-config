@@ -6,6 +6,7 @@ lspstatus.config({
   indicator_errors = '✗',
   indicator_warnings = '',
   indicator_hint = '',
+  status_symbol = ''
 })
 
 StatusLine = {}
@@ -103,19 +104,9 @@ StatusLine.set_active = function(self)
   local filename = self:get_filename()
   local filetype = self.get_filetype()
 
-  -- return table.concat({
-    -- mode, git, filename, '%=', lspstatus.hints(' ') .. ' ' .. lspstatus.warnings(' ') .. ' ' ..
-    -- lspstatus.errors('✗ ') .. ' | ' .. '%p%%', filetype
-  -- })
   return table.concat({
     mode, git, filename, '%=',
-    lspstatus.status_hints() .. ' ',
-    lspstatus.status_warnings() .. ' ',
-    lspstatus.status_errors(),
-    ' | ', '%p%%', filetype
-  })
-end
-
+    lspstatus.status(), ' | ', '%p%%', filetype }) end
 StatusLine.set_inactive = function(self)
   return self.colors.inactive .. '%= %t %r %='
 end

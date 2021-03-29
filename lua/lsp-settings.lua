@@ -79,6 +79,7 @@ local set_languages = function()
   end
 
   vim.cmd([[autocmd BufWritePre *.go lua goimports(1000)]])
+  vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 end
 
 local function lspRename()

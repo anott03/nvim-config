@@ -4,8 +4,10 @@ require 'plugins'
 require 'settings'
 require 'telescope-settings'
 -- colorscheme
-require'colorbuddy'.colorscheme'colorscheme/custom'
--- require'colorbuddy'.colorscheme'gruvbuddy'
+vim.cmd[[
+  colorscheme colorscheme/custom
+  hi Normal guibg=None
+]]
 -- lsp
 require('lsp-settings').set_languages()
 -- keybindings
@@ -14,5 +16,3 @@ require 'keybindings'
 require 'statusline'
 -- augroups
 require 'augroups'
-
--- vim.cmd(":call cyclist#activate_listchars('amitav')")
