@@ -21,12 +21,6 @@ else
   -- remap("n", "<leader><leader>", "<CMD>Telescope find_files<CR>")
   remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('find_files')<CR>")
 end
--- local function frecency()
-  -- print('hi')
-  -- telescope('Telescope frecency<CR>')
--- end
--- require('plenary.reload').reload_module('telescope')
--- remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('frecency')<CR>")
 
 remap("n", "<leader>b", "<CMD>Telescope buffers<CR>")
 remap("n", "<leader>ps", "<CMD>lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ') })<CR>")
@@ -53,6 +47,8 @@ vim.cmd(
 "nnoremap d \"_d\n" ..
 "vnoremap d \"_d\n"
 )
+
+remap("<ESC>", "<CMD>nohl<CR><ESC>")
 
 -- indenting
 remap("v", "<", "<gv")
