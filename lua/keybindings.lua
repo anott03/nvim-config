@@ -5,6 +5,8 @@ end
 
 -- leader key is space
 vim.g.mapleader = ' '
+-- reload telescope every time it is used
+-- makes for easier development
 local function telescope(cmd)
   require('plenary.reload').reload_module('telescope')
   vim.cmd('Telescope ' .. cmd)
@@ -36,11 +38,6 @@ remap("n", "<C-h>", "<CMD>vertical resize +5<CR>")
 remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
 remap("n", "<C-k>", "<CMD>resize +5<CR>")
 remap("n", "<C-j>", "<CMD>resize -5<CR>") -- yank and put
--- TODO add the loop I had in init.vim for using registers
--- remap("n", "p", "\"0p", {});
--- remap("n", "P", "\"0P", {});
--- remap("n", "dd", '"_dd', {});
--- remap("v", "d", '"_d', {});
 
 -- for some reason this works but the same bindings in lua don't
 vim.cmd(
@@ -48,13 +45,13 @@ vim.cmd(
 "vnoremap d \"_d\n"
 )
 
-remap("<ESC>", "<CMD>nohl<CR><ESC>")
+remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
 
 -- indenting
 remap("v", "<", "<gv")
 remap("v", ">", ">gv")
 -- disabling ex mode
-remap("n", "Q", "<nop")
+remap("n", "Q", "<nop>")
 -- file tree
 remap("n", "<leader>e", "<CMD>Lex<CR>")
 
@@ -68,7 +65,6 @@ remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
 remap("n", "<leader>w", '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>')
 
--- remap("n", "<leader>K", '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 remap("n", "<leader>K", "<CMD>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>")
 remap("n", "<leader>rr", "<CMD>lua require('lspsaga.rename').rename()<CR>")
 remap("n", "<leader>a", "<CMD>lua require('lspsaga.codeaction').code_action()<CR>")
@@ -76,10 +72,6 @@ remap("n", "<leader>gf", "<CMD>lua require('lspsaga.provider').lsp_finder()<CR>"
 remap("n", "K", "<CMD>lua require('lspsaga.hover').render_hover_doc()<CR>")
 remap("n", "<leader>gk", "<CMD>lua require('lspsaga.signaturehelp').signature_help()<CR>")
 remap("n", "gd", "<CMD>lua require('lspsaga.provider').preview_definition()<CR>")
-
--- coc.nvim
--- remap("n", "<leader>rn", "<Plug>(coc-rename)")
--- remap("n", "<leader>w", "<CMD>CocSearch <C-R>=expand('<cword>')<CR><CR>")
 
 -- git
 -- remap("n", "<leader>gc", "<CMD>GBranches<CR>")
