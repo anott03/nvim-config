@@ -51,6 +51,8 @@ vim.g.gruvbox_invert_selection='0'
 
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
+vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
+
 require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 -- golang stuff

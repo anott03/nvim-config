@@ -17,14 +17,12 @@ end
 -- otherwise use Telescope find_files
 local is_git_repo = '[ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1'
 if (os.execute(is_git_repo) == 0) then
-  -- remap("n", "<leader><leader>", "<CMD>Telescope git_files<CR>")
   remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('git_files')<CR>")
 else
-  -- remap("n", "<leader><leader>", "<CMD>Telescope find_files<CR>")
   remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('find_files')<CR>")
 end
 
-remap("n", "<leader>b", "<CMD>Telescope buffers<CR>")
+remap("n", "<leader>b", "<CMD>lua require('telescope-settings').tele_bufs()<CR>")
 remap("n", "<leader>ps", "<CMD>lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ') })<CR>")
 
 remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")

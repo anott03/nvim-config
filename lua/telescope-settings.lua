@@ -23,12 +23,9 @@ function my_make_entry.gen_from_buffer_like_leaderf(opts)
       map(function(bufnr)
         return vim.fn.strdisplaywidth(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ':p:t'))
       end, bufnrs)
-    )
-  )
+    ))
 
-  local displayer = entry_display.create {
-    separator = " ",
-    items = {
+  local displayer = entry_display.create { separator = " ", items = {
       { width = bufnr_width },
       { width = 4 },
       { width = vim.fn.strwidth(default_icons) },
@@ -79,4 +76,10 @@ function my_make_entry.gen_from_buffer_like_leaderf(opts)
   end
 end
 
-require('telescope.builtin').buffers({ entry_maker = my_make_entry.gen_from_buffer_like_leaderf(), })
+return {
+  tele_bufs = function()
+    require('telescope.builtin').buffers({
+      entry_maker = my_make_entry.gen_from_buffer_like_leaderf(),
+    })
+  end
+}
