@@ -12,19 +12,13 @@ local function telescope(cmd)
   vim.cmd('Telescope ' .. cmd)
 end
 
--- fuzzy file picker
--- use Telescope git_files if there is a .git directory present
--- otherwise use Telescope find_files
-local is_git_repo = '[ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1'
-if (os.execute(is_git_repo) == 0) then
-  remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('git_files')<CR>")
-else
-  remap("n", "<leader><leader>", "<CMD>lua require('keybindings').telescope('find_files')<CR>")
-end
+-- Reload Config
+remap("n", "<leader>r", "<CMD>lua require('init').reload_config()<CR>")
 
-remap("n", "<leader>b", "<CMD>lua require('telescope-settings').tele_bufs()<CR>")
-remap("n", "<leader>ps", "<CMD>lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ') })<CR>")
-
+-- Telescope Mappings
+remap("n", "<leader><leader>", "<CMD>lua require('a.telescope-settings').tele_files()<CR>")
+remap("n", "<leader>b", "<CMD>lua require('a.telescope-settings').tele_bufs()<CR>")
+remap("n", "<leader>ps", "<CMD>lua require('a.telescope-settings').tele_grep()<CR>")
 remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
 
 -- window movements
@@ -54,7 +48,7 @@ remap("n", "Q", "<nop>")
 remap("n", "<leader>e", "<CMD>Lex<CR>")
 
 -- lsp
-remap("n", "gtd", "<CMD>lua vim.lsp.buf.definition()<CR>")
+remap("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
 remap("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
 remap("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
 remap("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
@@ -69,7 +63,7 @@ remap("n", "<leader>a", "<CMD>lua require('lspsaga.codeaction').code_action()<CR
 remap("n", "<leader>gf", "<CMD>lua require('lspsaga.provider').lsp_finder()<CR>")
 remap("n", "K", "<CMD>lua require('lspsaga.hover').render_hover_doc()<CR>")
 remap("n", "<leader>gk", "<CMD>lua require('lspsaga.signaturehelp').signature_help()<CR>")
-remap("n", "gd", "<CMD>lua require('lspsaga.provider').preview_definition()<CR>")
+remap("n", "<leader>gd", "<CMD>lua require('lspsaga.provider').preview_definition()<CR>")
 
 -- git
 -- remap("n", "<leader>gc", "<CMD>GBranches<CR>")

@@ -1,18 +1,25 @@
 -- plugins
-require 'plugins'
+require 'a.plugins'
 -- basic config
-require 'settings'
-require 'telescope-settings'
+require 'a.settings'
+require 'a.telescope-settings'
 -- colorscheme
 vim.cmd[[
-  colorscheme colorscheme/custom
-  hi Normal guibg=None
+  colorscheme a/colorscheme/custom
 ]]
 -- lsp
-require('lsp-settings').set_languages()
+require('a.lsp-settings').set_languages()
 -- keybindings
-require 'keybindings'
+require 'a.keybindings'
 -- statusline
-require 'statusline'
+require 'a.statusline'
 -- augroups
-require 'augroups'
+require 'a.augroups'
+
+return {
+  reload_config = function()
+    print('reloading config')
+    require('plenary.reload').reload_module('init')
+    require('init')
+  end
+}

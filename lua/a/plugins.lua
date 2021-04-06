@@ -41,7 +41,7 @@ require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
 
-  use 'code-biscuits/nvim-biscuits'
+  -- use 'code-biscuits/nvim-biscuits'
 
   -- git
   use 'tpope/vim-fugitive'
@@ -52,7 +52,7 @@ end)
 
 -- initializing plugins
 require('terminal').setup()
-require('nvim-biscuits').setup({})
+-- require('nvim-biscuits').setup({})
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained"
 }

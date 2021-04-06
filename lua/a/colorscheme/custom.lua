@@ -13,9 +13,6 @@ Color.new('white',          '#d0d0d0')
 Color.new('gray',           '#4e5460')
 Color.new('gray2',          '#596170')
 Color.new('gray3',          '#444444')
-Color.new('statuslineBlue', '#7ab7d3')
--- Color.new('statuslineBlue2','#72b2ea')
-Color.new('statuslineBlue2','#89aaf8')
 
 -- Syntax Groups (descriptions and ordering from `:h w18`
 Group.new('Comment'         , (colors.gray:light()):light()  , nil , nil)
@@ -76,26 +73,3 @@ Group.new('TabLineSel'      , colors.black                , colors.blue, nil)
 Group.new('typescriptBraces', colors.blue:light()         , nil, nil)
 -- lua:
 Group.new('luaFunctionCall' , groups.Function    , groups.Function   , groups.Function)
-
--- custom groups for statusline
--- Group.new('StatusLineActive'     , colors.white,                   colors.background:light(), nil)
--- Group.new('StatusLineActiveDark' , colors.white,                   colors.gray2, nil)
--- Group.new('StatusLineInactve'    , colors.white,                   colors.background:light(), nil)
--- Group.new('StatusLineMode'       , colors.black,                   colors.statuslineBlue:light(), nil)
--- Group.new('StatusLineModeArrow1' , colors.statuslineBlue:light(),  colors.gray2, nil)
--- Group.new('StatusLineModeArrow2' , colors.statuslineBlue:light(),  colors.background:light(), nil)
--- Group.new('StatusLineGitArrow'   , colors.gray2,                   colors.background:light(), nil)
-
-Group.new('StatusLineActive',     colors.background:light(),      colors.statuslineBlue2, nil)
-Group.new('StatusLineActiveDark', colors.white,                   colors.gray2, nil)
-Group.new('StatusLineInactive',   colors.white,                   colors.background:light(), nil)
-Group.new('StatusLineMode',       colors.magenta,                 colors.background:light(), styles.bold)
-Group.new('StatusLineModeArrow1', colors.statuslineBlue:light(),  colors.gray2, nil)
-Group.new('StatusLineModeArrow2', colors.statuslineBlue:light(),  colors.background:light(), nil)
-Group.new('StatusLineGitArrow',   colors.gray2,                   colors.background:light(), nil)
-
-Group.new('SLBlue',               colors.statuslineBlue:light(),  colors.background:light(), styles.bold)
-Group.new('SLMagenta',            colors.magenta,                 colors.background:light(), styles.bold)
-Group.new('SLGreen',              colors.green,                   colors.background:light(), styles.bold)
-Group.new('SLYellow',             colors.yellow,                  colors.background:light(), styles.bold)
-Group.new('SLRed',                colors.red,                     colors.background:light(), styles.bold)
