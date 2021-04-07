@@ -43,7 +43,6 @@ local set_languages = function()
         staticcheck = true,
       },
     },
-    -- on_attach=require'completion'.on_attach
   }
 
   function goimports(timeoutms)
