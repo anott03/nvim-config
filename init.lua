@@ -4,9 +4,7 @@ require 'a.plugins'
 require 'a.settings'
 require 'a.telescope-settings'
 -- colorscheme
-vim.cmd[[
-  colorscheme a/colorscheme/custom
-]]
+require('colorbuddy').colorscheme('a/colorscheme/custom')
 -- lsp
 require('a.lsp-settings').set_languages()
 -- keybindings
@@ -16,10 +14,12 @@ require 'a.statusline'
 -- augroups
 require 'a.augroups'
 
+local path = require('plenary.path')
 return {
   reload_config = function()
-    print('reloading config')
     require('plenary.reload').reload_module('init')
     require('init')
+    print(path:new({vim.loop.os_homedir(), '.config/nvim/init.lua'}):absolute())
+    vim.cmd('luafile' .. path:new({vim.loop.os_homedir(), '.config/nvim/init.lua'}):absolute())
   end
 }
