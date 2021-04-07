@@ -4,7 +4,7 @@ require 'a.plugins'
 require 'a.settings'
 require 'a.telescope-settings'
 -- colorscheme
-require('colorbuddy').colorscheme('a/colorscheme/custom')
+require('colorbuddy').colorscheme('a/colorscheme')
 -- lsp
 require('a.lsp-settings').set_languages()
 -- keybindings

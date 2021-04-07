@@ -1,1 +1,1 @@
-lua require('colorbuddy').colorscheme('a/colorscheme/custom')
+lua require('colorbuddy').colorscheme('a/colorscheme')
