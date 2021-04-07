@@ -36,10 +36,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local.share/nvim/site/pack/packer/start/colorbuddy.vim"
   },
-  ["completion-nvim"] = {
-    loaded = true,
-    path = "/home/amitav/.local.share/nvim/site/pack/packer/start/completion-nvim"
-  },
   ["emmet-vim"] = {
     loaded = true,
     path = "/home/amitav/.local.share/nvim/site/pack/packer/start/emmet-vim"
@@ -63,6 +59,10 @@ _G.packer_plugins = {
   nerdcommenter = {
     loaded = true,
     path = "/home/amitav/.local.share/nvim/site/pack/packer/start/nerdcommenter"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/amitav/.local.share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

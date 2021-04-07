@@ -19,7 +19,7 @@ require('packer').startup(function(use)
 
   -- nvim-lsp
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/nvim-compe'
   use 'tjdevries/lsp_extensions.nvim' use {'glepnir/lspsaga.nvim', branch = 'main'}
   -- other language suff
   use 'mattn/emmet-vim'
@@ -41,8 +41,6 @@ require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
 
-  -- use 'code-biscuits/nvim-biscuits'
-
   -- git
   use 'tpope/vim-fugitive'
 
@@ -52,7 +50,30 @@ end)
 
 -- initializing plugins
 require('terminal').setup()
--- require('nvim-biscuits').setup({})
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained"
+}
+
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+  };
 }
