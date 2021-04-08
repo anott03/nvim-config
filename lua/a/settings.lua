@@ -53,7 +53,7 @@ vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
 
-require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+-- require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 -- golang stuff
 vim.cmd([[

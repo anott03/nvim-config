@@ -2,9 +2,9 @@ local vim = vim
 local lspconfig = require "lspconfig"
 
 local set_languages = function()
-  lspconfig.sumneko_lua.setup {                                             -- lua
-    cmd = { "/home/amitav/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-        "-E", "/home/amitav/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua"
+  lspconfig.sumneko_lua.setup {
+    cmd = { vim.loop.os_homedir() .. "/repos/lua-language-server/bin/macOS/lua-language-server",
+        "-E", vim.loop.os_homedir() .. "/repos/lua-language-server/main.lua"
     };
     settings = {
       Lua = {
