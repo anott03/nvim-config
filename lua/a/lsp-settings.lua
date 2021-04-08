@@ -2,6 +2,18 @@ local vim = vim
 local lspconfig = require "lspconfig"
 
 local set_languages = function()
+
+  lspconfig.hls.setup({})
+  lspconfig.tsserver.setup({})
+  lspconfig.bashls.setup({})
+  lspconfig.html.setup({})
+  lspconfig.pyls.setup({})
+  lspconfig.clangd.setup({})
+  lspconfig.svelte.setup({})
+  lspconfig.perlls.setup({})
+  lspconfig.gopls.setup({})
+  lspconfig.rust_analyzer.setup({})
+
   lspconfig.sumneko_lua.setup {
     cmd = { vim.loop.os_homedir() .. "/repos/lua-language-server/bin/macOS/lua-language-server",
         "-E", vim.loop.os_homedir() .. "/repos/lua-language-server/main.lua"
