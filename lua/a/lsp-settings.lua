@@ -70,10 +70,24 @@ local set_languages = function()
 end
 
 local function lsp_rename()
-  -- local current_word = vim.fn.expand("<cword>")
-  local new_name = vim.fn.input("Enter new name: ")
-  vim.lsp.buf.rename(new_name)
-  -- local rename_window = require('plenary.window.float').percentage_range_window(0.5, 0.2)
+  -- local new_name = vim.fn.input("Enter new name: ")
+  -- vim.lsp.buf.rename(new_name)
+
+  local current_word = vim.fn.expand("<cword>")
+  local rename_window = require('plenary.window.float')
+    .percentage_range_window(0.5, 0.2, {winblend=1})
+  local bufh = rename_window.bufnr
+  vim.fn.prompt_setprompt(bufh, string.format('rename %s to > ', current_word))
+  vim.fn.prompt_setcallback(bufh, function(new_name)
+    if (new_name ~= '') then
+      vim.schedule(function()
+        vim.lsp.buf.rename(new_name)
+        vim.api.nvim_buf_delete(bufh)
+      end)
+    else
+      vim.api.nvim_buf_delete(bufh)
+    end
+  end)
 end
 
 local lsp_code_actions = function()
