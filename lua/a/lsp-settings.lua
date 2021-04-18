@@ -3,6 +3,18 @@ local lspconfig = require "lspconfig"
 
 local set_languages = function()
 
+  local os
+  if jit then
+    if jit.os == 'OSX' then os = 'macOS' end
+    if jit.os == 'Linux' then os = 'Linux' end
+  else
+    if vim.loop.os_homedir():sub(1, 5) == '/home' then
+      os = 'Linux'
+    elseif vim.loop.os_homedir():sub(1, 6) == '/Users' then
+      os = 'macOS'
+    end
+  end
+
   lspconfig.hls.setup({})
   lspconfig.tsserver.setup({})
   lspconfig.bashls.setup({})
@@ -15,7 +27,7 @@ local set_languages = function()
   lspconfig.rust_analyzer.setup({})
 
   lspconfig.sumneko_lua.setup {
-    cmd = { vim.loop.os_homedir() .. "/repos/lua-language-server/bin/macOS/lua-language-server",
+    cmd = { vim.loop.os_homedir() .. "/repos/lua-language-server/bin/" .. os .. "/lua-language-server",
         "-E", vim.loop.os_homedir() .. "/repos/lua-language-server/main.lua" };
     settings = {
       Lua = {
@@ -28,8 +40,7 @@ local set_languages = function()
             'describe',
             'it'
           },
-        },
-      }
+        }, }
     }
   }
 
@@ -82,7 +93,7 @@ end
 
 local function lsp_rename()
   local current_word = vim.fn.expand("<cword>")
-  local new_name = vim.fn.input(string.format("Rename %s to > ", current_word))
+  local new_name = vim.fn.input(string.format("Rename `%s` to > ", current_word))
   vim.lsp.buf.rename(new_name)
 
   -- local rename_window = require('plenary.window.float')

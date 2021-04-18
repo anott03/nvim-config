@@ -13,6 +13,7 @@ local_plugin('lsp-status.nvim')
 local_plugin('harpoon')
 local_plugin('telescope-frecency.nvim')
 local_plugin('neovim-irc-ui')
+local_plugin('lspui.nvim')
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -43,6 +44,7 @@ require('packer').startup(function(use)
 
   -- git
   use 'tpope/vim-fugitive'
+  use 'ThePrimeagen/git-worktree.nvim'
 
   -- fun
   use 'ThePrimeagen/vim-be-good'

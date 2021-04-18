@@ -37,7 +37,7 @@ local settings = {
   background = 'dark',
   colorcolumn = 80,
   exrc = true,
-  hidden = true
+  hidden = true,
 }
 
 apply_options(settings)
@@ -52,6 +52,7 @@ vim.g.gruvbox_invert_selection='0'
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
+vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 
 -- require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
