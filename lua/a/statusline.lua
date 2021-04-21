@@ -19,12 +19,22 @@ local set_hl = function(group, options)
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 
+-- My Colorscheme
+-- local highlights = {
+  -- {'StatusLine',   { fg = '#3C3836', bg = '#89AAFF' }},
+  -- {'StatusLineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+-- }
+
+-- Gruvbox
 local highlights = {
-  {'StatusLine',   { fg = '#3C3836', bg = '#89AAFF' }},
-  {'StatusLineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+  {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},
+  {'StatusLineNC', { fg = '#3C3836', bg = '#928374' }},
+  {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  {'Git', { bg = '#504945', fg = '#EBDBB2' }},
 }
+
 
 for _, highlight in ipairs(highlights) do
   set_hl(highlight[1], highlight[2])
@@ -34,13 +44,7 @@ Statusline.colors = {
   active        = '%#StatusLine#',
   inactive      = '%#StatuslineNC#',
   mode          = '%#Mode#',
-  mode_alt      = '%#ModeAlt#',
   git           = '%#Git#',
-  git_alt       = '%#GitAlt#',
-  filetype      = '%#Filetype#',
-  filetype_alt  = '%#FiletypeAlt#',
-  line_col      = '%#LineCol#',
-  line_col_alt  = '%#LineColAlt#',
 }
 
 Statusline.get_current_mode = function(self)

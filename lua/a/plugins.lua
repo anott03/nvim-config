@@ -43,6 +43,11 @@ require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
 
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+
   -- git
   use 'tpope/vim-fugitive'
 
