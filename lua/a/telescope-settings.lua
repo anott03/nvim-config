@@ -64,5 +64,9 @@ return {
         search = input
       })
     end
+  end,
+
+  tele_git_worktree = function()
+    require('telescope').extensions.git_worktree.git_worktrees()
   end
 }

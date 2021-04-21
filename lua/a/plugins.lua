@@ -13,7 +13,8 @@ local_plugin('lsp-status.nvim')
 local_plugin('harpoon')
 local_plugin('telescope-frecency.nvim')
 local_plugin('neovim-irc-ui')
-local_plugin('lspui.nvim')
+local_plugin('lspui.nvim/feat-popup-sizing')
+local_plugin('git-worktree.nvim')
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -44,7 +45,6 @@ require('packer').startup(function(use)
 
   -- git
   use 'tpope/vim-fugitive'
-  use 'ThePrimeagen/git-worktree.nvim'
 
   -- fun
   use 'ThePrimeagen/vim-be-good'
@@ -56,6 +56,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained"
 }
 
+-- completion
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -79,3 +80,11 @@ require'compe'.setup {
     vsnip = true;
   };
 }
+
+-- git worktree
+require('git-worktree').setup({
+  update_on_change = true,
+  clearjumps_on_change = true,
+  autopush = false,
+})
+require('telescope').load_extension('git_worktree')
