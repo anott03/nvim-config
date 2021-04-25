@@ -3,13 +3,7 @@ local vim = vim
 local cmd = vim.api.nvim_command
 local apply_options = function(opts)
   for k, v in pairs(opts) do
-    if v == true then
-      cmd('set ' .. k)
-    elseif v == false then
-      cmd(string.format('set no%s', k))
-    else
-      cmd(string.format('set %s=%s', k, v))
-    end
+    vim.o[k] = v
   end
 end
 
@@ -35,7 +29,7 @@ local settings = {
   cursorline = true,
   termguicolors = true,
   background = 'dark',
-  colorcolumn = 80,
+  colorcolumn = '80',
   exrc = true,
   hidden = true,
 }
