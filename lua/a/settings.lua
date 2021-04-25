@@ -1,6 +1,5 @@
 local vim = vim
 
-local cmd = vim.api.nvim_command
 local apply_options = function(opts)
   for k, v in pairs(opts) do
     vim.o[k] = v
