@@ -120,7 +120,7 @@ Statusline.inactive = function() return Statusline:set_inactive() end
 
 require('lualine').setup({
   options = {
-    theme = 'tokyonight',
+    theme = 'gruvbox',
     section_separators = '',
     component_separators = '',
   },
