@@ -55,8 +55,8 @@ telescope.setup({
     },
     frecency = {
       workspaces = {
-        ["conf"] = vim.loop.os_homedir() .. "/.config",
-        ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim",
+        ["conf"] = vim.loop.os_homedir() .. "/.config/",
+        ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim/",
       },
     },
   },
@@ -71,8 +71,7 @@ end
 M.tele_files = function()
   local opts = {
     previewer = false,
-    layout_strategy = "center",
-    results_height = 30,
+    layout_strategy = "horizontal",
   }
 
   local ok = pcall(telescope.extensions.frecency.frecency, opts)
