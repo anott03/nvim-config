@@ -10,7 +10,8 @@ lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
 Statusline = {}
 local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
-  local fg = options.fg == nil and '' or 'guifg=' .. options.fg local gui = options.gui == nil and '' or 'gui=' .. options.gui
+  local fg = options.fg == nil and '' or 'guifg=' .. options.fg
+  local gui = options.gui == nil and '' or 'gui=' .. options.gui
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 
@@ -121,8 +122,12 @@ Statusline.setup = function()
       component_separators = '',
     },
     sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch' },
+      lualine_c = { 'filename' },
       lualine_x = { lspstatus.status },
       lualine_y = { 'filetype' },
+      lualine_z = { 'location' },
     }
   })
 end
