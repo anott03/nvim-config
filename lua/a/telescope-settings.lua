@@ -8,6 +8,7 @@ local M = {}
 M.setup = function()
   pcall(telescope.load_extension, 'fzy_native')
   pcall(telescope.load_extension, 'frecency')
+  pcall(telescope.load_extension, 'git_worktree')
 
   telescope.setup({
     defaults = {
@@ -81,11 +82,7 @@ M.tele_files = function()
 
   local ok = pcall(telescope.extensions.frecency.frecency, opts)
   if ok then
-    if #vim.lsp.get_active_clients() > 0 then
-      vim.api.nvim_feedkeys(':LSP: ', 'n', false)
-    else
-      vim.api.nvim_feedkeys(':CWD: ', 'n', false)
-    end
+    vim.api.nvim_feedkeys(':CWD: ', 'n', false)
   end
   if not ok then ok = pcall(require'telescope.builtin'.git_files, opts) end
   if not ok then require'telescope.builtin'.find_files(opts) end

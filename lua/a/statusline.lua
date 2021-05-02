@@ -2,15 +2,12 @@ local vim = vim
 local path = require('plenary.path')
 local lspstatus = require('lsp-status')
 
-lspstatus.config({
-  indicator_errors = '✗',
-  indicator_warnings = '',
+lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
   indicator_hint = '',
   status_symbol = ''
 })
 
 Statusline = {}
-
 local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
   local fg = options.fg == nil and '' or 'guifg=' .. options.fg
@@ -112,20 +109,20 @@ Statusline.active   = function() return Statusline:set_active() end
 Statusline.inactive = function() return Statusline:set_inactive() end
 
 -- set statusline
--- vim.cmd('augroup Statusline')
--- vim.cmd('au!')
--- vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
--- vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
--- vim.cmd('augroup END')
+vim.cmd('augroup Statusline')
+vim.cmd('au!')
+vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
+vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
+vim.cmd('augroup END')
 
-require('lualine').setup({
-  options = {
-    theme = 'gruvbox',
-    section_separators = '',
-    component_separators = '',
-  },
-  sections = {
-    lualine_x = { lspstatus.status },
-    lualine_y = { 'filetype' },
-  }
-})
+-- require('lualine').setup({
+  -- options = {
+    -- theme = 'gruvbox',
+    -- section_separators = '',
+    -- component_separators = '',
+  -- },
+  -- sections = {
+    -- lualine_x = { lspstatus.status },
+    -- lualine_y = { 'filetype' },
+  -- }
+-- })
