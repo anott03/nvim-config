@@ -81,6 +81,8 @@ M.tele_files = function()
   }
 
   local ok = pcall(telescope.extensions.frecency.frecency, opts)
+  -- TODO: revisit this
+  -- https://github.com/nvim-telescope/telescope.nvim/pull/521
   if ok then
     vim.api.nvim_feedkeys(':CWD: ', 'n', false)
   end

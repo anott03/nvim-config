@@ -10,9 +10,7 @@ lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
 Statusline = {}
 local set_hl = function(group, options)
   local bg = options.bg == nil and '' or 'guibg=' .. options.bg
-  local fg = options.fg == nil and '' or 'guifg=' .. options.fg
-  local gui = options.gui == nil and '' or 'gui=' .. options.gui
-
+  local fg = options.fg == nil and '' or 'guifg=' .. options.fg local gui = options.gui == nil and '' or 'gui=' .. options.gui
   vim.cmd(string.format('hi %s %s %s %s', group, bg, fg, gui))
 end
 
@@ -110,23 +108,23 @@ Statusline.inactive = function() return Statusline:set_inactive() end
 
 -- set statusline
 Statusline.setup = function()
-  vim.cmd('augroup Statusline')
-  vim.cmd('au!')
-  vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
-  vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
-  vim.cmd('augroup END')
+  -- vim.cmd('augroup Statusline')
+  -- vim.cmd('au!')
+  -- vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
+  -- vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
+  -- vim.cmd('augroup END')
 
-  -- require('lualine').setup({
-    -- options = {
-      -- theme = 'gruvbox',
-      -- section_separators = '',
-      -- component_separators = '',
-    -- },
-    -- sections = {
-      -- lualine_x = { lspstatus.status },
-      -- lualine_y = { 'filetype' },
-    -- }
-  -- })
+  require('lualine').setup({
+    options = {
+      theme = 'gruvbox',
+      section_separators = '',
+      component_separators = '',
+    },
+    sections = {
+      lualine_x = { lspstatus.status },
+      lualine_y = { 'filetype' },
+    }
+  })
 end
 
 return Statusline
