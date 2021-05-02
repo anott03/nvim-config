@@ -55,9 +55,12 @@ remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
 remap("n", "<leader>w", '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>')
 remap("n", "<leader>rr", "<CMD>lua require('a.lsp-settings').lsp_rename()<CR>")
-remap("n", "<leader>a", "<CMD>lua require('lspui.code_actions').action_picker()<CR>")
-remap("n", "<leader>K", "<CMD>lua require('lspui.hover').line_diagnostics()<CR>")
-remap("n", "K", "<CMD>lua require('lspui.hover').hover_doc()<CR>")
+-- remap("n", "<leader>a", "<CMD>lua require('lspui.code_actions').action_picker()<CR>")
+remap("n", "<leader>a", "<CMD>lua require('a.lsp-settings').lsp_code_actions()<CR>")
+-- remap("n", "<leader>K", "<CMD>lua require('lspui.hover').line_diagnostics()<CR>")
+remap("n", "<leader>K", "<CMD>Lspsaga show_line_diagnostics<CR>")
+-- remap("n", "K", "<CMD>lua require('lspui.hover').hover_doc()<CR>")
+remap("n", "K", "<CMD>Lspsaga hover_doc<CR>")
 
 -- git
 remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")
