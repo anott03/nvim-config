@@ -4,8 +4,7 @@ require 'a.plugins'
 require 'a.settings'
 require 'a.telescope-settings'
 -- colorscheme
--- require('colorbuddy').colorscheme('a/colorscheme')
-vim.cmd [[ colorscheme gruvbox ]]
+vim.cmd [[ colorscheme tokyonight ]]
 -- lsp
 require('a.lsp-settings').set_languages()
 -- keybindings

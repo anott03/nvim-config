@@ -42,6 +42,8 @@ vim.g.netrw_banner = 0 vim.g.netrw_browse_split = 0 vim.g.netrw_winsize = 12
 vim.g.gruvbox_contrast_dark = 'hard'
 vim.g.gruvbox_invert_selection='0'
 
+vim.g.tokyonight_style = "night"
+
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 
 vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]

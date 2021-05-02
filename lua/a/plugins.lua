@@ -11,7 +11,6 @@ local_plugin('plenary.nvim')
 local_plugin('popup.nvim')
 local_plugin('lsp-status.nvim')
 local_plugin('harpoon')
-local_plugin('telescope-frecency.nvim')
 local_plugin('neovim-irc-ui')
 local_plugin('lspui.nvim/feat-popup-sizing')
 local_plugin('git-worktree.nvim')
@@ -22,7 +21,8 @@ require('packer').startup(function(use)
   -- nvim-lsp
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
-  use 'tjdevries/lsp_extensions.nvim' use {'glepnir/lspsaga.nvim', branch = 'main'}
+  use 'tjdevries/lsp_extensions.nvim'
+  use {'glepnir/lspsaga.nvim', branch = 'main'}
   -- other language suff
   use 'mattn/emmet-vim'
   use 'rust-lang/rust.vim'
@@ -32,6 +32,8 @@ require('packer').startup(function(use)
   use 'joshdick/onedark.vim'
   use 'tjdevries/colorbuddy.vim'
   use 'tjdevries/gruvbuddy.nvim'
+  use 'folke/tokyonight.nvim'
+  use 'hoob3rt/lualine.nvim'
 
   -- utilities
   use 'preservim/nerdcommenter'
