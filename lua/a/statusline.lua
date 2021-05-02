@@ -112,8 +112,20 @@ Statusline.active   = function() return Statusline:set_active() end
 Statusline.inactive = function() return Statusline:set_inactive() end
 
 -- set statusline
-vim.cmd('augroup Statusline')
-vim.cmd('au!')
-vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
-vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
-vim.cmd('augroup END')
+-- vim.cmd('augroup Statusline')
+-- vim.cmd('au!')
+-- vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
+-- vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
+-- vim.cmd('augroup END')
+
+require('lualine').setup({
+  options = {
+    theme = 'tokyonight',
+    section_separators = '',
+    component_separators = '',
+  },
+  sections = {
+    lualine_x = { lspstatus.status },
+    lualine_y = { 'filetype' },
+  }
+})
