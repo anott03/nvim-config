@@ -1,8 +1,9 @@
 local vim = vim
+local M = {}
 
-local apply_options = function(opts)
+local apply_options = function(opts, endpoint)
   for k, v in pairs(opts) do
-    vim.o[k] = v
+    endpoint[k] = v
   end
 end
 
@@ -33,47 +34,35 @@ local settings = {
   hidden = true,
 }
 
-apply_options(settings)
+local globals = {
+  completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'},
+  NERDSpaceDelims = 1,
 
-vim.g.NERDSpaceDelims = 1
-vim.g.UltiSnipsExpandTrigger = "<C-l>"
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0 vim.g.netrw_browse_split = 0 vim.g.netrw_winsize = 12
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.gruvbox_invert_selection='0'
+  gruvbox_contrast_dark = 'hard',
+  gruvbox_invert_selection='0',
+  tokyonight_style = "night",
 
-vim.g.tokyonight_style = "night"
+  netrw_liststyle = 3,
+  netrw_banner = 0,
+  netrw_browse_split = 0,
+  netrw_winsize = 12,
 
-vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-
-vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
-vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
-
--- require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-
--- golang stuff
-vim.cmd([[
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-]])
-vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * set nu rnu signcolumn=yes")
-
--- vim.api.nvim_exec([[
--- :call cyclist#add_listchar_option_set('amitav', {'eol': '↲'})
--- :call cyclist#activate_listchars('amitav')
--- ]], {})
-
--- telescope
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close
-      },
-    },
-  }
+  go_highlight_fields = 1,
+  go_highlight_functions = 1,
+  go_highlight_function_calls = 1,
+  go_highlight_extra_types = 1,
+  go_highlight_operators = 1,
 }
+
+M.setup = function()
+  apply_options(settings, vim.o)
+  apply_options(globals, vim.g)
+
+  vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
+  vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
+
+  require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * set nu rnu signcolumn=yes")
+end
+
+return M
