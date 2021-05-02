@@ -44,6 +44,11 @@ require('packer').startup(function(use)
   use 'norcalli/nvim-terminal.lua'
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
+  use 'nvim-telescope/telescope-fzy-native.nvim'
+  use {
+    'nvim-telescope/telescope-frecency.nvim',
+    requires = { 'tami5/sql.nvim' }
+  }
 
   -- git
   use 'tpope/vim-fugitive'

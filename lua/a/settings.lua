@@ -59,6 +59,7 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 ]])
+vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * set nu rnu signcolumn=yes")
 
 -- vim.api.nvim_exec([[
 -- :call cyclist#add_listchar_option_set('amitav', {'eol': '↲'})
