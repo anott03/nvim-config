@@ -40,13 +40,26 @@ telescope.setup({
         ["<esc>"] = actions.close,
       }
     },
+
+    file_sorter = sorters.get_fzy_sorter,
+
+    file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+    grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
   },
 
-  file_sorter = sorters.get_fzy_sorter,
-
-  file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
-  grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-  qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+  extensions = {
+    fzy_native = {
+      override_generic_sorter = true,
+      override_file_sorter = true,
+    },
+    frecency = {
+      workspaces = {
+        ["conf"] = vim.loop.os_homedir() .. "/.config",
+        ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim",
+      },
+    },
+  },
 })
 
 local M = {}
