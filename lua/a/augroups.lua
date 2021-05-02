@@ -14,6 +14,8 @@ M.setup = function()
   vim.cmd("autocmd!")
   vim.cmd("autocmd FileType nvimtree set signcolumn=no")
   vim.cmd("augroup END")
+
+  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
 end
 
 -- set statusline

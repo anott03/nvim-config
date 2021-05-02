@@ -62,7 +62,15 @@ M.setup = function()
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 
   require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * set nu rnu signcolumn=yes")
+  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
+end
+
+function apply_buf_enter_settings()
+  local filetype = vim.bo.filetype
+
+  if filetype ~= 'netrw' and filetype ~= 'startify' then
+    vim.cmd [[ set nu rnu signcolumn=yes ]]
+  end
 end
 
 return M
