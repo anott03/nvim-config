@@ -9,7 +9,8 @@ telescope.setup({
   defaults = {
     prompt_prefix = '❯ ',
     selection_caret = '❯ ',
-winblend = 0,
+
+    winblend = 0,
     preview_cutoff = 120,
 
     layout_strategy = 'horizontal',
@@ -30,7 +31,7 @@ winblend = 0,
     sorting_strategy = "ascending",
     scroll_strategy = "cycle",
     prompt_position = "top",
-    color_devicons = "true",
+    color_devicons = true,
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
 
     mappings = {
