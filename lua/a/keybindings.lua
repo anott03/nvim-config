@@ -5,13 +5,6 @@ end
 
 -- leader key is space
 vim.g.mapleader = ' '
--- reload telescope every time it is used
--- makes for easier development
-local function telescope(cmd)
-  require('plenary.reload').reload_module('telescope')
-  vim.cmd('Telescope ' .. cmd) end
--- Reload Config
-remap("n", "<leader>r", "<CMD>lua require('init').reload_config()<CR>")
 
 -- Telescope Mappings
 remap("n", "<leader><leader>", "<CMD>lua require('a.telescope-settings').tele_files()<CR>")
@@ -77,7 +70,3 @@ remap("n", "<leader>4", "<CMD>OpenTerm 4<CR>")
 
 -- undotree
 remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
-
-return {
-  telescope = telescope,
-}

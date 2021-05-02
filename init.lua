@@ -2,7 +2,7 @@
 require 'a.plugins'
 -- basic config
 require 'a.settings'
-require 'a.telescope-settings'
+require('a.telescope-settings').setup()
 -- colorscheme
 vim.cmd [[ colorscheme gruvbox ]]
 -- lsp
