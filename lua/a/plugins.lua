@@ -64,6 +64,7 @@ end
 M.initialize_plugins = function()
   require('a.plugins.git-worktree').setup()
   require('a.plugins.compe').setup()
+  require('a.plugins.telescope').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
