@@ -68,8 +68,8 @@ end
 
 function apply_buf_enter_settings()
   local filetype = vim.bo.filetype
-
-  if filetype ~= 'netrw' and filetype ~= 'startify' then
+  if filetype ~= 'netrw' and filetype ~= 'startify'
+	  and vim.bo.modifiable == true then
     vim.cmd [[ set nu rnu signcolumn=yes ]]
   end
 end

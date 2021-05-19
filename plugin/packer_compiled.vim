@@ -139,6 +139,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/rust.vim"
   },
+  ["sql.nvim"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
