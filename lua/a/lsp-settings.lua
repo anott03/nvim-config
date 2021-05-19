@@ -1,34 +1,27 @@
 local vim = vim
 local lspconfig = require "lspconfig"
+local lspcontainers = require 'lspcontainers'
 
 local set_languages = function()
 
-  local os
-  if jit then
-    if jit.os == 'OSX' then os = 'macOS' end
-    if jit.os == 'Linux' then os = 'Linux' end
-  else
-    if vim.loop.os_homedir():sub(1, 5) == '/home' then
-      os = 'Linux'
-    elseif vim.loop.os_homedir():sub(1, 6) == '/Users' then
-      os = 'macOS'
-    end
-  end
-
   lspconfig.hls.setup({})
-  lspconfig.tsserver.setup({})
+  lspconfig.tsserver.setup({
+    cmd = lspcontainers.command('tsserver')
+  })
   lspconfig.bashls.setup({})
   lspconfig.html.setup({})
   lspconfig.pyls.setup({})
   lspconfig.clangd.setup({})
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})
-  lspconfig.gopls.setup({})
-  lspconfig.rust_analyzer.setup({})
+  lspconfig.gopls.setup({
+    cmd = lspcontainers.command('gopls')
+  })
+  lspconfig.rust_analyzer.setup({
+    cmd = lspcontainers.command('rust_analyzer')
+  })
 
-  lspconfig.sumneko_lua.setup {
-    cmd = { vim.loop.os_homedir() .. "/repos/lua-language-server/bin/" .. os .. "/lua-language-server",
-        "-E", vim.loop.os_homedir() .. "/repos/lua-language-server/main.lua" };
+  lspcontainers.setup_language_server('sumneko_lua', {
     settings = {
       Lua = {
         runtime = {version = 'LuaJIT'},
@@ -40,9 +33,10 @@ local set_languages = function()
             'describe',
             'it'
           },
-        }, }
+        },
+      }
     }
-  }
+  })
 
   -- rust
   function rust_inlay_hints()
