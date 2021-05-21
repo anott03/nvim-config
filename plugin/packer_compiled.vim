@@ -47,8 +47,8 @@ local function save_profiles(threshold)
 end
 
 time("Luarocks path setup", true)
-local package_path_str = "/home/amitav/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/amitav/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/amitav/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/amitav/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/amitav/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/Users/amitavnott/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/amitavnott/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/amitavnott/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/amitavnott/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/amitavnott/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -73,103 +73,103 @@ time("Defining packer_plugins", true)
 _G.packer_plugins = {
   ["colorbuddy.vim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/colorbuddy.vim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/colorbuddy.vim"
   },
   ["emmet-vim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/emmet-vim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/emmet-vim"
   },
   gruvbox = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/gruvbox"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
   ["gruvbuddy.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
   ["lsp_extensions.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   nerdcommenter = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nerdcommenter"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-terminal.lua"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["onedark.vim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/onedark.vim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/onedark.vim"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   playground = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/playground"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/playground"
   },
   ["rust.vim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/rust.vim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/rust.vim"
   },
   ["sql.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/sql.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/sql.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
   undotree = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/undotree"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/undotree"
   },
   ["vim-be-good"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/vim-be-good"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-be-good"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-startify"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   vimwiki = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/vimwiki"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vimwiki"
   }
 }
 
