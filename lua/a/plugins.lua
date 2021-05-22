@@ -31,18 +31,16 @@ M.setup = function()
     use 'mattn/emmet-vim'
     use 'rust-lang/rust.vim'
 
-    -- colorschemes
+    -- colorscheme/aesthetic
     use 'gruvbox-community/gruvbox'
-    use 'joshdick/onedark.vim'
     use 'tjdevries/colorbuddy.vim'
-    use 'tjdevries/gruvbuddy.nvim'
-    use 'folke/tokyonight.nvim'
     use 'hoob3rt/lualine.nvim'
+    use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+    use 'kyazdani42/nvim-web-devicons'
 
     -- utilities
     use 'preservim/nerdcommenter'
     use 'mbbill/undotree'
-    use 'kyazdani42/nvim-web-devicons'
     use 'nvim-treesitter/nvim-treesitter'
     use 'nvim-treesitter/playground'
     use 'norcalli/nvim-terminal.lua'
@@ -50,12 +48,7 @@ M.setup = function()
     use 'vimwiki/vimwiki'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'tami5/sql.nvim'
-
-    -- git
     use 'tpope/vim-fugitive'
-
-    -- fun
-    use 'ThePrimeagen/vim-be-good'
   end)
 end
 
@@ -67,6 +60,7 @@ M.initialize_plugins = function()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
   }
+  require('bufferline').setup({})
 end
 
 return M
