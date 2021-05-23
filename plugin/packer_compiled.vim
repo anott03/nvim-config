@@ -83,10 +83,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
-  ["gruvbuddy.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
-  },
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
@@ -105,7 +101,7 @@ _G.packer_plugins = {
   },
   ["nvim-bufferline.lua"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
     loaded = true,
@@ -127,10 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
-  ["onedark.vim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/onedark.vim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/packer.nvim"
@@ -151,17 +143,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
-  },
   undotree = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/undotree"
-  },
-  ["vim-be-good"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-be-good"
   },
   ["vim-fugitive"] = {
     loaded = true,
