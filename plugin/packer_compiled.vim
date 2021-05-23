@@ -103,6 +103,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+  },
   ["nvim-compe"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-compe"

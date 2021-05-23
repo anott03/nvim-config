@@ -10,7 +10,7 @@ M.setup = function()
   vim.g.mapleader = ' '
 
   -- Telescope Mappings
-  remap("n", "<leader><leader>", "<CMD>lua require('a.plugins.telescope').tele_files()<CR>")
+  remap("n", "<leader><leader>", "<CMD>lua require('a.plugins.telescope').tele_files(false)<CR>")
   remap("n", "<leader>b", "<CMD>lua require('a.plugins.telescope').tele_bufs()<CR>")
   remap("n", "<leader>ps", "<CMD>lua require('a.plugins.telescope').tele_grep()<CR>")
   remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
@@ -24,6 +24,8 @@ M.setup = function()
   remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
   remap("n", "<C-k>", "<CMD>resize +5<CR>")
   remap("n", "<C-j>", "<CMD>resize -5<CR>") -- yank and put
+  remap('n', "L", "<cmd>BufferLineCycleNext<cr>")
+  remap('n', "H", "<cmd>BufferLineCyclePrev<cr>")
 
   -- for some reason this works but the same bindings in lua don't
   vim.cmd(

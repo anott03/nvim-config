@@ -1,16 +1,12 @@
 local vim = vim
-local lspconfig = require "lspconfig"
-local lspcontainers = require 'lspcontainers'
+local lspconfig = require "lspconfig" local lspcontainers = require 'lspcontainers'
 
 local set_languages = function()
 
   lspconfig.hls.setup({})
   lspconfig.tsserver.setup({
     cmd = lspcontainers.command('tsserver')
-  })
-  lspconfig.bashls.setup({})
-  lspconfig.html.setup({})
-  lspconfig.pyls.setup({})
+  }) lspconfig.bashls.setup({}) lspconfig.html.setup({}) lspconfig.pyls.setup({})
   lspconfig.clangd.setup({})
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})
@@ -91,18 +87,25 @@ local function lsp_rename()
   vim.lsp.buf.rename(new_name)
 
   -- local rename_window = require('plenary.window.float')
-    -- .percentage_range_window(0.5, 0.2, {winblend=1})
+    -- .percentage_range_window(0.5, 0.2)
   -- local bufh = rename_window.bufnr
+
+  -- vim.api.nvim_buf_set_option(rename_window.bufnr, 'buftype', 'prompt')
+  -- vim.api.nvim_win_set_option(rename_window.win_id, 'winhl', 'Normal:Normal')
+  -- vim.api.nvim_win_set_option(rename_window.border_win_id, 'winhl', 'Normal:Normal')
+  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+
+  -- vim.cmd [[ :startinsert ]]
+
   -- vim.fn.prompt_setprompt(bufh, string.format('rename %s to > ', current_word))
   -- vim.fn.prompt_setcallback(bufh, function(new_name)
-    -- if (new_name ~= '') then
-      -- vim.schedule(function()
-        -- vim.lsp.buf.rename(new_name)
-        -- vim.api.nvim_buf_delete(bufh)
-      -- end)
-    -- else
-      -- vim.api.nvim_buf_delete(bufh)
-    -- end
+    -- print('callback')
+    -- vim.schedule(function()
+      -- vim.lsp.buf.rename(new_name)
+      -- vim.api.nvim_buf_delete(bufh, {force=true})
+      -- vim.cmd [[ :stopinsert ]]
+    -- end)
   -- end)
 end
 
