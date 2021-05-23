@@ -67,20 +67,20 @@ M.setup = function()
     },
   })
 end
-
-M.tele_bufs = function()
-  reload('telescope')
+M.tele_bufs = function() reload('telescope')
   require('telescope.builtin').buffers()
 end
 
-M.tele_files = function()
+M.tele_files = function(git)
   reload('telescope')
   local opts = {
     previewer = false,
     layout_strategy = "horizontal",
+    recurse_submodules = true -- for git_files
   }
 
-  local ok = pcall(telescope.extensions.frecency.frecency, opts)
+  local ok = false
+  if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
   -- TODO: revisit this
   -- https://github.com/nvim-telescope/telescope.nvim/pull/521
   -- if ok then

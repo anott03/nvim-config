@@ -35,7 +35,7 @@ M.setup = function()
     use 'gruvbox-community/gruvbox'
     use 'tjdevries/colorbuddy.vim'
     use 'hoob3rt/lualine.nvim'
-    use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+    use 'akinsho/nvim-bufferline.lua'
     use 'kyazdani42/nvim-web-devicons'
 
     -- utilities
