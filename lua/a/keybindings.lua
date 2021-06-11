@@ -71,7 +71,13 @@ M.setup = function()
   remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
   remap("n", "<leader>2", "<CMD>OpenTerm 2<CR>")
   remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
-  remap("n", "<leader>4", "<CMD>OpenTerm 4<CR>")
+
+  -- HARPOON
+  remap('n', '<leader>fa', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+  remap('n', '<leader>fq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
+  remap('n', '<leader>9', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
+  remap('n', '<leader>8', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
+  remap('n', '<leader>7', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
 
   -- undotree
   remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")

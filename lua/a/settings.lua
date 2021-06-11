@@ -58,7 +58,7 @@ M.setup = function()
   apply_options(settings, vim.o)
   apply_options(globals, vim.g)
 
-  vim.cmd [[ colorscheme gruvbox ]]
+  vim.cmd [[ colorscheme a/colorscheme ]]
   vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 

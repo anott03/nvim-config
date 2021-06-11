@@ -1,11 +1,9 @@
 local vim = vim
 local lspconfig = require "lspconfig" local lspcontainers = require 'lspcontainers'
 
-local set_languages = function()
-
-  lspconfig.hls.setup({})
+local set_languages = function() lspconfig.hls.setup({})
   lspconfig.tsserver.setup({
-    cmd = lspcontainers.command('tsserver')
+    -- cmd = lspcontainers.command('tsserver')
   }) lspconfig.bashls.setup({}) lspconfig.html.setup({}) lspconfig.pyls.setup({})
   lspconfig.clangd.setup({})
   lspconfig.svelte.setup({})
@@ -87,7 +85,7 @@ local function lsp_rename()
   vim.lsp.buf.rename(new_name)
 
   -- local rename_window = require('plenary.window.float')
-    -- .percentage_range_window(0.5, 0.2)
+    -- .percentage_range_window(0.3, 0.1)
   -- local bufh = rename_window.bufnr
 
   -- vim.api.nvim_buf_set_option(rename_window.bufnr, 'buftype', 'prompt')

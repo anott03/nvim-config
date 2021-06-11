@@ -60,7 +60,14 @@ M.initialize_plugins = function()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
   }
-  require('bufferline').setup({})
+  -- require('bufferline').setup({})
+  require('harpoon').setup({
+    -- menu = {
+      -- set_quick_menu_keymaps = function(bufnr)
+        -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<esc>', '<cmd>q!<cr>', { noremap = true })
+      -- end
+    -- }
+  })
 end
 
 return M
