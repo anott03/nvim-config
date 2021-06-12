@@ -15,7 +15,7 @@ Color.new('gray2',          '#596170')
 Color.new('gray3',          '#444444')
 
 -- Syntax Groups (descriptions and ordering from `:h w18`
-Group.new('Comment'         , (colors.gray:light()):light()  , nil , nil)
+Group.new('Comment'         , (colors.gray:light()):light()  , nil , styles.italic)
 Group.new('Constant'        , colors.yellow        , nil , nil)
 Group.new('String'          , colors.green         , nil , nil)
 Group.new('Character'       , colors.green         , nil , nil)

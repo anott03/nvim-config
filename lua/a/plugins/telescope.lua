@@ -90,6 +90,10 @@ M.tele_files = function(git)
   if not ok then require'telescope.builtin'.find_files(opts) end
 end
 
+M.frecency_git_files = function()
+
+end
+
 M.tele_grep = function()
   reload('telescope')
   local input = vim.fn.input("Grep for > "):gsub("%s+", "")

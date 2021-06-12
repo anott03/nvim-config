@@ -16,20 +16,20 @@ local set_hl = function(group, options)
 end
 
 -- My Colorscheme
--- local highlights = {
-  -- {'StatusLine',   { fg = '#3C3836', bg = '#89AAFF' }},
-  -- {'StatusLineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
--- }
+local highlights = {
+  {'StatusLine',   { fg = '#3C3836', bg = '#89AAFF' }},
+  {'StatusLineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+}
 
 -- Gruvbox
-local highlights = {
-  {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},
-  {'StatusLineNC', { fg = '#3C3836', bg = '#928374' }},
-  {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-  {'Git', { bg = '#504945', fg = '#EBDBB2' }},
-}
+-- local highlights = {
+  -- {'StatusLine', { fg = '#3C3836', bg = '#EBDBB2' }},
+  -- {'StatusLineNC', { fg = '#3C3836', bg = '#928374' }},
+  -- {'Mode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  -- {'Git', { bg = '#504945', fg = '#EBDBB2' }},
+-- }
 
 
 for _, highlight in ipairs(highlights) do
@@ -109,27 +109,27 @@ Statusline.inactive = function() return Statusline:set_inactive() end
 
 -- set statusline
 Statusline.setup = function()
-  -- vim.cmd('augroup Statusline')
-  -- vim.cmd('au!')
-  -- vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
-  -- vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
-  -- vim.cmd('augroup END')
+  vim.cmd('augroup Statusline')
+  vim.cmd('au!')
+  vim.cmd('au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()')
+  vim.cmd('au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()')
+  vim.cmd('augroup END')
 
-  require('lualine').setup({
-    options = {
-      theme = 'onedark',
-      section_separators = '',
-      component_separators = '',
-    },
-    sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'branch' },
-      lualine_c = { 'filename' },
-      lualine_x = { lspstatus.status },
-      lualine_y = { 'filetype' },
-      lualine_z = { 'location' },
-    }
-  })
+  -- require('lualine').setup({
+    -- options = {
+      -- theme = 'onedark',
+      -- section_separators = '',
+      -- component_separators = '',
+    -- },
+    -- sections = {
+      -- lualine_a = { 'mode' },
+      -- lualine_b = { 'branch' },
+      -- lualine_c = { 'filename' },
+      -- lualine_x = { lspstatus.status },
+      -- lualine_y = { 'filetype' },
+      -- lualine_z = { 'location' },
+    -- }
+  -- })
 end
 
 return Statusline
