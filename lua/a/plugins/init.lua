@@ -18,8 +18,14 @@ M.setup = function()
   local_plugin('git-worktree.nvim')
   local_plugin('telescope-frecency.nvim')
   local_plugin('lspcontainers.nvim')
+  -- local_plugin('LuaSnip')
 
   require('packer').startup(function(use)
+    local local_use = function(plugin)
+        use(string.format("~/dev/nvim/%s", plugin))
+    end
+    local_use('LuaSnip')
+
     use 'wbthomason/packer.nvim'
 
     -- nvim-lsp
@@ -56,6 +62,7 @@ M.initialize_plugins = function()
   require('a.plugins.git-worktree').setup()
   require('a.plugins.compe').setup()
   require('a.plugins.telescope').setup()
+  require('a.plugins.luasnip').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
