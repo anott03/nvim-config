@@ -46,7 +46,7 @@ end
 M.lua = function()
   return {
     s({ trig = "f", dscr = "function" }, {
-      t { "function " }, i(1, {"name"}), t { "(" }, i(2, "..."), t { ")", "", "return", "end" }, i(0)
+      t {"local function "}, i(1, {"name"}), t({"("}), i(2, {"..."}), t({")", "", "end"}), i(0)
     }),
   }
 end
