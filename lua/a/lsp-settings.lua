@@ -15,7 +15,8 @@ local set_languages = function() lspconfig.hls.setup({})
     cmd = lspcontainers.command('rust_analyzer')
   })
 
-  lspcontainers.setup_language_server('sumneko_lua', {
+  lspconfig.sumneko_lua.setup({
+    cmd = lspcontainers.command('sumneko_lua'),
     settings = {
       Lua = {
         runtime = {version = 'LuaJIT'},

@@ -17,7 +17,7 @@ M.setup = function()
   local_plugin('lspui.nvim/feat-popup-sizing')
   local_plugin('git-worktree.nvim')
   local_plugin('telescope-frecency.nvim')
-  local_plugin('lspcontainers.nvim')
+  -- local_plugin('lspcontainers.nvim')
   -- local_plugin('LuaSnip')
 
   require('packer').startup(function(use)
@@ -25,6 +25,7 @@ M.setup = function()
         use(string.format("~/dev/nvim/%s", plugin))
     end
     local_use('LuaSnip')
+    local_use('lspcontainers.nvim')
 
     use 'wbthomason/packer.nvim'
 
@@ -77,4 +78,5 @@ M.initialize_plugins = function()
   })
 end
 
+M.setup()
 return M

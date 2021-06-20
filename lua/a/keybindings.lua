@@ -11,6 +11,7 @@ M.setup = function()
 
   -- Telescope Mappings
   remap("n", "<leader><leader>", "<CMD>lua require('a.plugins.telescope').tele_files(false)<CR>")
+  remap("n", "<leader>ff", "<CMD>lua require('a.plugins.telescope').frecency()<CR>")
   remap("n", "<leader>b", "<CMD>lua require('a.plugins.telescope').tele_bufs()<CR>")
   remap("n", "<leader>ps", "<CMD>lua require('a.plugins.telescope').tele_grep()<CR>")
   remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")

@@ -1,4 +1,5 @@
 local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
 local reload = require('plenary.reload').reload_module
@@ -71,27 +72,33 @@ M.tele_bufs = function() reload('telescope')
   require('telescope.builtin').buffers()
 end
 
-M.tele_files = function(git)
+local opts = {
+  previewer = false,
+  layout_strategy = "horizontal",
+  others = false,
+  show_untracked = false,
+  recurse_submodules = true -- for git_files
+}
+
+M.tele_files = function()
   reload('telescope')
-  local opts = {
-    previewer = false,
-    layout_strategy = "horizontal",
-    recurse_submodules = true -- for git_files
-  }
 
   local ok = false
-  if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
+  -- if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
   -- TODO: revisit this
   -- https://github.com/nvim-telescope/telescope.nvim/pull/521
   -- if ok then
     -- vim.api.nvim_feedkeys(':CWD: ', 'n', false)
   -- end
-  if not ok then ok = pcall(require'telescope.builtin'.git_files, opts) end
-  if not ok then require'telescope.builtin'.find_files(opts) end
+  if not ok then ok = pcall(builtin.git_files, opts) end
+  if not ok then builtin.find_files(opts) end
 end
 
-M.frecency_git_files = function()
-
+M.frecency = function()
+  local ok = pcall(telescope.extensions.frecency.frecency, opts)
+  if not ok then
+    M.find_files()
+  end
 end
 
 M.tele_grep = function()

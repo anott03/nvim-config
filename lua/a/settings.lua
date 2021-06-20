@@ -63,7 +63,7 @@ M.setup = function()
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 
   require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
+  -- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
 end
 
 function apply_buf_enter_settings()

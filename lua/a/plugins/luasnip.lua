@@ -30,7 +30,7 @@ M.setup = function()
 
   vim.cmd [[
     imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
-    imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+    imap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'
     snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<cr>
     snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<cr>
   ]]
@@ -40,24 +40,25 @@ M.all = function()
   return {
     s({ trig = "(" }, { t { "(" }, i(1), t { ")" }, i(0) }, neg, char_count_same, "%(", "%)"),
     s({ trig = "{" }, { t { "{" }, i(1), t { "}" }, i(0) }, neg, char_count_same, "%{", "%}"),
+    s({ trig = "[" }, { t { "[" }, i(1), t { "]" }, i(0) }, neg, char_count_same, "%[", "%]"),
   }
 end
 
 M.lua = function()
   return {
-    s({ trig = "f", dscr = "function" }, {
-      t {"local function "}, i(1, {"name"}), t({"("}), i(2, {"..."}), t({")", "", "end"}), i(0)
+    s({ trig = "func", dscr = "function" }, {
+      t {"local function "}, i(1, {"name"}), t({"("}), i(2, {"..."}), t({")", ""}), i(0), t({"", "end"})
     }),
   }
 end
 
 M.go = function()
   return {
-    s({ trig = "err" }, {
+    s({ trig = "ferr" }, {
       i(1, {'val'}), t({', '}), i(2, {'err'}), t({' := '}), i(3, {'f'}), t({'()'}), i(0)
     }),
     s({ trig = "func" }, {
-      t({"func "}), i(1, {"name"}), t({"("}), i(2, {"params"}), t({") "}), i(3, {"returns"}), t({"{", "", "}"}), i(0)
+      t({"func "}), i(1, {"name"}), t({"("}), i(2, {"params"}), t({") "}), i(3, {"returns"}), t({" {", "", "}"}), i(0)
     })
   }
 end
