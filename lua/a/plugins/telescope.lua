@@ -2,6 +2,7 @@ local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
+local themes = require('telescope.themes')
 local reload = require('plenary.reload').reload_module
 
 local M = {}
@@ -59,16 +60,21 @@ M.setup = function()
         override_generic_sorter = true,
         override_file_sorter = true,
       },
-      frecency = {
-        workspaces = {
+      frecency = { workspaces = {
           ["conf"] = vim.loop.os_homedir() .. "/.config/",
           ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim/",
         },
       },
     },
   })
+
+  vim.cmd [[
+    autocmd User TelescopePreviewerLoaded setlocal nonu nornu signcolumn=no
+  ]]
 end
-M.tele_bufs = function() reload('telescope')
+
+M.tele_bufs = function()
+  reload('telescope')
   require('telescope.builtin').buffers()
 end
 
@@ -76,12 +82,15 @@ local opts = {
   previewer = false,
   layout_strategy = "horizontal",
   others = false,
-  show_untracked = false,
-  recurse_submodules = true -- for git_files
 }
 
 M.tele_files = function()
   reload('telescope')
+
+  local _opts = vim.tbl_extend("keep", {
+    show_untracked = false,
+    recurse_submodules = true,
+  }, opts)
 
   local ok = false
   -- if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
@@ -90,7 +99,7 @@ M.tele_files = function()
   -- if ok then
     -- vim.api.nvim_feedkeys(':CWD: ', 'n', false)
   -- end
-  if not ok then ok = pcall(builtin.git_files, opts) end
+  if not ok then ok = pcall(builtin.git_files, _opts) end
   if not ok then builtin.find_files(opts) end
 end
 
@@ -114,6 +123,29 @@ end
 M.tele_git_worktree = function()
   reload('telescope')
   telescope.extensions.git_worktree.git_worktrees()
+end
+
+M.dotfiles = function()
+  reload('telescope')
+
+  -- local _opts = vim.tbl_extend("keep", {
+    -- shorten_path = false,
+    -- cwd = "~/repos/dotfiles",
+    -- prompt_title = "Dotfiles",
+    -- hidden = true,
+  -- }, opts)
+
+  local _opts = {
+    previewer = false,
+    shorten_path = false,
+    cwd = "~/repos/dotfiles",
+    prompt_title = "Dotfiles",
+    hidden = true,
+  }
+
+  _opts = themes.get_ivy(_opts)
+
+  builtin.fd(_opts)
 end
 
 return M

@@ -9,13 +9,7 @@ M.setup = function()
   vim.cmd("autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()")
   vim.cmd("augroup END")
 
-  -- nvim tree stuff
-  vim.cmd("augroup nvimtreestuff")
-  vim.cmd("autocmd!")
-  vim.cmd("autocmd FileType nvimtree set signcolumn=no")
-  vim.cmd("augroup END")
-
-  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
+  -- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
 end
 
 -- set statusline
