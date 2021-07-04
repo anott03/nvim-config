@@ -11,6 +11,7 @@ M.setup = function()
 
   -- Telescope Mappings
   require('a.plugins.telescope').mappings()
+  remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
 
   -- window movements
   remap("n", "<leader>h", "<CMD>wincmd h<CR>")

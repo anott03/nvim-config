@@ -73,46 +73,6 @@ M.setup = function()
   ]]
 end
 
-local function _remap(mode, lhs, rhs, opts)
-  if not lhs or not rhs or not mode then
-    error("mode, lhs, and rhs are required")
-  end
-
-  opts = opts or {noremap = true}
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
-
-local function generate_telescope_function(func)
-  return function()
-    reload('telescope')
-    reload('a.plugins.telescope')
-    local t = require('a.plugins.telescope')
-    t.setup()
-    t.mappings()
-    func()
-  end
-end
-
-TELESCOPE_FUNCTIONS = TELESCOPE_FUNCTIONS or {}
-local function remap(mode, lhs, rhs, opts)
-  if type(rhs) == 'function' then
-    rhs = generate_telescope_function(rhs)
-    table.insert(TELESCOPE_FUNCTIONS, rhs)
-    _remap(mode, lhs, "<cmd>lua TELESCOPE_FUNCTIONS[" .. #TELESCOPE_FUNCTIONS .. "]()<cr>", opts)
-  else
-    _remap(mode, lhs, rhs, opts)
-  end
-end
-
-M.mappings = function()
-  remap("n", "<leader><leader>", M.files)
-  remap("n", "<leader>fd", M.dotfiles)
-  remap("n", "<leader>ff", M.frecency)
-  remap("n", "<leader>b", M.tele_bufs)
-  remap("n", "<leader>ps", M.grep)
-  remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
-end
-
 M.tele_bufs = function()
   reload('telescope')
   require('telescope.builtin').buffers()
@@ -134,8 +94,7 @@ M.files = function()
 
   local ok = false
   -- if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
-  -- TODO: revisit this
-  -- https://github.com/nvim-telescope/telescope.nvim/pull/521
+  -- TODO: revisit this https://github.com/nvim-telescope/telescope.nvim/pull/521
   -- if ok then
     -- vim.api.nvim_feedkeys(':CWD: ', 'n', false)
   -- end
@@ -146,7 +105,7 @@ end
 M.frecency = function()
   local ok = pcall(telescope.extensions.frecency.frecency, opts)
   if not ok then
-    M.find_files()
+    M.files()
   end
 end
 
@@ -179,6 +138,45 @@ M.dotfiles = function()
   _opts = themes.get_ivy(_opts)
 
   builtin.fd(_opts)
+end
+
+local function _remap(mode, lhs, rhs, o)
+  if not lhs or not rhs or not mode then
+    error("mode, lhs, and rhs are required")
+  end
+
+  o = o or {noremap = true}
+  vim.api.nvim_set_keymap(mode, lhs, rhs, o)
+end
+
+local function generate_telescope_function(func)
+  return function()
+    reload('telescope')
+    reload('a.plugins.telescope')
+    local t = require('a.plugins.telescope')
+    t.setup()
+    t.mappings()
+    func()
+  end
+end
+
+TELESCOPE_FUNCTIONS = TELESCOPE_FUNCTIONS or {}
+local function remap(mode, lhs, rhs, o)
+  if type(rhs) == 'function' then
+    rhs = generate_telescope_function(rhs)
+    table.insert(TELESCOPE_FUNCTIONS, rhs)
+    _remap(mode, lhs, "<cmd>lua TELESCOPE_FUNCTIONS[" .. #TELESCOPE_FUNCTIONS .. "]()<cr>", o)
+  else
+    _remap(mode, lhs, rhs, o)
+  end
+end
+
+M.mappings = function()
+  remap("n", "<leader><leader>", M.files)
+  remap("n", "<leader>fd", M.dotfiles)
+  remap("n", "<leader>ff", M.frecency)
+  remap("n", "<leader>b", M.tele_bufs)
+  remap("n", "<leader>ps", M.grep)
 end
 
 return M
