@@ -21,11 +21,36 @@ local function neg(fn, ...)
   return not fn(...)
 end
 
+local all =  {
+  s({ trig = "(" }, { t { "(" }, i(1), t { ")" }, i(0) }, neg, char_count_same, "%(", "%)"),
+  s({ trig = "{" }, { t { "{" }, i(1), t { "}" }, i(0) }, neg, char_count_same, "%{", "%}"),
+  s({ trig = "[" }, { t { "[" }, i(1), t { "]" }, i(0) }, neg, char_count_same, "%[", "%]"),
+}
+
+local lua =  {
+  s({ trig = "func", dscr = "function" }, {
+    t {"local function "}, i(1, {"name"}), t({"("}), i(2, {"..."}), t({")", ""}), i(0), t({"", "end"})
+  }),
+
+  s({ trig = "M.", dscr = "function" }, {
+    t {"M."}, i(1, {"name"}), t({" = function("}), i(2, {"..."}), t({")"}), i(0), t({"", "end"})
+  }),
+}
+
+local golang = {
+  s({ trig = "ferr" }, {
+    i(1, {'val'}), t({', '}), i(2, {'err'}), t({' := '}), i(3, {'f'}), t({'()'}), i(0)
+  }),
+  s({ trig = "func" }, {
+    t({"func "}), i(1, {"name"}), t({"("}), i(2, {"params"}), t({") "}), i(3, {"returns"}), t({" {", "", "}"}), i(0)
+  })
+}
+
 M.setup = function()
   ls.snippets = {
-    all = M.all(),
-    lua = M.lua(),
-    go = M.go(),
+    all = all,
+    lua = lua,
+    go = golang,
   }
 
   vim.cmd [[
@@ -36,32 +61,6 @@ M.setup = function()
   ]]
 end
 
-M.all = function()
-  return {
-    s({ trig = "(" }, { t { "(" }, i(1), t { ")" }, i(0) }, neg, char_count_same, "%(", "%)"),
-    s({ trig = "{" }, { t { "{" }, i(1), t { "}" }, i(0) }, neg, char_count_same, "%{", "%}"),
-    s({ trig = "[" }, { t { "[" }, i(1), t { "]" }, i(0) }, neg, char_count_same, "%[", "%]"),
-  }
-end
-
-M.lua = function()
-  return {
-    s({ trig = "func", dscr = "function" }, {
-      t {"local function "}, i(1, {"name"}), t({"("}), i(2, {"..."}), t({")", ""}), i(0), t({"", "end"})
-    }),
-  }
-end
-
-M.go = function()
-  return {
-    s({ trig = "ferr" }, {
-      i(1, {'val'}), t({', '}), i(2, {'err'}), t({' := '}), i(3, {'f'}), t({'()'}), i(0)
-    }),
-    s({ trig = "func" }, {
-      t({"func "}), i(1, {"name"}), t({"("}), i(2, {"params"}), t({") "}), i(3, {"returns"}), t({" {", "", "}"}), i(0)
-    })
-  }
-end
 
 M.setup()
 return M

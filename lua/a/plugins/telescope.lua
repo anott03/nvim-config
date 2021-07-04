@@ -73,6 +73,46 @@ M.setup = function()
   ]]
 end
 
+local function _remap(mode, lhs, rhs, opts)
+  if not lhs or not rhs or not mode then
+    error("mode, lhs, and rhs are required")
+  end
+
+  opts = opts or {noremap = true}
+  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+end
+
+local function generate_telescope_function(func)
+  return function()
+    reload('telescope')
+    reload('a.plugins.telescope')
+    t = require('a.plugins.telescope')
+    t.setup()
+    t.mappings()
+    func()
+  end
+end
+
+TELESCOPE_FUNCTIONS = TELESCOPE_FUNCTIONS or {}
+local function remap(mode, lhs, rhs, opts)
+  if type(rhs) == 'function' then
+    rhs = generate_telescope_function(rhs)
+    table.insert(TELESCOPE_FUNCTIONS, rhs)
+    _remap(mode, lhs, "<cmd>lua TELESCOPE_FUNCTIONS[" .. #TELESCOPE_FUNCTIONS .. "]()<cr>", opts)
+  else
+    _remap(mode, lhs, rhs, opts)
+  end
+end
+
+M.mappings = function()
+  remap("n", "<leader><leader>", M.files)
+  remap("n", "<leader>fd", M.dotfiles)
+  remap("n", "<leader>ff", M.frecency)
+  remap("n", "<leader>b", M.tele_bufs)
+  remap("n", "<leader>ps", M.grep)
+  remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
+end
+
 M.tele_bufs = function()
   reload('telescope')
   require('telescope.builtin').buffers()
@@ -84,7 +124,7 @@ local opts = {
   others = false,
 }
 
-M.tele_files = function()
+M.files = function()
   reload('telescope')
 
   local _opts = vim.tbl_extend("keep", {
@@ -110,7 +150,7 @@ M.frecency = function()
   end
 end
 
-M.tele_grep = function()
+M.grep = function()
   reload('telescope')
   local input = vim.fn.input("Grep for > "):gsub("%s+", "")
   if input ~= '' then
@@ -120,20 +160,13 @@ M.tele_grep = function()
   end
 end
 
-M.tele_git_worktree = function()
+M.git_worktree = function()
   reload('telescope')
   telescope.extensions.git_worktree.git_worktrees()
 end
 
 M.dotfiles = function()
   reload('telescope')
-
-  -- local _opts = vim.tbl_extend("keep", {
-    -- shorten_path = false,
-    -- cwd = "~/repos/dotfiles",
-    -- prompt_title = "Dotfiles",
-    -- hidden = true,
-  -- }, opts)
 
   local _opts = {
     previewer = false,

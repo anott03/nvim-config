@@ -10,12 +10,7 @@ M.setup = function()
   vim.g.mapleader = ' '
 
   -- Telescope Mappings
-  remap("n", "<leader><leader>", "<CMD>lua require('a.plugins.telescope').tele_files(false)<CR>")
-  remap("n", "<leader>ff", "<CMD>lua require('a.plugins.telescope').frecency()<CR>")
-  remap("n", "<leader>b", "<CMD>lua require('a.plugins.telescope').tele_bufs()<CR>")
-  remap("n", "<leader>ps", "<CMD>lua require('a.plugins.telescope').tele_grep()<CR>")
-  remap("n", "<leader>fd", "<CMD>lua require('a.plugins.telescope').dotfiles()<CR>")
-  remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
+  require('a.plugins.telescope').mappings()
 
   -- window movements
   remap("n", "<leader>h", "<CMD>wincmd h<CR>")
