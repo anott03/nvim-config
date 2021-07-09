@@ -37,6 +37,7 @@ M.setup = function()
     -- other language suff
     use 'mattn/emmet-vim'
     use 'rust-lang/rust.vim'
+    use 'lervag/vimtex'
 
     -- colorscheme/aesthetic
     use 'gruvbox-community/gruvbox'

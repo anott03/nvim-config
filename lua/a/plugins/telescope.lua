@@ -18,10 +18,9 @@ M.setup = function()
       selection_caret = '❯ ',
 
       winblend = 0,
-      preview_cutoff = 120,
 
       layout_strategy = 'horizontal',
-      layout_defaults = {
+      layout_config = {
         horizontal = {
           width_padding = 0.1,
           height_padding = 0.1,
@@ -32,12 +31,13 @@ M.setup = function()
           height_padding = 1,
           preview_width = 0.6
         },
+        prompt_position = "top",
+        preview_cutoff = 120,
       },
 
       selection_strategy = "reset",
       sorting_strategy = "ascending",
       scroll_strategy = "cycle",
-      prompt_position = "top",
       color_devicons = true,
       borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
 
@@ -134,8 +134,7 @@ M.dotfiles = function()
     prompt_title = "Dotfiles",
     hidden = true,
   }
-
-  _opts = themes.get_ivy(_opts)
+_opts = themes.get_ivy(_opts)
 
   builtin.fd(_opts)
 end
@@ -173,10 +172,10 @@ end
 
 M.mappings = function()
   remap("n", "<leader><leader>", M.files)
-  remap("n", "<leader>fd", M.dotfiles)
-  remap("n", "<leader>ff", M.frecency)
-  remap("n", "<leader>b", M.tele_bufs)
-  remap("n", "<leader>ps", M.grep)
+  remap("n", "<leader>fd",       M.dotfiles)
+  remap("n", "<leader>ff",       M.frecency)
+  remap("n", "<leader>b",        M.tele_bufs)
+  remap("n", "<leader>ps",       M.grep)
 end
 
 return M

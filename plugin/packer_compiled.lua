@@ -157,6 +157,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
+  vimtex = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vimtex"
+  },
   vimwiki = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vimwiki"
