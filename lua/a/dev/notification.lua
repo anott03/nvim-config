@@ -1,4 +1,5 @@
 local api = vim.api
+local Job = require('plenary.job')
 
 local function location_window(options)
     local default_options = {
@@ -54,6 +55,8 @@ local function create_notification(text)
   table.insert(ACTIVE_NOTIFICATIONS, {info.bufnr, info.win_id})
 
   api.nvim_set_current_win(prev_win)
+
+  vim.defer_fn(CLOSE_NOTIFICATION, 3000)
 end
 
 function CLOSE_NOTIFICATION()
