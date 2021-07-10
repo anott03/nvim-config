@@ -33,7 +33,6 @@ local function location_window(options)
 end
 
 -- ACTIVE_NOTIFICATIONS = ACTIVE_NOTIFICATIONS or {}
-ACTIVE_NOTIFICATIONS = {}
 
 local function create_notification(text)
   local win_stats = api.nvim_list_uis()[1]
@@ -51,23 +50,49 @@ local function create_notification(text)
   api.nvim_buf_set_lines(
       info.bufnr, 0, 5, false, { "!!! Notification", text }
   )
-
-  table.insert(ACTIVE_NOTIFICATIONS, {info.bufnr, info.win_id})
-
   api.nvim_set_current_win(prev_win)
-
-  vim.defer_fn(CLOSE_NOTIFICATION, 3000)
+  return {
+    info.bufnr,
+    info.win_id
+  }
 end
 
+NOTIFICAION_QUEUE = {}
+Notification = {}
+
+function Notification:new(text, lifetime)
+  self.text = text
+  self.lifetime = lifetime
+end
+
+function Notification:render()
+  create_notification(self.text)
+
+  -- vim.defer_fn(CLOSE_NOTIFICATION, self.lifetime or 3000)
+  vim.defer_fn(function()
+    self.close()
+  end, self.lifetime or 3000)
+end
+
+function Notification:close()
+  if not self.bufnr then
+    print('notification is not currently being rendered')
+    return
+  end
+
+  api.nvim_buf_delete(self.bufnr)
+  self.bufnr = nil
+end
+
+
+
+
 function CLOSE_NOTIFICATION()
-  if #ACTIVE_NOTIFICATIONS == 0 then
+  if #NOTIFICAION_QUEUE == 0 then
     print("no open notifications to close")
     return -1
   end
 
-  local current_notification = ACTIVE_NOTIFICATIONS[#ACTIVE_NOTIFICATIONS]
+  local current_notification = NOTIFICAION_QUEUE[#NOTIFICAION_QUEUE]
   api.nvim_buf_delete(current_notification[1], { force = true })
 end
-
-create_notification("this is a notification")
-
