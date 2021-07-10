@@ -61,7 +61,7 @@ M.setup = function()
   remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
   remap("n", "<leader>gs", "<CMD>G<CR>")
   -- git-worktree
-  remap("n", "<leader>gw", "<CMD>lua require('a.plugins.telescope').tele_git_worktree()<CR>")
+  remap("n", "<leader>gw", "<CMD>lua require('a.plugins.telescope').git_worktree()<CR>")
   remap("n", "<leader>gc", "<cmd>lua require('a.plugins.git-worktree').create_worktree()<cr>")
   remap("n", "<leader>gr", "<cmd>lua require('a.plugins.git-worktree').delete_worktree()<cr>")
 
