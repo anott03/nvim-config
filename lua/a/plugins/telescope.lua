@@ -85,8 +85,6 @@ local opts = {
 }
 
 M.files = function()
-  reload('telescope')
-
   local _opts = vim.tbl_extend("keep", {
     show_untracked = false,
     recurse_submodules = true,
@@ -110,7 +108,6 @@ M.frecency = function()
 end
 
 M.grep = function()
-  reload('telescope')
   local input = vim.fn.input("Grep for > "):gsub("%s+", "")
   if input ~= '' then
     require('telescope.builtin').grep_string({
@@ -125,8 +122,6 @@ M.git_worktree = function()
 end
 
 M.dotfiles = function()
-  reload('telescope')
-
   local _opts = {
     previewer = false,
     shorten_path = false,
@@ -134,7 +129,33 @@ M.dotfiles = function()
     prompt_title = "Dotfiles",
     hidden = true,
   }
-_opts = themes.get_ivy(_opts)
+  _opts = themes.get_ivy(_opts)
+
+  builtin.fd(_opts)
+end
+
+M.nvim = function()
+  local _opts = {
+    -- previewer = false,
+    shorten_path = false,
+    cwd = "~/dev/nvim",
+    prompt_title = "Local Extensions",
+    hidden = true,
+  }
+  _opts = themes.get_ivy(_opts)
+
+  builtin.fd(_opts)
+end
+
+M.neovim = function()
+  local _opts = {
+    -- previewer = false,
+    shorten_path = false,
+    cwd = "~/repos/neovim",
+    prompt_title = "Local Extensions",
+    hidden = true,
+  }
+  _opts = themes.get_ivy(_opts)
 
   builtin.fd(_opts)
 end
@@ -176,6 +197,8 @@ M.mappings = function()
   remap("n", "<leader>ff",       M.frecency)
   remap("n", "<leader>b",        M.tele_bufs)
   remap("n", "<leader>ps",       M.grep)
+  remap("n", "<leader>nv",       M.nvim)
+  remap("n", "<leader>nn",       M.neovim)
 end
 
 return M
