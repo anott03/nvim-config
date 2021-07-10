@@ -32,10 +32,10 @@ local function location_window(options)
     }
 end
 
--- ACTIVE_NOTIFICATIONS = ACTIVE_NOTIFICATIONS or {}
-
 local notification_config = {
-  icon = ""
+  icon = "",
+  width = 20,
+  height = 2
 }
 
 local function create_notification(sender, text)
@@ -44,10 +44,17 @@ local function create_notification(sender, text)
 
   local prev_win = api.nvim_get_current_win()
 
+  if notification_config.height and notification_config.height < 2 then
+    error("notification height must be at least 2")
+  end
+  if notification_config.width and notification_config.width < 10 then
+    error("notification width must be at least 10")
+  end
+
   -- TODO: position probably shouldn't done this way
   local info = location_window({
-      width = 20,
-      height = 2,
+      width = notification_config.width or 20,
+      height = notification_config.height or 2,
       row = 1,
       col = win_width - 25,
   })
@@ -63,7 +70,17 @@ local function create_notification(sender, text)
   }
 end
 
-NOTIFICAION_QUEUE = {}
+NOTIFICAION_QUEUE = setmetatable({}, {
+  __index = function(tbl, key)
+    if key == 'add_notification' then
+      return function(notification)
+        table.insert(tbl, notification)
+      end
+    end
+    return tbl[key]
+  end
+})
+
 Notification = {}
 
 function Notification:new(sender, text, lifetime)
@@ -72,7 +89,6 @@ function Notification:new(sender, text, lifetime)
   obj.sender = sender
   obj.message = text
   obj.lifetime = lifetime
-  -- table.insert(NOTIFICAION_QUEUE, obj)
   return setmetatable(obj, Notification)
 end
 
@@ -92,6 +108,8 @@ function Notification:close()
   api.nvim_buf_delete(self.bufnr, { force = true })
   self.bufnr = nil
 end
+
+Notification.__index = Notification
 
 -- TODO: interface to manage notifications (close, delete, reorder, etc.)
 function NOTIFICATIONS()
@@ -142,8 +160,8 @@ function CLOSE_NOTIFICATION()
   end
 end
 
-Notification.__index = Notification
 
-table.insert(NOTIFICAION_QUEUE, Notification:new('another', 'notification', 3000))
-table.insert(NOTIFICAION_QUEUE, Notification:new('test', 'hello', 3000))
+NOTIFICAION_QUEUE.add_notification(Notification:new('test', 'hello', 3000))
+NOTIFICAION_QUEUE.add_notification(Notification:new('another', 'notification', 5000))
+NOTIFICAION_QUEUE.add_notification(Notification:new('third', 'notification', 3000))
 NOTIFICAION_QUEUE[1]:render()
