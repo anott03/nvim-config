@@ -50,6 +50,7 @@ Statusline.get_current_mode = function(self)
     ['V']  = 'V·Line';
     [''] = 'V·Block';
     ['i']  = 'Insert';
+    ['ic']  = 'Insert';
     ['R']  = 'Replace';
     ['c']  = 'Cmmand';
     ['t']  = 'Terminal';
