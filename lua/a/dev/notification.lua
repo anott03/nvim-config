@@ -70,17 +70,13 @@ local function create_notification(sender, text)
   }
 end
 
-NOTIFICAION_QUEUE = setmetatable({}, {
-  __index = function(tbl, key)
-    if key == 'add_notification' then
-      return function(notification)
-        table.insert(tbl, notification)
-      end
-    end
-    return tbl[key]
-  end
-})
-
+NOTIFICAION_QUEUE = {}
+-- I'm not sure if this is really needed, but it could be nice for users to
+-- have a list of the notifications that've been sent (especially the way they
+-- currently work with a queue) where they can dismiss them individually and
+-- maybe they get auto-dismissed after a certain amount of time - definitely
+-- when the nvim session ends.
+SENT_NOTIFICATIONS = {}
 Notification = {}
 
 function Notification:new(sender, text, lifetime)
@@ -95,8 +91,7 @@ end
 function Notification:render()
   local info = create_notification(self.sender, self.message)
   self.bufnr = info.bufnr
-
-  vim.defer_fn(CLOSE_NOTIFICATION, self.lifetime or 3000)
+vim.defer_fn(CLOSE_NOTIFICATION, self.lifetime or 3000)
 end
 
 function Notification:close()
@@ -107,6 +102,18 @@ function Notification:close()
 
   api.nvim_buf_delete(self.bufnr, { force = true })
   self.bufnr = nil
+end
+
+function Notification:dismiss()
+end
+
+Notification.add_to_queue = function(notification)
+  table.insert(NOTIFICAION_QUEUE, notification)
+end
+
+-- TODO: (maybe?) add functionality to remove a notification from the queue
+-- if it has not yet been rendered
+Notification.remove_from_queue = function()
 end
 
 Notification.__index = Notification
@@ -154,14 +161,15 @@ function CLOSE_NOTIFICATION()
   local current_notification = NOTIFICAION_QUEUE[1]
   current_notification:close()
 
+  table.insert(SENT_NOTIFICATIONS, current_notification)
+
   table.remove(NOTIFICAION_QUEUE, 1)
   if #NOTIFICAION_QUEUE ~= 0 then
     NOTIFICAION_QUEUE[1]:render()
   end
 end
 
-
-NOTIFICAION_QUEUE.add_notification(Notification:new('test', 'hello', 3000))
-NOTIFICAION_QUEUE.add_notification(Notification:new('another', 'notification', 5000))
-NOTIFICAION_QUEUE.add_notification(Notification:new('third', 'notification', 3000))
+Notification:new('test', 'hello', 3000)
+Notification:new('another', 'notification', 5000)
+Notification:new('third', 'notification', 3000)
 NOTIFICAION_QUEUE[1]:render()
