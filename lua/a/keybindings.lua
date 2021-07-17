@@ -22,8 +22,6 @@ M.setup = function()
   remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
   remap("n", "<C-k>", "<CMD>resize +5<CR>")
   remap("n", "<C-j>", "<CMD>resize -5<CR>") -- yank and put
-  remap('n', "L", "<cmd>BufferLineCycleNext<cr>")
-  remap('n', "H", "<cmd>BufferLineCyclePrev<cr>")
 
   -- for some reason this works but the same bindings in lua don't
   vim.cmd(
@@ -46,6 +44,7 @@ M.setup = function()
   remap("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
   remap("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
   remap("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
+  remap("v", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
   remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
   remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 

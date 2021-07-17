@@ -78,11 +78,11 @@ M.tele_bufs = function()
   require('telescope.builtin').buffers()
 end
 
-local opts = {
+local opts = themes.get_ivy({
   previewer = false,
-  layout_strategy = "horizontal",
+  -- layout_strategy = "horizontal",
   others = false,
-}
+})
 
 M.files = function()
   local _opts = vim.tbl_extend("keep", {

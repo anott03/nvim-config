@@ -169,7 +169,7 @@ function CLOSE_NOTIFICATION()
   end
 end
 
-Notification:new('test', 'hello', 3000)
-Notification:new('another', 'notification', 5000)
-Notification:new('third', 'notification', 3000)
-NOTIFICAION_QUEUE[1]:render()
+-- Notification:new('test', 'hello', 3000)
+-- Notification:new('another', 'notification', 5000)
+-- Notification:new('third', 'notification', 3000)
+-- NOTIFICAION_QUEUE[1]:render()
