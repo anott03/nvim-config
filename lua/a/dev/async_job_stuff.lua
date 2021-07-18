@@ -1,20 +1,17 @@
 local async_lib = require('plenary.async_lib')
+local Job = require('plenary.job')
+
 local async = async_lib.async
 local await = async_lib.await
 
-local f = async_lib.wrap(function(params)
-  return params
-end, 'vararg')
-
--- print(vim.inspect(
-  -- f()(3)
--- ))
-
 local g = async(function(params)
-  print(vim.inspect(params))
+  Job:new({
+    command = 'sleep',
+    args = { '3' },
+    on_exit = function()
+      vim.notify(params)
+    end,
+  }):sync()
 end)
 
--- async.run(future, function()
-  -- print('done')
--- end)
 await(g(3))
