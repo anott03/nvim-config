@@ -101,6 +101,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
+  ["luv-vimdocs"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/luv-vimdocs"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nerdcommenter"

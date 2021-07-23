@@ -9,7 +9,7 @@ local g = async(function(params)
     command = 'sleep',
     args = { '3' },
     on_exit = function()
-      vim.notify(params)
+      print(vim.inspect(params))
     end,
   }):sync()
 end)

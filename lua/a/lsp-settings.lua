@@ -4,7 +4,10 @@ local lspconfig = require "lspconfig" local lspcontainers = require 'lspcontaine
 local set_languages = function() lspconfig.hls.setup({})
   lspconfig.tsserver.setup({
     -- cmd = lspcontainers.command('tsserver')
-  }) lspconfig.bashls.setup({}) lspconfig.html.setup({}) lspconfig.pyls.setup({})
+  })
+  lspconfig.bashls.setup({})
+  lspconfig.html.setup({})
+  -- lspconfig.pyls.setup({})
   lspconfig.clangd.setup({})
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})

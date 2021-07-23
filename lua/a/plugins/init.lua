@@ -56,6 +56,7 @@ M.setup = function()
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'tami5/sql.nvim'
     use 'tpope/vim-fugitive'
+    use "nanotee/luv-vimdocs"
   end)
 end
 
