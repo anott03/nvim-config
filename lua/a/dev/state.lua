@@ -51,15 +51,15 @@ end
 
 -- var:set(2)
 
-local var = State:new({
-  a = 'a',
-  b = 'b',
-  c = 'c',
-})
+-- local var = State:new({
+  -- a = 'a',
+  -- b = 'b',
+  -- c = 'c',
+-- })
 
-var:add_on_change_event(function(key, old_val, new_val)
-  vim.notify(string.format('var[%s] :: %s --> %s', key, old_val, new_val))
-end)
-var:set('d', 'd')
+-- var:add_on_change_event(function(key, old_val, new_val)
+  -- vim.notify(string.format('var[%s] :: %s --> %s', key, old_val, new_val))
+-- end)
+-- var:set('d', 'd')
 
 return State
