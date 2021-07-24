@@ -74,4 +74,19 @@ function apply_buf_enter_settings()
   end
 end
 
+-- TODO figure out a way to make neovim run lua files without requiring them to
+-- be named that is more efficient than this.
+function SO()
+  if vim.bo.filetype ~= 'lua' then
+    vim.cmd[[so]]
+  else
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local snippet = ""
+    for _, l in pairs(lines) do
+      snippet = snippet .. l .. "\n"
+    end
+    vim.cmd("lua << EOF\n"..snippet.."\nEOF")
+  end
+end
+
 return M

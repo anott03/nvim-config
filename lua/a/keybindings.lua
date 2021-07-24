@@ -30,7 +30,7 @@ M.setup = function()
   )
 
   remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
-  remap("n", "<leader>S", "<CMD>so<CR>")
+  remap("n", "<leader>S", "<CMD>lua SO()<CR>")
 
   -- indenting
   remap("v", "<", "<gv")
