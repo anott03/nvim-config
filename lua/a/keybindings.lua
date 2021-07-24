@@ -30,6 +30,7 @@ M.setup = function()
   )
 
   remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
+  remap("n", "<leader>S", "<CMD>so<CR>")
 
   -- indenting
   remap("v", "<", "<gv")

@@ -77,6 +77,8 @@ M.initialize_plugins = function()
       -- end
     -- }
   })
+
+  RELOAD = require('plenary.reload').reload_module
 end
 
 M.setup()
