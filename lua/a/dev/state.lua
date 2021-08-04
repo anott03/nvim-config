@@ -44,22 +44,4 @@ function State:add_on_change_event(f)
   self.on_change = f
 end
 
--- local var = State:new(1)
--- var:add_on_change_event(function()
-  -- vim.notify('event emitted')
--- end)
-
--- var:set(2)
-
--- local var = State:new({
-  -- a = 'a',
-  -- b = 'b',
-  -- c = 'c',
--- })
-
--- var:add_on_change_event(function(key, old_val, new_val)
-  -- vim.notify(string.format('var[%s] :: %s --> %s', key, old_val, new_val))
--- end)
--- var:set('d', 'd')
-
 return State

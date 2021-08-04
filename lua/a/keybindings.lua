@@ -1,4 +1,6 @@
 local vim = vim
+local nnoremap = require('astronauta.keymap').nnoremap
+local vnoremap = require('astronauta.keymap').vnoremap
 local M = {}
 
 local remap = function(mode, lhs, rhs, opts)
@@ -41,11 +43,11 @@ M.setup = function()
   remap("n", "<leader>e", "<CMD>Lex<CR>")
 
   -- lsp
-  remap("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
-  remap("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
-  remap("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
-  remap("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
-  remap("v", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
+  nnoremap({"gd", vim.lsp.buf.definition})
+  nnoremap({"gi", vim.lsp.buf.implementation})
+  nnoremap({"gr", vim.lsp.buf.references})
+  nnoremap({"K", vim.lsp.buf.hover})
+  vnoremap({"K", vim.lsp.buf.hover})
   remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
   remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
@@ -61,9 +63,9 @@ M.setup = function()
   remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
   remap("n", "<leader>gs", "<CMD>G<CR>")
   -- git-worktree
-  remap("n", "<leader>gw", "<CMD>lua require('a.plugins.telescope').git_worktree()<CR>")
-  remap("n", "<leader>gc", "<cmd>lua require('a.plugins.git-worktree').create_worktree()<cr>")
-  remap("n", "<leader>gr", "<cmd>lua require('a.plugins.git-worktree').delete_worktree()<cr>")
+  nnoremap({"<leader>gw", require('a.plugins.telescope').git_worktree})
+  nnoremap({"<leader>gc", require('a.plugins.git-worktree').create_worktree})
+  nnoremap({"<leader>gr", require('a.plugins.git-worktree').delete_worktree})
 
   -- termight
   remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
@@ -71,11 +73,11 @@ M.setup = function()
   remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 
   -- HARPOON
-  remap('n', '<leader>fa', '<cmd>lua require("harpoon.mark").add_file()<cr>')
-  remap('n', '<leader>fq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
-  remap('n', '<leader>9', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
-  remap('n', '<leader>8', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
-  remap('n', '<leader>7', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
+  nnoremap({'<leader>fa', require("harpoon.mark").add_file})
+  nnoremap({'<leader>fq', require("harpoon.ui").toggle_quick_menu})
+  nnoremap({'<leader>9', function() require("harpoon.ui").nav_file(1) end})
+  nnoremap({'<leader>8', function() require("harpoon.ui").nav_file(2) end})
+  nnoremap({'<leader>7', function() require("harpoon.ui").nav_file(3) end})
 
   -- undotree
   remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")

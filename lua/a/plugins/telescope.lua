@@ -160,6 +160,10 @@ M.neovim = function()
   builtin.fd(_opts)
 end
 
+M.workspace_symbols = function()
+  builtin.lsp_dynamic_workspace_symbols(themes.get_ivy())
+end
+
 local function _remap(mode, lhs, rhs, o)
   if not lhs or not rhs or not mode then
     error("mode, lhs, and rhs are required")
@@ -199,6 +203,7 @@ M.mappings = function()
   remap("n", "<leader>ps",       M.grep)
   remap("n", "<leader>nv",       M.nvim)
   remap("n", "<leader>nn",       M.neovim)
+  remap("n", "<leader>s",        M.workspace_symbols)
 end
 
 return M
