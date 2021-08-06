@@ -81,6 +81,9 @@ M.setup = function()
 
   -- undotree
   remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
+
+  -- refactoring
+  require('a.plugins.refactoring').set_keymaps()
 end
 
 return M
