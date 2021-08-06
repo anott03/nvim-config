@@ -127,10 +127,10 @@ Statusline.setup = function()
     sections = {
       lualine_a = { 'mode' },
       lualine_b = { 'branch' },
-      lualine_c = { 'filename' },
+      lualine_c = { function() return Statusline:get_filename() end },
       lualine_x = { lspstatus.status },
       lualine_y = { 'filetype' },
-      lualine_z = { 'location' },
+      lualine_z = { '' },
     }
   })
 end
