@@ -73,15 +73,12 @@ M.setup = function()
   ]]
 end
 
-M.tele_bufs = function()
-  reload('telescope')
-  require('telescope.builtin').buffers()
+local _theme = function(opts)
+  return themes.get_ivy(opts or {})
 end
 
-local opts = themes.get_ivy({
+local opts = _theme({
   previewer = false,
-  -- layout_strategy = "horizontal",
-  others = false,
 })
 
 M.files = function()
@@ -107,6 +104,11 @@ M.frecency = function()
   end
 end
 
+M.bufs = function()
+  reload('telescope')
+  require('telescope.builtin').buffers(_theme())
+end
+
 M.grep = function()
   local input = vim.fn.input("Grep for > "):gsub("%s+", "")
   if input ~= '' then
@@ -129,7 +131,7 @@ M.dotfiles = function()
     prompt_title = "Dotfiles",
     hidden = true,
   }
-  _opts = themes.get_ivy(_opts)
+  _opts = _theme(_opts)
 
   builtin.fd(_opts)
 end
@@ -142,7 +144,7 @@ M.nvim = function()
     prompt_title = "Local Extensions",
     hidden = true,
   }
-  _opts = themes.get_ivy(_opts)
+  _opts = _theme(_opts)
 
   builtin.fd(_opts)
 end
@@ -155,13 +157,13 @@ M.neovim = function()
     prompt_title = "Local Extensions",
     hidden = true,
   }
-  _opts = themes.get_ivy(_opts)
+  _opts = _theme(_opts)
 
   builtin.fd(_opts)
 end
 
 M.workspace_symbols = function()
-  builtin.lsp_dynamic_workspace_symbols(themes.get_ivy())
+  builtin.lsp_dynamic_workspace_symbols(_theme())
 end
 
 local function _remap(mode, lhs, rhs, o)
@@ -199,7 +201,7 @@ M.mappings = function()
   remap("n", "<leader><leader>", M.files)
   remap("n", "<leader>fd",       M.dotfiles)
   remap("n", "<leader>ff",       M.frecency)
-  remap("n", "<leader>b",        M.tele_bufs)
+  remap("n", "<leader>b",        M.bufs)
   remap("n", "<leader>ps",       M.grep)
   remap("n", "<leader>nv",       M.nvim)
   remap("n", "<leader>nn",       M.neovim)
