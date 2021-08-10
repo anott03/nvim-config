@@ -52,9 +52,9 @@ M.setup = function()
   remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
   remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
-  nnoremap("<leader>w",  vim.lsp.diagnostic.set_loclist())
-  nnoremap("<leader>rr", require('a.lsp-settings').lsp_rename())
-  nnoremap("<leader>a",  require('a.lsp-settings').lsp_code_actions())
+  nnoremap({"<leader>w",  vim.lsp.diagnostic.set_loclist})
+  nnoremap({"<leader>rr", require('a.lsp-settings').lsp_rename})
+  nnoremap({"<leader>a",  require('a.lsp-settings').lsp_code_actions})
 
   -- git
   remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")

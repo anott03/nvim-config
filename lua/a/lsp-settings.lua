@@ -85,30 +85,46 @@ end
 
 local function lsp_rename()
   local current_word = vim.fn.expand("<cword>")
-  local new_name = vim.fn.input(string.format("Rename `%s` to > ", current_word))
-  vim.lsp.buf.rename(new_name)
+  -- local new_name = vim.fn.input(string.format("Rename `%s` to > ", current_word))
+  -- vim.lsp.buf.rename(new_name)
 
-  -- local rename_window = require('plenary.window.float')
-    -- .percentage_range_window(0.3, 0.1)
-  -- local bufh = rename_window.bufnr
 
-  -- vim.api.nvim_buf_set_option(rename_window.bufnr, 'buftype', 'prompt')
-  -- vim.api.nvim_win_set_option(rename_window.win_id, 'winhl', 'Normal:Normal')
-  -- vim.api.nvim_win_set_option(rename_window.border_win_id, 'winhl', 'Normal:Normal')
-  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
-  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+  local popup = require('popup')
+  local bufnr = vim.api.nvim_create_buf(false, false)
 
-  -- vim.cmd [[ :startinsert ]]
+  local width = 60
+  local height = 10
+  local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-  -- vim.fn.prompt_setprompt(bufh, string.format('rename %s to > ', current_word))
-  -- vim.fn.prompt_setcallback(bufh, function(new_name)
-    -- print('callback')
-    -- vim.schedule(function()
-      -- vim.lsp.buf.rename(new_name)
-      -- vim.api.nvim_buf_delete(bufh, {force=true})
-      -- vim.cmd [[ :stopinsert ]]
-    -- end)
-  -- end)
+  local win_id, win = popup.create(bufnr, {
+      title = "Rename Token",
+      highlight = "Normal",
+      line = math.floor(((vim.o.lines - height) / 2) - 1),
+      col = math.floor((vim.o.columns - width) / 2),
+      minwidth = width,
+      minheight = height,
+      borderchars = borderchars,
+  })
+
+  vim.api.nvim_win_set_option(
+      win.border.win_id,
+      "winhl",
+      "Normal:HarpoonBorder"
+  )
+
+  vim.api.nvim_buf_set_option(bufnr, 'buftype', 'prompt')
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+
+  vim.cmd [[ :startinsert ]]
+
+  vim.fn.prompt_setprompt(bufnr, string.format('rename %s to > ', current_word))
+  vim.fn.prompt_setcallback(bufnr, function(new_name)
+    vim.cmd([[ q! ]])
+    vim.schedule(function()
+      vim.lsp.buf.rename(new_name)
+    end)
+  end)
 end
 
 local lsp_code_actions = function()
