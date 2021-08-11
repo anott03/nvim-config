@@ -8,7 +8,6 @@ local set_languages = function()
   lspconfig.tsserver.setup({})
   lspconfig.bashls.setup({})
   lspconfig.html.setup({})
-  -- lspconfig.pyls.setup({})
   require'lspconfig'.pylsp.setup {
     cmd = require'lspcontainers'.command('pylsp'),
   }
