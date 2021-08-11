@@ -3,14 +3,18 @@ local fn = vim.fn
 local lsp = vim.lsp
 local lspconfig = require "lspconfig" local lspcontainers = require 'lspcontainers'
 
-local set_languages = function() lspconfig.hls.setup({})
-  lspconfig.tsserver.setup({
-    -- cmd = lspcontainers.command('tsserver')
-  })
+local set_languages = function()
+  lspconfig.hls.setup({})
+  lspconfig.tsserver.setup({})
   lspconfig.bashls.setup({})
   lspconfig.html.setup({})
   -- lspconfig.pyls.setup({})
-  lspconfig.clangd.setup({})
+  require'lspconfig'.pylsp.setup {
+    cmd = require'lspcontainers'.command('pylsp'),
+  }
+  lspconfig.clangd.setup({
+    cmd = lspcontainers.command('clangd')
+  })
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})
   lspconfig.gopls.setup({
@@ -26,9 +30,7 @@ local set_languages = function() lspconfig.hls.setup({})
         runtime = {version = 'LuaJIT'},
         diagnostics = {
           globals = {
-            -- Get the language server to recognize the `vim` global
             'vim',
-            -- testing stuff
             'describe',
             'it'
           },
