@@ -12,8 +12,7 @@ local set_languages = function() lspconfig.hls.setup({})
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})
   lspconfig.gopls.setup({
-    cmd = lspcontainers.command('gopls')
-  })
+    cmd = lspcontainers.command('gopls') })
   lspconfig.rust_analyzer.setup({
     cmd = lspcontainers.command('rust_analyzer')
   })
@@ -85,9 +84,6 @@ end
 
 local function lsp_rename()
   local current_word = vim.fn.expand("<cword>")
-  -- local new_name = vim.fn.input(string.format("Rename `%s` to > ", current_word))
-  -- vim.lsp.buf.rename(new_name)
-
 
   local popup = require('popup')
   local bufnr = vim.api.nvim_create_buf(false, false)
@@ -96,7 +92,7 @@ local function lsp_rename()
   local height = 10
   local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-  local win_id, win = popup.create(bufnr, {
+  local _, win = popup.create(bufnr, {
       title = "Rename Token",
       highlight = "Normal",
       line = math.floor(((vim.o.lines - height) / 2) - 1),
