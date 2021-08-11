@@ -15,9 +15,7 @@ local settings = {
   mouse = 'a',
   shiftwidth = 2,
   tabstop = 2,
-  softtabstop = 2,
-  expandtab = true,
-  swapfile = false,
+  softtabstop = 2, expandtab = true, swapfile = false,
   showmode = false,
   wrap = false,
   signcolumn = 'yes',
@@ -58,7 +56,8 @@ M.setup = function()
   apply_options(settings, vim.o)
   apply_options(globals, vim.g)
 
-  vim.cmd [[ colorscheme a/colorscheme ]]
+  -- vim.cmd [[ colorscheme a/colorscheme ]]
+  vim.cmd [[ colorscheme gruvbox ]]
   vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 

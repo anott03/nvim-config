@@ -48,14 +48,13 @@ M.setup = function()
   nnoremap({"gr", vim.lsp.buf.references})
   nnoremap({"K", vim.lsp.buf.hover})
   vnoremap({"K", vim.lsp.buf.hover})
+  nnoremap({"<leader>K", vim.lsp.diagnostic.show_line_diagnostics})
   remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
   remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
-  remap("n", "<leader>w", '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>')
-  remap("n", "<leader>rr", "<CMD>lua require('a.lsp-settings').lsp_rename()<CR>")
-  remap("n", "<leader>a", "<CMD>lua require('a.lsp-settings').lsp_code_actions()<CR>")
-  remap("n", "<leader>K", "<CMD>Lspsaga show_line_diagnostics<CR>")
-  remap("n", "K", "<CMD>Lspsaga hover_doc<CR>")
+  nnoremap({"<leader>w",  vim.lsp.diagnostic.set_loclist})
+  nnoremap({"<leader>rr", require('a.lsp-settings').lsp_rename})
+  nnoremap({"<leader>a",  require('a.lsp-settings').lsp_code_actions})
 
   -- git
   remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")
@@ -81,6 +80,9 @@ M.setup = function()
 
   -- undotree
   remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
+
+  -- refactoring
+  require('a.plugins.refactoring').set_keymaps()
 end
 
 return M

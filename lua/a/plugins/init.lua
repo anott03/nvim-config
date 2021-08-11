@@ -17,8 +17,7 @@ M.setup = function()
   local_plugin('lspui.nvim/feat-popup-sizing')
   local_plugin('git-worktree.nvim')
   local_plugin('telescope-frecency.nvim')
-  -- local_plugin('lspcontainers.nvim')
-  -- local_plugin('LuaSnip')
+  local_plugin('refactoring.nvim')
 
   require('packer').startup(function(use)
     local local_use = function(plugin)
@@ -67,11 +66,11 @@ M.initialize_plugins = function()
   require('a.plugins.compe').setup()
   require('a.plugins.telescope').setup()
   require('a.plugins.luasnip').setup()
+  require('a.plugins.refactoring').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
   }
-  -- require('bufferline').setup({})
   require('harpoon').setup({
     -- menu = {
       -- set_quick_menu_keymaps = function(bufnr)

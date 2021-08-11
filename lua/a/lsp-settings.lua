@@ -1,4 +1,6 @@
-local vim = vim
+local api = vim.api
+local fn = vim.fn
+local lsp = vim.lsp
 local lspconfig = require "lspconfig" local lspcontainers = require 'lspcontainers'
 
 local set_languages = function() lspconfig.hls.setup({})
@@ -12,8 +14,7 @@ local set_languages = function() lspconfig.hls.setup({})
   lspconfig.svelte.setup({})
   lspconfig.perlls.setup({})
   lspconfig.gopls.setup({
-    cmd = lspcontainers.command('gopls')
-  })
+    cmd = lspcontainers.command('gopls') })
   lspconfig.rust_analyzer.setup({
     cmd = lspcontainers.command('rust_analyzer')
   })
@@ -37,14 +38,14 @@ local set_languages = function() lspconfig.hls.setup({})
   })
 
   -- rust
-  function rust_inlay_hints()
+  function Rust_inlay_hints()
     require'lsp_extensions'.inlay_hints{
       highlight = "Comment",
       prefix = " >> ",
       aligned = true, only_current_line = false, enabled = { "ChainingHint" }
     }
   end
-  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua rust_inlay_hints()")
+  vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
   -- golang
   lspconfig.gopls.setup {
@@ -59,56 +60,69 @@ local set_languages = function() lspconfig.hls.setup({})
     },
   }
 
-  function goimports(timeoutms)
+  function Goimports(timeoutms)
     local context = { source = { organizeImports = true } }
     vim.validate { context = { context, "t", true } }
 
-    local params = vim.lsp.util.make_range_params()
+    local params = lsp.util.make_range_params()
     params.context = context
 
     local method = "textDocument/codeAction"
-    local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+    local resp = lsp.buf_request_sync(0, method, params, timeoutms)
     if resp and resp[1] then
       local result = resp[1].result
       if result and result[1] then
         local edit = result[1].edit
-        vim.lsp.util.apply_workspace_edit(edit)
+        lsp.util.apply_workspace_edit(edit)
       end
     end
 
-    vim.lsp.buf.formatting()
+    lsp.buf.formatting()
   end
 
-  vim.cmd([[autocmd BufWritePre *.go lua goimports(1000)]])
+  vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])
   vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 end
 
 local function lsp_rename()
-  local current_word = vim.fn.expand("<cword>")
-  local new_name = vim.fn.input(string.format("Rename `%s` to > ", current_word))
-  vim.lsp.buf.rename(new_name)
+  local current_word = fn.expand("<cword>")
 
-  -- local rename_window = require('plenary.window.float')
-    -- .percentage_range_window(0.3, 0.1)
-  -- local bufh = rename_window.bufnr
+  local popup = require('popup')
+  local bufnr = api.nvim_create_buf(false, false)
 
-  -- vim.api.nvim_buf_set_option(rename_window.bufnr, 'buftype', 'prompt')
-  -- vim.api.nvim_win_set_option(rename_window.win_id, 'winhl', 'Normal:Normal')
-  -- vim.api.nvim_win_set_option(rename_window.border_win_id, 'winhl', 'Normal:Normal')
-  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
-  -- vim.api.nvim_buf_set_keymap(rename_window.bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+  local width = 60
+  local height = 10
+  local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-  -- vim.cmd [[ :startinsert ]]
+  local _, win = popup.create(bufnr, {
+      title = "Rename Token",
+      highlight = "Normal",
+      line = math.floor(((vim.o.lines - height) / 2) - 1),
+      col = math.floor((vim.o.columns - width) / 2),
+      minwidth = width,
+      minheight = height,
+      borderchars = borderchars,
+  })
 
-  -- vim.fn.prompt_setprompt(bufh, string.format('rename %s to > ', current_word))
-  -- vim.fn.prompt_setcallback(bufh, function(new_name)
-    -- print('callback')
-    -- vim.schedule(function()
-      -- vim.lsp.buf.rename(new_name)
-      -- vim.api.nvim_buf_delete(bufh, {force=true})
-      -- vim.cmd [[ :stopinsert ]]
-    -- end)
-  -- end)
+  api.nvim_win_set_option(
+      win.border.win_id,
+      "winhl",
+      "Normal:HarpoonBorder"
+  )
+
+  api.nvim_buf_set_option(bufnr, 'buftype', 'prompt')
+  api.nvim_buf_set_keymap(bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+  api.nvim_buf_set_keymap(bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', {noremap=true})
+
+  vim.cmd [[ :startinsert ]]
+
+  fn.prompt_setprompt(bufnr, string.format('rename %s to > ', current_word))
+  fn.prompt_setcallback(bufnr, function(new_name)
+    vim.cmd([[ q! ]])
+    vim.schedule(function()
+      lsp.buf.rename(new_name)
+    end)
+  end)
 end
 
 local lsp_code_actions = function()
