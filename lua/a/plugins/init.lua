@@ -57,6 +57,7 @@ M.setup = function()
     use 'tpope/vim-fugitive'
     use 'nanotee/luv-vimdocs'
     use 'tjdevries/astronauta.nvim'
+    use 'rcarriga/nvim-notify'
   end)
 end
 
@@ -78,6 +79,7 @@ M.initialize_plugins = function()
     -- }
   })
 
+  vim.notify = require('notify')
   RELOAD = require('plenary.reload').reload_module
 end
 

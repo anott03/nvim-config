@@ -121,6 +121,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-notify"
+  },
   ["nvim-terminal.lua"] = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua"
