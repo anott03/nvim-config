@@ -22,9 +22,7 @@ Group.new('Character'       , colors.green         , nil , nil)
 Group.new('Number'          , colors.magenta       , nil , nil)
 Group.new('boolean'         , colors.magenta       , nil , styles.bold)
 Group.new('Float'           , colors.magenta       , nil , nil)
-Group.new('Identifier'      , colors.magenta       , nil , nil)
-Group.new('Function'        , colors.blue          , nil , styles.bold)
-
+Group.new('Identifier'      , colors.magenta       , nil , nil) Group.new('Function'        , colors.blue          , nil , styles.bold)
 Group.new('Statement'       , colors.blue:light()  , nil , styles.bold)
 Group.new('Conditional'     , colors.blue:light()  , nil , styles.bold)
 Group.new('Repeat	  '       , colors.blue:light()  , nil , styles.bold)
@@ -72,4 +70,9 @@ Group.new('TabLineSel'      , colors.black                , colors.blue, nil)
 -- typescript:
 Group.new('typescriptBraces', colors.blue:light()         , nil, nil)
 -- lua:
-Group.new('luaFunctionCall' , groups.Function    , groups.Function   , groups.Function)
+Group.new('luaFunctionCall', groups.Function, groups.Function, groups.Function)
+-- latex
+Group.new('latexTSTitle', colors.green, nil, nil)
+-- rust
+Group.new('rustTSType', colors.red, nil, nil)
+Group.new('rustTSNamespace', colors.blue, nil, nil)

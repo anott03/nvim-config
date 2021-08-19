@@ -16,20 +16,20 @@ local set_hl = function(group, options)
 end
 
 -- My Colorscheme
--- local highlights = {
-  -- {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
-  -- {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
--- }
+local highlights = {
+  {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
+  {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+}
 
 -- Gruvbox
-local highlights = {
-  {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
-  {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
-  {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-  {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
-}
+-- local highlights = {
+  -- {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
+  -- {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
+  -- {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  -- {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
+-- }
 
 
 for _, highlight in ipairs(highlights) do
@@ -96,8 +96,8 @@ Statusline.set_active = function(self)
   local filetype = self:get_filetype()
 
   return table.concat({
-    mode, git, filename, '%=',
-    lspstatus.status(), ' | ', '%p%%', filetype
+    mode, filename, '%=',
+    lspstatus.status(), '| ', '%p%% |', git
   })
 end
 
@@ -110,29 +110,29 @@ Statusline.inactive = function() return Statusline:set_inactive() end
 
 -- set statusline
 Statusline.setup = function()
-  -- vim.cmd [[
-    -- augroup Statusline
-      -- au!
-      -- au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-      -- au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-    -- augroup END
-  -- ]]
+  vim.cmd [[
+    augroup Statusline
+      au!
+      au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+      au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
+    augroup END
+  ]]
 
-  require('lualine').setup({
-    options = {
-      theme = 'gruvbox',
-      section_separators = '',
-      component_separators = '',
-    },
-    sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'branch' },
-      lualine_c = { function() return Statusline:get_filename() end },
-      lualine_x = { lspstatus.status },
-      lualine_y = { 'filetype' },
-      lualine_z = { '' },
-    }
-  })
+  -- require('lualine').setup({
+    -- options = {
+      -- theme = 'gruvbox',
+      -- section_separators = '',
+      -- component_separators = '',
+    -- },
+    -- sections = {
+      -- lualine_a = { 'mode' },
+      -- lualine_b = { 'branch' },
+      -- lualine_c = { function() return Statusline:get_filename() end },
+      -- lualine_x = { lspstatus.status },
+      -- lualine_y = { 'filetype' },
+      -- lualine_z = { '' },
+    -- }
+  -- })
 end
 
 return Statusline
