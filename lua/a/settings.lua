@@ -30,7 +30,7 @@ local settings = {
   exrc = true,
   hidden = true,
   signcolumn = 'no',
-  laststatus = 0,
+  laststatus = 2,
 }
 
 local globals = {

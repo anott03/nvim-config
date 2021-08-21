@@ -11,6 +11,7 @@ M.setup = function()
   pcall(telescope.load_extension, 'fzy_native')
   pcall(telescope.load_extension, 'frecency')
   pcall(telescope.load_extension, 'git_worktree')
+  -- pcall(telescope.load_extension, 'fzf')
 
   telescope.setup({
     defaults = {
@@ -65,6 +66,12 @@ M.setup = function()
           ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim/",
         },
       },
+      -- fzf = {
+        -- fuzzy = true,
+        -- override_generic_sorter = false,
+        -- override_file_sorter = true,
+        -- case_mode = "smart_case",
+      -- }
     },
   })
 
@@ -74,7 +81,8 @@ M.setup = function()
 end
 
 local _theme = function(opts)
-  return themes.get_ivy(opts or {})
+  -- return themes.get_ivy(opts or {})
+  return opts
 end
 
 local opts = _theme({

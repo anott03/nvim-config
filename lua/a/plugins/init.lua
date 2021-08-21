@@ -53,6 +53,7 @@ M.setup = function()
     use 'mhinz/vim-startify'
     use 'vimwiki/vimwiki'
     use 'nvim-telescope/telescope-fzy-native.nvim'
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'tami5/sql.nvim'
     use 'tpope/vim-fugitive'
     use 'nanotee/luv-vimdocs'

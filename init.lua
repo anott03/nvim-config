@@ -1,6 +1,7 @@
 require('a.plugins').setup()
 require('a.plugins').initialize_plugins()
 require('a.settings').setup()
+require('a.utils')
 require('a.lsp-settings').set_languages()
 require('a.keybindings').setup()
 require('a.augroups').setup()

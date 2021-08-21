@@ -123,7 +123,7 @@ _G.packer_plugins = {
   },
   ["nvim-notify"] = {
     loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-notify"
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-notify"
   },
   ["nvim-terminal.lua"] = {
     loaded = true,
@@ -152,6 +152,10 @@ _G.packer_plugins = {
   ["sql.nvim"] = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
