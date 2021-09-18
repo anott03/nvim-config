@@ -62,23 +62,25 @@ local set_languages = function()
   }
 
   function Goimports(timeoutms)
-    local context = { source = { organizeImports = true } }
-    vim.validate { context = { context, "t", true } }
+    vim.schedule(function()
+        local context = { source = { organizeImports = true } }
+        vim.validate { context = { context, "t", true } }
 
-    local params = lsp.util.make_range_params()
-    params.context = context
+        local params = lsp.util.make_range_params()
+        params.context = context
 
-    local method = "textDocument/codeAction"
-    local resp = lsp.buf_request_sync(0, method, params, timeoutms)
-    if resp and resp[1] then
-      local result = resp[1].result
-      if result and result[1] then
-        local edit = result[1].edit
-        lsp.util.apply_workspace_edit(edit)
-      end
-    end
+        local method = "textDocument/codeAction"
+        local resp = lsp.buf_request_sync(0, method, params, timeoutms)
+        if resp and resp[1] then
+          local result = resp[1].result
+          if result and result[1] then
+            local edit = result[1].edit
+            lsp.util.apply_workspace_edit(edit)
+          end
+        end
 
-    lsp.buf.formatting()
+        lsp.buf.formatting()
+    end)
   end
 
   vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])
