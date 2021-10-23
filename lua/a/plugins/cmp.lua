@@ -20,7 +20,12 @@ M.setup = function()
         else
           fallback()
         end
-      end
+      end,
+
+      ["<c-y>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
     },
 
     sources = {

@@ -1,4 +1,6 @@
 local Color, colors, Group, groups, styles = require('colorbuddy').setup()
+local g = require("colorbuddy.group").groups
+local s = require("colorbuddy.style").styles
 
 Color.new('background',     '#282c34')
 Color.new('red',            '#f07178')
@@ -76,3 +78,9 @@ Group.new('latexTSTitle', colors.green, nil, nil)
 -- rust
 Group.new('rustTSType', colors.red, nil, nil)
 Group.new('rustTSNamespace', colors.blue, nil, nil)
+
+-- Group.new("CmpItemAbbr", g.Comment)
+-- Group.new("CmpItemAbbrDeprecated", g.Error)
+-- Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
+-- Group.new("CmpItemKind", g.Special)
+-- Group.new("CmpItemMenu", g.NonText)
