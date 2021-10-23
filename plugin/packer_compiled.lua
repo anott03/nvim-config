@@ -77,6 +77,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
   ["colorbuddy.vim"] = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/colorbuddy.vim"
@@ -97,6 +113,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lspcontainers.nvim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
@@ -113,9 +133,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
-  ["nvim-compe"] = {
+  ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/amitav/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

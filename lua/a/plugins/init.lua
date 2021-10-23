@@ -28,12 +28,17 @@ M.setup = function()
 
     use 'wbthomason/packer.nvim'
 
-    -- nvim-lsp
+    -- nvim-cmp + engines
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'onsails/lspkind-nvim'
+    -- other lsp and stuff
     use 'tjdevries/lsp_extensions.nvim'
     use {'glepnir/lspsaga.nvim', branch = 'main'}
-    -- other language suff
     use 'mattn/emmet-vim'
     use 'rust-lang/rust.vim'
     use 'lervag/vimtex'
@@ -64,7 +69,8 @@ end
 
 M.initialize_plugins = function()
   require('a.plugins.git-worktree').setup()
-  require('a.plugins.compe').setup()
+  -- require('a.plugins.compe').setup()
+  require('a.plugins.cmp').setup()
   require('a.plugins.telescope').setup()
   require('a.plugins.luasnip').setup()
   require('a.plugins.refactoring').setup()
