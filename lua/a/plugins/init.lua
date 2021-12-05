@@ -23,7 +23,7 @@ M.setup = function()
     local local_use = function(plugin)
         use(string.format("~/dev/nvim/%s", plugin))
     end
-    local_use('LuaSnip')
+    -- local_use('LuaSnip')
     local_use('lspcontainers.nvim')
 
     use 'wbthomason/packer.nvim'
@@ -72,7 +72,7 @@ M.initialize_plugins = function()
   -- require('a.plugins.compe').setup()
   require('a.plugins.cmp').setup()
   require('a.plugins.telescope').setup()
-  require('a.plugins.luasnip').setup()
+  -- require('a.plugins.luasnip').setup()
   require('a.plugins.refactoring').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
@@ -86,7 +86,7 @@ M.initialize_plugins = function()
     -- }
   })
 
-  vim.notify = require('notify')
+  -- vim.notify = require('notify')
   RELOAD = require('plenary.reload').reload_module
 end
 

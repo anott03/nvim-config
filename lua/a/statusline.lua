@@ -16,20 +16,20 @@ local set_hl = function(group, options)
 end
 
 -- My Colorscheme
-local highlights = {
-  {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
-  {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
-}
+-- local highlights = {
+  -- {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
+  -- {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+-- }
 
 -- Gruvbox
--- local highlights = {
-  -- {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
-  -- {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
-  -- {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-  -- {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
--- }
+local highlights = {
+  {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
+  {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
+  {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
+}
 
 
 for _, highlight in ipairs(highlights) do
