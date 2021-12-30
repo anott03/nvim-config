@@ -42,9 +42,11 @@ M.setup = function()
     use 'mattn/emmet-vim'
     use 'rust-lang/rust.vim'
     use 'lervag/vimtex'
+    use 'haskell-vim'
 
     -- colorscheme/aesthetic
     use 'gruvbox-community/gruvbox'
+    use 'luisiacc/gruvbox-baby'
     use 'tjdevries/colorbuddy.vim'
     use 'hoob3rt/lualine.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -74,6 +76,7 @@ M.initialize_plugins = function()
   require('a.plugins.telescope').setup()
   -- require('a.plugins.luasnip').setup()
   require('a.plugins.refactoring').setup()
+  require('a.plugins.haskell').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"

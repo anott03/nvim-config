@@ -16,7 +16,7 @@ local settings = {
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2, expandtab = true, swapfile = false,
-  showmode = false,
+  showmode = true,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -51,14 +51,29 @@ local globals = {
   go_highlight_function_calls = 1,
   go_highlight_extra_types = 1,
   go_highlight_operators = 1,
+
+  haskell_enable_quantification = 1,
+  haskell_enable_recursivedo = 1,
+  haskell_enable_arrowsyntax = 1,
+  haskell_enable_pattern_synonyms = 1,
+  haskell_enable_typeroles = 1,
+  haskell_enable_static_pointers = 1,
+  haskell_backpack = 1
 }
 
 M.setup = function()
   apply_options(settings, vim.o)
   apply_options(globals, vim.g)
 
+  vim.g.gruvbox_baby_function_style = "NONE"
+  vim.g.gruvbox_baby_keyword_style = "italic"
+  vim.cmd [[
+    colorscheme gruvbox-baby
+    hi ModeMsg guifg=#c792ea
+  ]]
+
+
   -- vim.cmd [[ colorscheme a/colorscheme ]]
-  vim.cmd [[ colorscheme gruvbox ]]
   vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 
