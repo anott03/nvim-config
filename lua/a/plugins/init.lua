@@ -42,11 +42,12 @@ M.setup = function()
     use 'mattn/emmet-vim'
     use 'rust-lang/rust.vim'
     use 'lervag/vimtex'
-    use 'haskell-vim'
+    -- use 'haskell-vim'
 
     -- colorscheme/aesthetic
     use 'gruvbox-community/gruvbox'
     use 'luisiacc/gruvbox-baby'
+    use 'folke/tokyonight.nvim'
     use 'tjdevries/colorbuddy.vim'
     use 'hoob3rt/lualine.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -66,6 +67,10 @@ M.setup = function()
     use 'nanotee/luv-vimdocs'
     use 'tjdevries/astronauta.nvim'
     use 'rcarriga/nvim-notify'
+
+    use {
+        'kyazdani42/nvim-tree.lua',
+    }
   end)
 end
 
@@ -76,7 +81,7 @@ M.initialize_plugins = function()
   require('a.plugins.telescope').setup()
   -- require('a.plugins.luasnip').setup()
   require('a.plugins.refactoring').setup()
-  require('a.plugins.haskell').setup()
+  -- require('a.plugins.haskell').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained"
@@ -88,6 +93,7 @@ M.initialize_plugins = function()
       -- end
     -- }
   })
+  require('nvim-tree').setup({ disable_netrw = false })
 
   -- vim.notify = require('notify')
   RELOAD = require('plenary.reload').reload_module

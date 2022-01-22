@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
     url = "https://github.com/luisiacc/gruvbox-baby"
   },
-  ["haskell-vim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/haskell-vim",
-    url = "https://github.com/haskell-vim"
-  },
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim",
@@ -174,6 +169,11 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua",
     url = "https://github.com/norcalli/nvim-terminal.lua"
   },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -213,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   undotree = {
     loaded = true,

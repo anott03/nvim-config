@@ -40,7 +40,7 @@ M.setup = function()
   -- disabling ex mode
   remap("n", "Q", "<nop>")
   -- file tree
-  remap("n", "<leader>e", "<CMD>Lex<CR>")
+  remap("n", "<leader>e", "<CMD>NvimTreeToggle<CR>")
 
   -- lsp
   nnoremap({"gd", vim.lsp.buf.definition})

@@ -81,8 +81,8 @@ M.setup = function()
 end
 
 local _theme = function(opts)
-  -- return themes.get_ivy(opts or {})
-  return opts
+  return themes.get_ivy(opts or {})
+  -- return opts
 end
 
 local opts = _theme({

@@ -121,30 +121,30 @@ Statusline.setup = function()
     -- augroup END
   -- ]]
 
-  vim.cmd [[
-    augroup Statusline
-      au!
-      au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple()
-      au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple()
-    augroup END
-  ]]
+  -- vim.cmd [[
+    -- augroup Statusline
+      -- au!
+      -- au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple()
+      -- au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple()
+    -- augroup END
+  -- ]]
 
-  -- require('lualine').setup({
-    -- options = {
-      -- theme = 'gruvbox',
-      -- section_separators = '',
-      -- component_separators = '',
-    -- },
-    -- sections = {
-      -- lualine_a = { 'mode' },
-      -- lualine_b = { 'branch' },
-      -- lualine_c = { function() return Statusline:get_filename() end },
-      -- -- lualine_x = { lspstatus.status },
-      -- lualine_x = {nil},
-      -- lualine_y = { 'filetype' },
-      -- lualine_z = { '' },
-    -- }
-  -- })
+  require('lualine').setup({
+    options = {
+      theme = 'gruvbox',
+      section_separators = '',
+      component_separators = '',
+    },
+    sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch' },
+      lualine_c = { function() return Statusline:get_filename() end },
+      lualine_x = { lspstatus.status },
+      lualine_x = {nil},
+      lualine_y = { 'filetype' },
+      lualine_z = { '' },
+    }
+  })
 end
 
 return Statusline
