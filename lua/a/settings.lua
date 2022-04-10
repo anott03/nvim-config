@@ -32,7 +32,6 @@ local settings = {
   signcolumn = 'no',
   laststatus = 2,
 }
-
 local globals = {
   completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'},
   NERDSpaceDelims = 1,
@@ -71,12 +70,11 @@ M.setup = function()
     -- colorscheme gruvbox-baby
     -- hi ModeMsg guifg=#c792ea
   -- ]]
-  vim.cmd [[ colo gruvbox-baby ]]
+  vim.cmd [[ colo tokyonight ]]
 
   vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 
-  require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
   -- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
 end
 

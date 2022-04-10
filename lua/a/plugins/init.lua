@@ -65,7 +65,6 @@ M.setup = function()
     use 'tami5/sql.nvim'
     use 'tpope/vim-fugitive'
     use 'nanotee/luv-vimdocs'
-    use 'tjdevries/astronauta.nvim'
     use 'rcarriga/nvim-notify'
 
     use {
@@ -75,6 +74,7 @@ M.setup = function()
 end
 
 M.initialize_plugins = function()
+  require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
   require('a.plugins.git-worktree').setup()
   -- require('a.plugins.compe').setup()
   require('a.plugins.cmp').setup()

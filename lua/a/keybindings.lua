@@ -1,7 +1,15 @@
 local vim = vim
-local nnoremap = require('astronauta.keymap').nnoremap
-local vnoremap = require('astronauta.keymap').vnoremap
+-- My keybindings module. All keybindings except those for telescope are defined
+-- here. Telescope bindings are in `lua/a/plugins/telescope.lua`
 local M = {}
+
+local nnoremap = function(lhs, rhs, opts)
+  vim.keymap.set('n', lhs, rhs, opts or {noremap=true})
+end
+
+local vnoremap = function(lhs, rhs, opts)
+  vim.keymap.set('v', lhs, rhs, opts or {noremap=true})
+end
 
 local remap = function(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts or {noremap = true})
@@ -42,21 +50,7 @@ M.setup = function()
   -- file tree
   remap("n", "<leader>e", "<CMD>NvimTreeToggle<CR>")
 
-  -- lsp
-  nnoremap({"gd", vim.lsp.buf.definition})
-  nnoremap({"gi", vim.lsp.buf.implementation})
-  nnoremap({"gr", vim.lsp.buf.references})
-  -- nnoremap({"K", vim.lsp.buf.hover})
-  -- vnoremap({"K", vim.lsp.buf.hover})
-  nnoremap({"K", require('lspsaga.hover').render_hover_doc})
-  vnoremap({"K", require('lspsaga.hover').render_hover_doc})
-  nnoremap({"<leader>K", require('lspsaga.diagnostic').show_line_diagnostics})
-  -- remap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
-  -- remap("i", "<S-Tab>", 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
-
-  nnoremap({"<leader>w",  vim.lsp.diagnostic.set_loclist})
-  nnoremap({"<leader>rr", require('a.lsp-settings').lsp_rename})
-  nnoremap({"<leader>a",  require('a.lsp-settings').lsp_code_actions})
+  -- LSP related keybindings are in lsp-settings.lua
 
   -- git
   remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")
@@ -64,9 +58,9 @@ M.setup = function()
   remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
   remap("n", "<leader>gs", "<CMD>G<CR>")
   -- git-worktree
-  nnoremap({"<leader>gw", require('a.plugins.telescope').git_worktree})
-  nnoremap({"<leader>gc", require('a.plugins.git-worktree').create_worktree})
-  nnoremap({"<leader>gr", require('a.plugins.git-worktree').delete_worktree})
+  nnoremap("<leader>gw", require('a.plugins.telescope').git_worktree)
+  nnoremap("<leader>gc", require('a.plugins.git-worktree').create_worktree)
+  nnoremap("<leader>gr", require('a.plugins.git-worktree').delete_worktree)
 
   -- termight
   remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
@@ -74,11 +68,11 @@ M.setup = function()
   remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 
   -- HARPOON
-  nnoremap({'<leader>fa', require("harpoon.mark").add_file})
-  nnoremap({'<leader>fq', require("harpoon.ui").toggle_quick_menu})
-  nnoremap({'<leader>9', function() require("harpoon.ui").nav_file(1) end})
-  nnoremap({'<leader>8', function() require("harpoon.ui").nav_file(2) end})
-  nnoremap({'<leader>7', function() require("harpoon.ui").nav_file(3) end})
+  nnoremap('<leader>fa', require("harpoon.mark").add_file)
+  nnoremap('<leader>fq', require("harpoon.ui").toggle_quick_menu)
+  nnoremap('<leader>9', function() require("harpoon.ui").nav_file(1) end)
+  nnoremap('<leader>8', function() require("harpoon.ui").nav_file(2) end)
+  nnoremap('<leader>7', function() require("harpoon.ui").nav_file(3) end)
 
   -- undotree
   remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")

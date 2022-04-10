@@ -131,7 +131,7 @@ Statusline.setup = function()
 
   require('lualine').setup({
     options = {
-      theme = 'gruvbox',
+      theme = 'tokyonight',
       section_separators = '',
       component_separators = '',
     },
@@ -139,8 +139,8 @@ Statusline.setup = function()
       lualine_a = { 'mode' },
       lualine_b = { 'branch' },
       lualine_c = { function() return Statusline:get_filename() end },
-      lualine_x = { lspstatus.status },
-      lualine_x = {nil},
+      lualine_x = { require('lsp-status').status },
+      -- lualine_x = {nil},
       lualine_y = { 'filetype' },
       lualine_z = { '' },
     }

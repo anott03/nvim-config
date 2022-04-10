@@ -187,9 +187,8 @@ local function generate_telescope_function(func)
   return function()
     reload('telescope')
     reload('a.plugins.telescope')
-    local t = require('a.plugins.telescope')
-    t.setup()
-    t.mappings()
+    M.setup()
+    M.mappings()
     func()
   end
 end
