@@ -97,29 +97,25 @@ local set_languages = function()
     },
   }
 
-  function Goimports(timeoutms)
-    -- vim.schedule(function()
-        local context = { source = { organizeImports = true } }
-        vim.validate { context = { context, "t", true } }
+  -- function Goimports(timeoutms)
+    -- local context = { source = { organizeImports = true } }
+    -- vim.validate { context = { context, "t", true } }
+    -- local params = lsp.util.make_range_params()
+    -- params.context = context
+    -- local method = "textDocument/codeAction"
+    -- local resp = lsp.buf_request_sync(0, method, params, timeoutms)
+    -- if resp and resp[1] then
+      -- local result = resp[1].result
+      -- if result and result[1] then
+        -- local edit = result[1].edit
+        -- lsp.util.apply_workspace_edit(edit)
+      -- end
+    -- end
+    -- lsp.buf.formatting()
+  -- end
 
-        local params = lsp.util.make_range_params()
-        params.context = context
-
-        local method = "textDocument/codeAction"
-        local resp = lsp.buf_request_sync(0, method, params, timeoutms)
-        if resp and resp[1] then
-          local result = resp[1].result
-          if result and result[1] then
-            local edit = result[1].edit
-            lsp.util.apply_workspace_edit(edit)
-          end
-        end
-
-        lsp.buf.formatting()
-    -- end)
-  end
-
-  vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])
+  -- vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])
+  vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
   vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 end
 
@@ -175,6 +171,7 @@ local lsp_code_actions = function()
   require('telescope.builtin').lsp_code_actions(opts)
 end
 
+set_languages()
 return {
   set_languages = set_languages,
   lsp_rename = lsp_rename,
