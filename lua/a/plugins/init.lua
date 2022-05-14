@@ -84,7 +84,7 @@ M.initialize_plugins = function()
   -- require('a.plugins.haskell').setup()
   require('terminal').setup()
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained"
+    ensure_installed = "all"
   }
   require('harpoon').setup({
     -- menu = {

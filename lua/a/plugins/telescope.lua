@@ -91,8 +91,8 @@ local opts = _theme({
 
 M.files = function()
   local _opts = vim.tbl_extend("keep", {
-    show_untracked = false,
-    recurse_submodules = true,
+    show_untracked = true,
+    recurse_submodules = false,
   }, opts)
 
   local ok = false

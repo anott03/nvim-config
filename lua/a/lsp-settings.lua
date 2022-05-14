@@ -34,6 +34,7 @@ local set_languages = function()
     cmd = require'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   })
+  lspconfig.prismals.setup({ on_attach = on_attach })
   lspconfig.bashls.setup({ on_attach = on_attach })
   lspconfig.html.setup({ on_attach = on_attach })
   lspconfig.pylsp.setup {
@@ -51,7 +52,7 @@ local set_languages = function()
     on_attach = on_attach
   })
   lspconfig.rust_analyzer.setup({
-    cmd = lspcontainers.command('rust_analyzer'),
+    -- cmd = lspcontainers.command('rust_analyzer'),
     on_attach = on_attach
   })
 
@@ -97,7 +98,7 @@ local set_languages = function()
   }
 
   function Goimports(timeoutms)
-    vim.schedule(function()
+    -- vim.schedule(function()
         local context = { source = { organizeImports = true } }
         vim.validate { context = { context, "t", true } }
 
@@ -115,7 +116,7 @@ local set_languages = function()
         end
 
         lsp.buf.formatting()
-    end)
+    -- end)
   end
 
   vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])

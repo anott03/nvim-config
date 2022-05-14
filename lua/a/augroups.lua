@@ -10,6 +10,8 @@ M.setup = function()
   vim.cmd("augroup END")
 
   -- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
+
+  -- vim.api.nvim_create_autocmd("BufEnter", { command = [[ set laststatus=3 ]] })
 end
 
 -- set statusline

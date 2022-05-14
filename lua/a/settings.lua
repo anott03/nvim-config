@@ -16,7 +16,7 @@ local settings = {
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2, expandtab = true, swapfile = false,
-  showmode = false,
+  showmode = true,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -30,7 +30,7 @@ local settings = {
   exrc = true,
   hidden = true,
   signcolumn = 'no',
-  laststatus = 2,
+  -- laststatus = 3,
 }
 local globals = {
   completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'},
@@ -63,6 +63,7 @@ local globals = {
 }
 
 M.setup = function()
+  vim.cmd [[ set laststatus=0 ]]
   apply_options(settings, vim.o)
   apply_options(globals, vim.g)
 
@@ -70,7 +71,7 @@ M.setup = function()
     -- colorscheme gruvbox-baby
     -- hi ModeMsg guifg=#c792ea
   -- ]]
-  vim.cmd [[ colo tokyonight ]]
+  vim.cmd [[ colo gruvbox-baby ]]
 
   vim.cmd[[ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}] ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
