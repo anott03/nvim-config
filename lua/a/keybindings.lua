@@ -58,9 +58,9 @@ M.setup = function()
   remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
   remap("n", "<leader>gs", "<CMD>G<CR>")
   -- git-worktree
-  nnoremap("<leader>gw", require('a.plugins.telescope').git_worktree)
-  nnoremap("<leader>gc", require('a.plugins.git-worktree').create_worktree)
-  nnoremap("<leader>gr", require('a.plugins.git-worktree').delete_worktree)
+  -- nnoremap("<leader>gw", require('a.plugins.telescope').git_worktree)
+  -- nnoremap("<leader>gc", require('a.plugins.git-worktree').create_worktree)
+  -- nnoremap("<leader>gr", require('a.plugins.git-worktree').delete_worktree)
 
   -- termight
   remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
@@ -68,17 +68,17 @@ M.setup = function()
   remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 
   -- HARPOON
-  nnoremap('<leader>fa', require("harpoon.mark").add_file)
-  nnoremap('<leader>fq', require("harpoon.ui").toggle_quick_menu)
-  nnoremap('<leader>9', function() require("harpoon.ui").nav_file(1) end)
-  nnoremap('<leader>8', function() require("harpoon.ui").nav_file(2) end)
-  nnoremap('<leader>7', function() require("harpoon.ui").nav_file(3) end)
+  -- nnoremap('<leader>fa', require("harpoon.mark").add_file)
+  -- nnoremap('<leader>fq', require("harpoon.ui").toggle_quick_menu)
+  -- nnoremap('<leader>9', function() require("harpoon.ui").nav_file(1) end)
+  -- nnoremap('<leader>8', function() require("harpoon.ui").nav_file(2) end)
+  -- nnoremap('<leader>7', function() require("harpoon.ui").nav_file(3) end)
 
   -- undotree
-  remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
+  -- remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
 
   -- refactoring
-  require('a.plugins.refactoring').set_keymaps()
+  -- require('a.plugins.refactoring').set_keymaps()
 end
 
 return M

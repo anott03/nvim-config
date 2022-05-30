@@ -19,13 +19,13 @@ local on_attach = function ()
   nnoremap("K", vim.lsp.buf.hover)
   vnoremap("K", vim.lsp.buf.hover)
   nnoremap("<leader>K", vim.diagnostic.open_float)
-  nnoremap("<leader>w",  vim.lsp.diagnostic.set_loclist)
+  nnoremap("<leader>w",  vim.diagnostic.set_loclist)
   nnoremap("<leader>rr", require('a.lsp-settings').lsp_rename)
   nnoremap("<leader>a",  require('a.lsp-settings').lsp_code_actions)
 end
 
 local set_languages = function()
-  lspconfig.hls.setup({ on_attach = on_attach })
+  -- lspconfig.hls.setup({ on_attach = on_attach })
   lspconfig.tsserver.setup({
     before_init = function(params)
        params.processId = vim.NIL
@@ -34,9 +34,9 @@ local set_languages = function()
     cmd = require'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   })
-  lspconfig.prismals.setup({ on_attach = on_attach })
-  lspconfig.bashls.setup({ on_attach = on_attach })
-  lspconfig.html.setup({ on_attach = on_attach })
+  -- lspconfig.prismals.setup({ on_attach = on_attach })
+  -- lspconfig.bashls.setup({ on_attach = on_attach })
+  -- lspconfig.html.setup({ on_attach = on_attach })
   lspconfig.pylsp.setup {
     cmd = require'lspcontainers'.command('pylsp'),
     on_attach = on_attach
@@ -45,14 +45,14 @@ local set_languages = function()
     cmd = lspcontainers.command('clangd'),
     on_attach = on_attach
   })
-  lspconfig.svelte.setup({ on_attach = on_attach })
-  lspconfig.perlls.setup({ on_attach = on_attach })
+  -- lspconfig.svelte.setup({ on_attach = on_attach })
+  -- lspconfig.perlls.setup({ on_attach = on_attach })
   lspconfig.gopls.setup({
     cmd = lspcontainers.command('gopls'),
     on_attach = on_attach
   })
   lspconfig.rust_analyzer.setup({
-    -- cmd = lspcontainers.command('rust_analyzer'),
+    cmd = lspcontainers.command('rust_analyzer'),
     on_attach = on_attach
   })
 

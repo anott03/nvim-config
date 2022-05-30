@@ -16,7 +16,7 @@ local settings = {
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2, expandtab = true, swapfile = false,
-  showmode = true,
+  showmode = false,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -30,8 +30,10 @@ local settings = {
   exrc = true,
   hidden = true,
   signcolumn = 'no',
+  winbar="%=%m %f"
   -- laststatus = 3,
 }
+
 local globals = {
   completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'},
   NERDSpaceDelims = 1,
@@ -63,7 +65,7 @@ local globals = {
 }
 
 M.setup = function()
-  vim.cmd [[ set laststatus=0 ]]
+  vim.cmd [[ set laststatus=3 ]]
   apply_options(settings, vim.o)
   apply_options(globals, vim.g)
 

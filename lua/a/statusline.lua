@@ -1,11 +1,11 @@
 local vim = vim
 local path = require('plenary.path')
-local lspstatus = require('lsp-status')
+-- local lspstatus = require('lsp-status')
 
-lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
-  indicator_hint = '',
-  status_symbol = ''
-})
+-- lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
+  -- indicator_hint = '',
+  -- status_symbol = ''
+-- })
 
 Statusline = {}
 local set_hl = function(group, options)
@@ -97,7 +97,8 @@ Statusline.set_active = function(self)
 
   return table.concat({
     mode, filename, '%=',
-    lspstatus.status(), '| ', '%p%% |', git
+    -- lspstatus.status(),
+    '| ', '%p%% |', git
   })
 end
 
@@ -129,22 +130,22 @@ Statusline.setup = function()
     -- augroup END
   -- ]]
 
-  -- require('lualine').setup({
-    -- options = {
-      -- theme = 'tokyonight',
-      -- section_separators = '',
-      -- component_separators = '',
-    -- },
-    -- sections = {
-      -- lualine_a = { 'mode' },
-      -- lualine_b = { 'branch' },
-      -- lualine_c = { function() return Statusline:get_filename() end },
+  require('lualine').setup({
+    options = {
+      theme = 'gruvbox',
+      section_separators = '',
+      component_separators = '',
+    },
+    sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch' },
+      lualine_c = { function() return Statusline:get_filename() end },
       -- lualine_x = { require('lsp-status').status },
-      -- -- lualine_x = {nil},
-      -- lualine_y = { 'filetype' },
-      -- lualine_z = { '' },
-    -- }
-  -- })
+      lualine_x = {nil},
+      lualine_y = { 'filetype' },
+      lualine_z = { '' },
+    }
+  })
 end
 
 return Statusline

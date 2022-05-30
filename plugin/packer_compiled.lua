@@ -69,40 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
-  },
-  ["cmp-nvim-lsp"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
-  },
-  ["cmp-path"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-path",
-    url = "https://github.com/hrsh7th/cmp-path"
-  },
   ["colorbuddy.vim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
     url = "https://github.com/tjdevries/colorbuddy.vim"
-  },
-  ["emmet-vim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/emmet-vim",
-    url = "https://github.com/mattn/emmet-vim"
-  },
-  gruvbox = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbox",
-    url = "https://github.com/gruvbox-community/gruvbox"
   },
   ["gruvbox-baby"] = {
     loaded = true,
@@ -119,45 +89,20 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspcontainers.nvim",
     url = "/Users/amitavnott/dev/nvim/lspcontainers.nvim"
   },
-  ["lspkind-nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
-  },
-  ["luv-vimdocs"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/luv-vimdocs",
-    url = "https://github.com/nanotee/luv-vimdocs"
   },
   nerdcommenter = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
   },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-notify"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-notify",
-    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-terminal.lua"] = {
     loaded = true,
@@ -169,11 +114,6 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
-  ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter"
-  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -183,11 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  playground = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/playground",
-    url = "https://github.com/nvim-treesitter/playground"
   },
   ["rust.vim"] = {
     loaded = true,
@@ -209,35 +144,10 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
-  undotree = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/undotree",
-    url = "https://github.com/mbbill/undotree"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vim-startify",
-    url = "https://github.com/mhinz/vim-startify"
-  },
-  vimtex = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vimtex",
-    url = "https://github.com/lervag/vimtex"
-  },
-  vimwiki = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/vimwiki",
-    url = "https://github.com/vimwiki/vimwiki"
   }
 }
 
