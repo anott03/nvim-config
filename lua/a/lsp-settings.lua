@@ -3,6 +3,7 @@ local fn = vim.fn
 local lsp = vim.lsp
 local lspconfig = require "lspconfig"
 local lspcontainers = require 'lspcontainers'
+local coq = require 'coq'
 
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set('n', lhs, rhs, opts or {noremap=true})
@@ -19,59 +20,55 @@ local on_attach = function ()
   nnoremap("K", vim.lsp.buf.hover)
   vnoremap("K", vim.lsp.buf.hover)
   nnoremap("<leader>K", vim.diagnostic.open_float)
-  nnoremap("<leader>w",  vim.diagnostic.set_loclist)
+  nnoremap("<leader>w",  vim.diagnostic.setloclist)
   nnoremap("<leader>rr", require('a.lsp-settings').lsp_rename)
   nnoremap("<leader>a",  require('a.lsp-settings').lsp_code_actions)
 end
 
 local set_languages = function()
-  -- lspconfig.hls.setup({ on_attach = on_attach })
-  lspconfig.tsserver.setup({
+  lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
     before_init = function(params)
        params.processId = vim.NIL
     end,
     on_attach = on_attach,
     cmd = require'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-  })
-  -- lspconfig.prismals.setup({ on_attach = on_attach })
-  -- lspconfig.bashls.setup({ on_attach = on_attach })
-  -- lspconfig.html.setup({ on_attach = on_attach })
-  lspconfig.pylsp.setup {
+  }))
+  lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({
     cmd = require'lspcontainers'.command('pylsp'),
     on_attach = on_attach
-  }
-  lspconfig.clangd.setup({
+  }))
+  lspconfig.clangd.setup(coq.lsp_ensure_capabilities({
     cmd = lspcontainers.command('clangd'),
     on_attach = on_attach
-  })
-  -- lspconfig.svelte.setup({ on_attach = on_attach })
-  -- lspconfig.perlls.setup({ on_attach = on_attach })
-  lspconfig.gopls.setup({
+  }))
+  lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
     cmd = lspcontainers.command('gopls'),
     on_attach = on_attach
-  })
-  lspconfig.rust_analyzer.setup({
+  }))
+  lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
     cmd = lspcontainers.command('rust_analyzer'),
     on_attach = on_attach
-  })
+  }))
 
-  lspconfig.sumneko_lua.setup({
-    cmd = lspcontainers.command('sumneko_lua'),
-    on_attach = on_attach,
-    settings = {
-      Lua = {
-        runtime = {version = 'LuaJIT'},
-        diagnostics = {
-          globals = {
-            'vim',
-            'describe',
-            'it'
+  lspconfig.sumneko_lua.setup(
+    coq.lsp_ensure_capabilities({
+      cmd = lspcontainers.command('sumneko_lua'),
+      on_attach = on_attach,
+      settings = {
+        Lua = {
+          runtime = {version = 'LuaJIT'},
+          diagnostics = {
+            globals = {
+              'vim',
+              'describe',
+              'it'
+            },
           },
-        },
+        }
       }
-    }
-  })
+    })
+  )
 
   -- rust
   function Rust_inlay_hints()
@@ -84,7 +81,7 @@ local set_languages = function()
   vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
   -- golang
-  lspconfig.gopls.setup {
+  lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
     cmd = {"gopls", "serve"},
     on_attach = on_attach,
     settings = {
@@ -95,26 +92,8 @@ local set_languages = function()
         staticcheck = true,
       },
     },
-  }
+  }))
 
-  -- function Goimports(timeoutms)
-    -- local context = { source = { organizeImports = true } }
-    -- vim.validate { context = { context, "t", true } }
-    -- local params = lsp.util.make_range_params()
-    -- params.context = context
-    -- local method = "textDocument/codeAction"
-    -- local resp = lsp.buf_request_sync(0, method, params, timeoutms)
-    -- if resp and resp[1] then
-      -- local result = resp[1].result
-      -- if result and result[1] then
-        -- local edit = result[1].edit
-        -- lsp.util.apply_workspace_edit(edit)
-      -- end
-    -- end
-    -- lsp.buf.formatting()
-  -- end
-
-  -- vim.cmd([[autocmd BufWritePre *.go lua Goimports(1000)]])
   vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
   vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 end

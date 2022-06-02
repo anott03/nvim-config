@@ -1,15 +1,5 @@
 local vim = vim
--- My keybindings module. All keybindings except those for telescope are defined
--- here. Telescope bindings are in `lua/a/plugins/telescope.lua`
 local M = {}
-
-local nnoremap = function(lhs, rhs, opts)
-  vim.keymap.set('n', lhs, rhs, opts or {noremap=true})
-end
-
-local vnoremap = function(lhs, rhs, opts)
-  vim.keymap.set('v', lhs, rhs, opts or {noremap=true})
-end
 
 local remap = function(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts or {noremap = true})
@@ -48,7 +38,7 @@ M.setup = function()
   -- disabling ex mode
   remap("n", "Q", "<nop>")
   -- file tree
-  remap("n", "<leader>e", "<CMD>NvimTreeToggle<CR>")
+  remap("n", "<leader>e", "<CMD>Lex<CR>")
 
   -- LSP related keybindings are in lsp-settings.lua
 
@@ -57,28 +47,11 @@ M.setup = function()
   remap("n", "<leader>gh", "<CMD>diffget //3<CR>")
   remap("n", "<leader>gu", "<CMD>diffget //2<CR>")
   remap("n", "<leader>gs", "<CMD>G<CR>")
-  -- git-worktree
-  -- nnoremap("<leader>gw", require('a.plugins.telescope').git_worktree)
-  -- nnoremap("<leader>gc", require('a.plugins.git-worktree').create_worktree)
-  -- nnoremap("<leader>gr", require('a.plugins.git-worktree').delete_worktree)
 
   -- termight
   remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
   remap("n", "<leader>2", "<CMD>OpenTerm 2<CR>")
   remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
-
-  -- HARPOON
-  -- nnoremap('<leader>fa', require("harpoon.mark").add_file)
-  -- nnoremap('<leader>fq', require("harpoon.ui").toggle_quick_menu)
-  -- nnoremap('<leader>9', function() require("harpoon.ui").nav_file(1) end)
-  -- nnoremap('<leader>8', function() require("harpoon.ui").nav_file(2) end)
-  -- nnoremap('<leader>7', function() require("harpoon.ui").nav_file(3) end)
-
-  -- undotree
-  -- remap("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
-
-  -- refactoring
-  -- require('a.plugins.refactoring').set_keymaps()
 end
 
 return M

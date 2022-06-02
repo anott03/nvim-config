@@ -69,10 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["colorbuddy.vim"] = {
+  coq_nvim = {
     loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
-    url = "https://github.com/tjdevries/colorbuddy.vim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/coq_nvim",
+    url = "https://github.com/ms-jpq/coq_nvim"
   },
   ["gruvbox-baby"] = {
     loaded = true,
@@ -109,10 +109,10 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua",
     url = "https://github.com/norcalli/nvim-terminal.lua"
   },
-  ["nvim-tree.lua"] = {
+  ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -124,15 +124,15 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
   ["rust.vim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/rust.vim",
     url = "https://github.com/rust-lang/rust.vim"
-  },
-  ["sql.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/sql.nvim",
-    url = "https://github.com/tami5/sql.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -143,6 +143,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["termight.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/termight.nvim",
+    url = "https://github.com/anott03/termight.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,

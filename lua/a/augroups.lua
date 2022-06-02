@@ -1,17 +1,13 @@
 local vim = vim
 local M = {}
 
--- TOOD: rewrite this when native lua autocmds are a thing
+-- TOOD: rewrite this ith native lua autocmds
 M.setup = function()
   -- highlight yank
   vim.cmd("augroup highlight_yank")
   vim.cmd("autocmd!")
   vim.cmd("autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()")
   vim.cmd("augroup END")
-
-  -- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter * lua apply_buf_enter_settings()")
-
-  -- vim.api.nvim_create_autocmd("BufEnter", { command = [[ set laststatus=3 ]] })
 end
 
 -- set statusline
