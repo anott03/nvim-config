@@ -3,7 +3,7 @@ local fn = vim.fn
 local lsp = vim.lsp
 local lspconfig = require "lspconfig"
 local lspcontainers = require 'lspcontainers'
-local coq = require 'coq'
+require('a.plugins.cmp').setup()
 
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set('n', lhs, rhs, opts or {noremap=true})
@@ -26,49 +26,47 @@ local on_attach = function ()
 end
 
 local set_languages = function()
-  lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
+  lspconfig.tsserver.setup({
     before_init = function(params)
        params.processId = vim.NIL
     end,
     on_attach = on_attach,
     cmd = require'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-  }))
-  lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({
+  })
+  lspconfig.pylsp.setup({
     cmd = require'lspcontainers'.command('pylsp'),
     on_attach = on_attach
-  }))
-  lspconfig.clangd.setup(coq.lsp_ensure_capabilities({
+  })
+  lspconfig.clangd.setup({
     cmd = lspcontainers.command('clangd'),
     on_attach = on_attach
-  }))
-  lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+  })
+  lspconfig.gopls.setup({
     cmd = lspcontainers.command('gopls'),
     on_attach = on_attach
-  }))
-  lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
-    cmd = lspcontainers.command('rust_analyzer'),
+  })
+  lspconfig.rust_analyzer.setup({
+    -- cmd = lspcontainers.command('rust_analyzer'),
     on_attach = on_attach
-  }))
+  })
 
-  lspconfig.sumneko_lua.setup(
-    coq.lsp_ensure_capabilities({
-      cmd = lspcontainers.command('sumneko_lua'),
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          runtime = {version = 'LuaJIT'},
-          diagnostics = {
-            globals = {
-              'vim',
-              'describe',
-              'it'
-            },
+  lspconfig.sumneko_lua.setup({
+    cmd = lspcontainers.command('sumneko_lua'),
+    on_attach = on_attach,
+    settings = {
+      Lua = {
+        runtime = {version = 'LuaJIT'},
+        diagnostics = {
+          globals = {
+            'vim',
+            'describe',
+            'it'
           },
-        }
+        },
       }
-    })
-  )
+    }
+  })
 
   -- rust
   function Rust_inlay_hints()
@@ -81,7 +79,7 @@ local set_languages = function()
   vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
   -- golang
-  lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+  lspconfig.gopls.setup({
     cmd = {"gopls", "serve"},
     on_attach = on_attach,
     settings = {
@@ -92,7 +90,7 @@ local set_languages = function()
         staticcheck = true,
       },
     },
-  }))
+  })
 
   vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
   vim.cmd([[set completeopt=menuone,noinsert,noselect]])
@@ -140,14 +138,7 @@ local function lsp_rename()
 end
 
 local lsp_code_actions = function()
-  local opts = require('telescope.themes').get_dropdown {
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-  }
-
-  require('telescope.builtin').lsp_code_actions(opts)
+  vim.lsp.buf.code_action()
 end
 
 set_languages()

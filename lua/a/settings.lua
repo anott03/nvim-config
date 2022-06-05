@@ -14,8 +14,7 @@ local settings = {
   smartindent = true,
   mouse = 'a',
   shiftwidth = 2,
-  tabstop = 2,
-  softtabstop = 2, expandtab = true, swapfile = false,
+  tabstop = 2, softtabstop = 2, expandtab = true, swapfile = false,
   showmode = false,
   wrap = false,
   undofile = true,
@@ -69,6 +68,13 @@ M.setup = function()
 
   vim.cmd [[ set laststatus=3 ]]
   vim.cmd [[ colo gruvbox-baby ]]
+  -- vim.cmd [[
+    -- hi Normal guibg=None
+    -- hi LineNr guifg=#EEBD35
+    -- hi CursorLineNr guifg=#EEBD35
+    -- hi CursorLine guibg=#423f3b
+    -- hi Visual guibg=#423f3b
+  -- ]]
   vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
 end
 

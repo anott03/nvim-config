@@ -2,7 +2,7 @@ local Color, colors, Group, groups, styles = require('colorbuddy').setup()
 local g = require("colorbuddy.group").groups
 local s = require("colorbuddy.style").styles
 
-Color.new('background',     '#282c34')
+Color.new('background',     '#282c3e')
 Color.new('red',            '#f07178')
 Color.new('green',          '#c3e88d')
 Color.new('yellow',         '#ffcb6b')

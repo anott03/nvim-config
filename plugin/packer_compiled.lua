@@ -69,10 +69,35 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  coq_nvim = {
+  LuaSnip = {
     loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/coq_nvim",
-    url = "https://github.com/ms-jpq/coq_nvim"
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
   },
   ["gruvbox-baby"] = {
     loaded = true,
@@ -89,15 +114,35 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspcontainers.nvim",
     url = "/Users/amitavnott/dev/nvim/lspcontainers.nvim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
   },
+  ["neovim-ayu"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/neovim-ayu",
+    url = "https://github.com/Shatur/neovim-ayu"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/edeneast/nightfox.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -144,6 +189,11 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
+  ["telescope-ui-select.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-ui-select.nvim",
+    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -153,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/termight.nvim",
     url = "https://github.com/anott03/termight.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,
