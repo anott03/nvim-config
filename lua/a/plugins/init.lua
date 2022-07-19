@@ -37,6 +37,7 @@ M.setup = function()
     use 'norcalli/nvim-terminal.lua'
     use 'tpope/vim-fugitive'
     use 'anott03/termight.nvim'
+    use 'nvim-lua/popup.nvim'
 
     use 'luisiacc/gruvbox-baby'
     use 'tjdevries/colorbuddy.nvim'

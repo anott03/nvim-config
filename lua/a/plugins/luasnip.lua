@@ -22,9 +22,9 @@ vim.g.snippets = "luasnip"
 -- end
 
 -- local all =  {
-  -- s({ trig = "(" }, { t { "(" }, i(1), t { ")" }, i(0) }, neg, char_count_same, "%(", "%)"),
-  -- s({ trig = "{" }, { t { "{" }, i(1), t { "}" }, i(0) }, neg, char_count_same, "%{", "%}"),
-  -- s({ trig = "[" }, { t { "[" }, i(1), t { "]" }, i(0) }, neg, char_count_same, "%[", "%]"),
+  -- s({ trig = "(" }, { t { "(" }, i(1), t { ")" }, i(0) }),
+  -- s({ trig = "{" }, { t { "{" }, i(1), t { "}" }, i(0) }),
+  -- s({ trig = "[" }, { t { "[" }, i(1), t { "]" }, i(0) }),
 -- }
 
 -- local lua =  {

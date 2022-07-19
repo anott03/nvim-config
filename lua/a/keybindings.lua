@@ -2,7 +2,7 @@ local vim = vim
 local M = {}
 
 local remap = function(mode, lhs, rhs, opts)
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts or {noremap = true})
+  vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
 end
 
 M.setup = function()
@@ -30,7 +30,6 @@ M.setup = function()
   )
 
   remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
-  remap("n", "<leader>S", "<CMD>lua SO()<CR>")
 
   -- indenting
   remap("v", "<", "<gv")

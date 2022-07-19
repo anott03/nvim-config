@@ -67,7 +67,14 @@ local set_languages = function()
       }
     }
   })
-
+  require'lspconfig'.svelte.setup {
+    before_init = function(params)
+      params.processId = vim.NIL
+    end,
+    on_attach = on_attach,
+    cmd = lspcontainers.command('svelte'),
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+  }
   -- rust
   function Rust_inlay_hints()
     require'lsp_extensions'.inlay_hints{
