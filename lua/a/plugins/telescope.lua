@@ -179,6 +179,18 @@ M.neovim = function()
   builtin.fd(_opts)
 end
 
+M.repos = function()
+  local _opts = {
+    -- previewer = false,
+    shorten_path = false,
+    cwd = "~/repos",
+    prompt_title = "repos",
+    hidden = true,
+  }
+  _opts = _theme(_opts)
+  builtin.fd(_opts)
+end
+
 M.workspace_symbols = function()
   builtin.lsp_dynamic_workspace_symbols(_theme())
 end
@@ -221,6 +233,7 @@ M.mappings = function()
   remap("n", "<leader>ps",       M.grep)
   remap("n", "<leader>nv",       M.nvim)
   remap("n", "<leader>nn",       M.neovim)
+  remap("n", "<leader>fr",       M.repos)
   remap("n", "<leader>s",        M.workspace_symbols)
 end
 

@@ -1,5 +1,4 @@
 local vim = vim
-local M = {}
 
 local apply_options = function(opts, endpoint)
   for k, v in pairs(opts) do
@@ -62,20 +61,16 @@ local globals = {
   haskell_backpack = 1
 }
 
-M.setup = function()
-  apply_options(settings, vim.o)
-  apply_options(globals, vim.g)
+apply_options(settings, vim.o)
+apply_options(globals, vim.g)
 
-  vim.cmd [[ set laststatus=3 ]]
-  vim.cmd [[ colo gruvbox-baby ]]
-  -- vim.cmd [[
-    -- hi Normal guibg=None
-    -- hi LineNr guifg=#EEBD35
-    -- hi CursorLineNr guifg=#EEBD35
-    -- hi CursorLine guibg=#423f3b
-    -- hi Visual guibg=#423f3b
-  -- ]]
-  vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
-end
-
-return M
+vim.cmd [[ set laststatus=3 ]]
+vim.cmd [[ colo gruvbox-baby ]]
+-- vim.cmd [[
+  -- hi Normal guibg=None
+  -- hi LineNr guifg=#EEBD35
+  -- hi CursorLineNr guifg=#EEBD35
+  -- hi CursorLine guibg=#423f3b
+  -- hi Visual guibg=#423f3b
+-- ]]
+vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]
