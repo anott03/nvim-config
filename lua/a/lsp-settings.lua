@@ -75,14 +75,14 @@ require'lspconfig'.svelte.setup {
   root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 }
 -- rust
-function Rust_inlay_hints()
-  require'lsp_extensions'.inlay_hints{
-    highlight = "Comment",
-    prefix = " >> ",
-    aligned = true, only_current_line = false, enabled = { "ChainingHint" }
-  }
-end
-vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
+-- function Rust_inlay_hints()
+  -- require'lsp_extensions'.inlay_hints{
+    -- highlight = "Comment",
+    -- prefix = " >> ",
+    -- aligned = true, only_current_line = false, enabled = { "ChainingHint" }
+  -- }
+-- end
+-- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
 -- golang
 lspconfig.gopls.setup({

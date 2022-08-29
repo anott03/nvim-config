@@ -12,7 +12,6 @@ M.setup = function()
   pcall(telescope.load_extension, 'frecency')
   pcall(telescope.load_extension, 'git_worktree')
   pcall(telescope.load_extension, 'ui-select')
-  -- pcall(telescope.load_extension, 'fzf')
 
   telescope.setup({
     defaults = {
@@ -195,15 +194,6 @@ M.workspace_symbols = function()
   builtin.lsp_dynamic_workspace_symbols(_theme())
 end
 
-local function _remap(mode, lhs, rhs, o)
-  if not lhs or not rhs or not mode then
-    error("mode, lhs, and rhs are required")
-  end
-
-  o = o or {noremap = true}
-  vim.api.nvim_set_keymap(mode, lhs, rhs, o)
-end
-
 local function generate_telescope_function(func)
   return function()
     reload('telescope')
@@ -214,27 +204,16 @@ local function generate_telescope_function(func)
   end
 end
 
-TELESCOPE_FUNCTIONS = TELESCOPE_FUNCTIONS or {}
-local function remap(mode, lhs, rhs, o)
-  if type(rhs) == 'function' then
-    rhs = generate_telescope_function(rhs)
-    table.insert(TELESCOPE_FUNCTIONS, rhs)
-    _remap(mode, lhs, "<cmd>lua TELESCOPE_FUNCTIONS[" .. #TELESCOPE_FUNCTIONS .. "]()<cr>", o)
-  else
-    _remap(mode, lhs, rhs, o)
-  end
-end
-
 M.mappings = function()
-  remap("n", "<leader><leader>", M.files)
-  remap("n", "<leader>fd",       M.dotfiles)
-  remap("n", "<leader>ff",       M.frecency)
-  remap("n", "<leader>b",        M.bufs)
-  remap("n", "<leader>ps",       M.grep)
-  remap("n", "<leader>nv",       M.nvim)
-  remap("n", "<leader>nn",       M.neovim)
-  remap("n", "<leader>fr",       M.repos)
-  remap("n", "<leader>s",        M.workspace_symbols)
+  vim.keymap.set("n", "<leader><leader>", generate_telescope_function(M.files))
+  vim.keymap.set("n", "<leader>fd",       generate_telescope_function(M.dotfiles))
+  -- vim.keymap.set("n", "<leader>ff",       generate_telescope_function(M.frecency))
+  vim.keymap.set("n", "<leader>b",        generate_telescope_function(M.bufs))
+  vim.keymap.set("n", "<leader>ps",       generate_telescope_function(M.grep))
+  vim.keymap.set("n", "<leader>nv",       generate_telescope_function(M.nvim))
+  vim.keymap.set("n", "<leader>nn",       generate_telescope_function(M.neovim))
+  vim.keymap.set("n", "<leader>fr",       generate_telescope_function(M.repos))
+  vim.keymap.set("n", "<leader>s",        generate_telescope_function(M.workspace_symbols))
 end
 
 return M

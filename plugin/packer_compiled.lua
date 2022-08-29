@@ -104,11 +104,6 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
     url = "https://github.com/luisiacc/gruvbox-baby"
   },
-  ["lsp_extensions.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim",
-    url = "https://github.com/tjdevries/lsp_extensions.nvim"
-  },
   ["lspcontainers.nvim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/lspcontainers.nvim",
@@ -174,11 +169,6 @@ _G.packer_plugins = {
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/popup.nvim",
-    url = "https://github.com/nvim-lua/popup.nvim"
-  },
   ["rust.vim"] = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/rust.vim",
@@ -193,11 +183,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
-  },
-  ["telescope-ui-select.nvim"] = {
-    loaded = true,
-    path = "/Users/amitavnott/.local/share/nvim/site/pack/packer/start/telescope-ui-select.nvim",
-    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

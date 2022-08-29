@@ -31,9 +31,9 @@ M.refactors = function()
 end
 
 M.set_keymaps = function()
-  vim.api.nvim_set_keymap("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {noremap = true, silent = true, expr = false})
-  vim.api.nvim_set_keymap("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {noremap = true, silent = true, expr = false})
-  vim.api.nvim_set_keymap("v", "<Leader>rt", [[ <Cmd>lua require('a.plugins.refactoring').refactors()<CR>]], {noremap = true, silent = true, expr = false})
+  vim.keymap.set("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {noremap = true, silent = true, expr = false})
+  vim.keymap.set("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {noremap = true, silent = true, expr = false})
+  vim.keymap.set("v", "<Leader>rt", [[ <Cmd>lua require('a.plugins.refactoring').refactors()<CR>]], {noremap = true, silent = true, expr = false})
 end
 
 return M
