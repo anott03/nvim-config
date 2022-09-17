@@ -65,7 +65,7 @@ apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
 vim.cmd [[ set laststatus=3 ]]
-vim.cmd [[ colo gruvbox-baby ]]
+vim.cmd [[ colo a/colorscheme ]]
 -- vim.cmd [[
   -- hi Normal guibg=None
   -- hi LineNr guifg=#EEBD35

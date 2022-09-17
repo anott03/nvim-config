@@ -16,20 +16,20 @@ local set_hl = function(group, options)
 end
 
 -- My Colorscheme
--- local highlights = {
-  -- {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
-  -- {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
--- }
+local highlights = {
+  {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
+  {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+}
 
 -- Gruvbox
-local highlights = {
-  {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
-  {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
-  {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-  {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
-}
+-- local highlights = {
+  -- {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
+  -- {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
+  -- {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  -- {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
+-- }
 
 
 for _, highlight in ipairs(highlights) do
@@ -56,12 +56,12 @@ Statusline.get_current_mode = function(self)
     ['t']  = 'Terminal';
   }
   local current_mode = vim.api.nvim_get_mode().mode
-  return self.colors.mode .. string.format(' %s ', modes[current_mode]):upper() .. self.colors.active
+  return string.format(' %s ', modes[current_mode]):upper()
 end
 
 Statusline.get_git_status = function(self)
   if vim.api.nvim_eval('FugitiveHead()') ~= '' then
-    return self.colors.git .. string.format('%s ', '  ' .. vim.api.nvim_eval('FugitiveHead()')) .. self.colors.active -- 
+    return string.format('%s ', '  ' .. vim.api.nvim_eval('FugitiveHead()')) -- 
   else
     return ' '
   end
@@ -94,11 +94,10 @@ Statusline.set_active = function(self)
   local git = self:get_git_status()
   local filename = self:get_filename()
   local filetype = self:get_filetype()
-
   return table.concat({
-    mode, filename, '%=',
+    self.colors.mode, mode, self.colors.active, filename, '%=',
     -- lspstatus.status(),
-    '| ', '%p%% |', git
+    '| ', '%p%% |', self.colors.git, git, self.colors.active
   })
 end
 
@@ -109,9 +108,23 @@ end
 Statusline.active   = function() return Statusline:set_active() end
 Statusline.inactive = function() return Statusline:set_inactive() end
 
-Statusline.simple = function()
+Statusline._simple_active = function(self)
+  local git = self:get_git_status()
+  local mode = self:get_current_mode()
+
+  return table.concat({
+    Statusline.colors.inactive,
+    mode, '%= %t %r | ',
+    git, '%='
+  })
+end
+
+Statusline._simple_inactive = function()
   return Statusline.colors.inactive .. '%= %t %r %='
 end
+
+Statusline.simple_active   = function() return Statusline:_simple_active() end
+Statusline.simple_inactive = function() return Statusline:_simple_inactive() end
 
 -- set statusline
 -- vim.cmd [[
@@ -122,27 +135,27 @@ end
   -- augroup END
 -- ]]
 
--- vim.cmd [[
-  -- augroup Statusline
-    -- au!
-    -- au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple()
-    -- au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple()
-  -- augroup END
--- ]]
+vim.cmd [[
+  augroup Statusline
+    au!
+    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple_active()
+    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple_inactive()
+  augroup END
+]]
 
-require('lualine').setup({
-  options = {
-    theme = 'gruvbox',
-    section_separators = '',
-    component_separators = '',
-  },
-  sections = {
-    lualine_a = { 'mode' },
-    lualine_b = { 'branch' },
-    lualine_c = { function() return Statusline:get_filename() end },
-    -- lualine_x = { require('lsp-status').status },
-    lualine_x = {nil},
-    lualine_y = { 'filetype' },
-    lualine_z = { '' },
-  }
-})
+-- require('lualine').setup({
+  -- options = {
+    -- theme = 'gruvbox',
+    -- section_separators = '',
+    -- component_separators = '',
+  -- },
+  -- sections = {
+    -- lualine_a = { 'mode' },
+    -- lualine_b = { 'branch' },
+    -- lualine_c = { function() return Statusline:get_filename() end },
+    -- -- lualine_x = { require('lsp-status').status },
+    -- lualine_x = {nil},
+    -- lualine_y = { 'filetype' },
+    -- lualine_z = { '' },
+  -- }
+-- })
