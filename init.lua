@@ -1,7 +1,7 @@
 require('a.plugins')
 require('a.settings')
 require('a.utils')
-require('a.lsp-settings')
+-- require('a.lsp-settings')
 require('a.keybindings')
 require('a.autocmds')
 require('a.statusline')

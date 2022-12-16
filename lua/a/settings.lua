@@ -14,7 +14,7 @@ local settings = {
   mouse = 'a',
   shiftwidth = 2,
   tabstop = 2, softtabstop = 2, expandtab = true, swapfile = false,
-  showmode = false,
+  showmode = true,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -64,8 +64,8 @@ local globals = {
 apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
-vim.cmd [[ set laststatus=3 ]]
-vim.cmd [[ colo a/colorscheme ]]
+vim.cmd [[ set laststatus=0 ]]
+vim.cmd [[ colo gruvbox-baby ]]
 -- vim.cmd [[
   -- hi Normal guibg=None
   -- hi LineNr guifg=#EEBD35

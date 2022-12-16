@@ -21,8 +21,8 @@ local on_attach = function ()
   vnoremap("K", vim.lsp.buf.hover)
   nnoremap("<leader>K", vim.diagnostic.open_float)
   nnoremap("<leader>w",  vim.diagnostic.setloclist)
-  nnoremap("<leader>rr", require('a.lsp-settings').lsp_rename)
-  nnoremap("<leader>a",  require('a.lsp-settings').lsp_code_actions)
+  nnoremap("<leader>rr", LSP_RENAME)
+  nnoremap("<leader>a",  LSP_CODE_ACTIONS)
 end
 
 lspconfig.tsserver.setup({
@@ -146,7 +146,5 @@ local lsp_code_actions = function()
   vim.lsp.buf.code_action()
 end
 
-return {
-  lsp_rename = lsp_rename,
-  lsp_code_actions = lsp_code_actions
-}
+LSP_RENAME = lsp_rename
+LSP_CODE_ACTIONS = lsp_code_actions
