@@ -37,7 +37,6 @@ require('packer').startup(function(use)
 end)
 
 require('a.plugins.telescope').setup()
-require('a.plugins.luasnip').setup()
 require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
