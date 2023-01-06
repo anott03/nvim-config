@@ -20,6 +20,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'onsails/lspkind-nvim'
   use 'L3MON4D3/LuaSnip'
+  use 'simrat39/rust-tools.nvim'
 
   use 'rust-lang/rust.vim'
   use 'nvim-telescope/telescope.nvim'

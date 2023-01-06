@@ -45,9 +45,17 @@ lspconfig.gopls.setup({
   cmd = lspcontainers.command('gopls'),
   on_attach = on_attach
 })
-lspconfig.rust_analyzer.setup({
-  -- cmd = lspcontainers.command('rust_analyzer'),
-  on_attach = on_attach
+
+-- lspconfig.rust_analyzer.setup({
+  -- -- cmd = lspcontainers.command('rust_analyzer'),
+  -- on_attach = on_attach
+-- })
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = on_attach
+  },
 })
 
 lspconfig.sumneko_lua.setup({
@@ -75,14 +83,10 @@ require'lspconfig'.svelte.setup {
   root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 }
 -- rust
--- function Rust_inlay_hints()
-  -- require'lsp_extensions'.inlay_hints{
-    -- highlight = "Comment",
-    -- prefix = " >> ",
-    -- aligned = true, only_current_line = false, enabled = { "ChainingHint" }
-  -- }
--- end
--- vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
+function Rust_inlay_hints()
+  require('rust-tools').inlay_hints.enable()
+end
+vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
 -- golang
 lspconfig.gopls.setup({

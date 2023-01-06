@@ -49,3 +49,6 @@ remap("n", "<leader>gs", "<CMD>G<CR>")
 remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
 remap("n", "<leader>2", "<CMD>OpenTerm 2<CR>")
 remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
+
+-- other
+remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)

@@ -1,7 +1,7 @@
 local vim = vim
 
 CARGO_TEST_BUFFER = nil
-RUST_ON_SAVE_COMMAND = "run"
+RUST_ON_SAVE_COMMAND = nil
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("RustOnSave", { clear = true }),
@@ -24,11 +24,13 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         -- end
       -- end
     -- })
-    if CARGO_TEST_BUFFER then
-      pcall(vim.api.nvim_buf_delete, CARGO_TEST_BUFFER, { force = true })
+    if RUST_ON_SAVE_COMMAND then
+      if CARGO_TEST_BUFFER then
+        pcall(vim.api.nvim_buf_delete, CARGO_TEST_BUFFER, { force = true })
+      end
+      vim.cmd("Cargo " .. RUST_ON_SAVE_COMMAND)
+      CARGO_TEST_BUFFER = vim.api.nvim_get_current_buf()
+      vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.3))
     end
-    vim.cmd("Cargo " .. RUST_ON_SAVE_COMMAND)
-    CARGO_TEST_BUFFER = vim.api.nvim_get_current_buf()
-    vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.3))
   end
 })

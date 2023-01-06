@@ -11,7 +11,7 @@ local settings = {
   number = true,
   relativenumber = true,
   smartindent = true,
-  mouse = 'a',
+  mouse = '',
   shiftwidth = 2,
   tabstop = 2, softtabstop = 2, expandtab = true, swapfile = false,
   showmode = true,
@@ -22,13 +22,12 @@ local settings = {
   splitbelow = true,
   splitright = true,
   cursorline = true,
-  termguicolors = true,
-  background = 'dark',
-  colorcolumn = '80',
+  termguicolors = true, background = 'dark',
+  -- colorcolumn = '80',
   exrc = true,
   hidden = true,
   signcolumn = 'no',
-  winbar="%=%m %f"
+  -- winbar="%=%m %f",
 }
 
 local globals = {
@@ -66,6 +65,20 @@ apply_options(globals, vim.g)
 
 vim.cmd [[ set laststatus=0 ]]
 vim.cmd [[ colo gruvbox-baby ]]
+
+TRANSPARENCY = true
+vim.cmd [[ hi Normal guibg=None ]]
+
+TOGGLE_TRANSPARENCY = function ()
+  if TRANSPARENCY then
+    vim.cmd [[ colo gruvbox-baby ]]
+    TRANSPARENCY = false
+    return
+  end
+  vim.cmd [[ hi Normal guibg=None ]]
+  TRANSPARENCY = true
+end
+
 -- vim.cmd [[
   -- hi Normal guibg=None
   -- hi LineNr guifg=#EEBD35
