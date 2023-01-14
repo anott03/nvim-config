@@ -13,8 +13,11 @@ local settings = {
   smartindent = true,
   mouse = '',
   shiftwidth = 2,
-  tabstop = 2, softtabstop = 2, expandtab = true, swapfile = false,
-  showmode = true,
+  tabstop = 2,
+  softtabstop = 2,
+  expandtab = true,
+  swapfile = false,
+  showmode = false,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -22,7 +25,8 @@ local settings = {
   splitbelow = true,
   splitright = true,
   cursorline = true,
-  termguicolors = true, background = 'dark',
+  termguicolors = true,
+  background = 'dark',
   -- colorcolumn = '80',
   exrc = true,
   hidden = true,
@@ -63,21 +67,21 @@ local globals = {
 apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
-vim.cmd [[ set laststatus=0 ]]
+vim.cmd [[ set laststatus=3 ]]
 vim.cmd [[ colo gruvbox-baby ]]
 
-TRANSPARENCY = true
-vim.cmd [[ hi Normal guibg=None ]]
+-- TRANSPARENCY = false
+-- vim.cmd [[ hi Normal guibg=None ]]
 
-TOGGLE_TRANSPARENCY = function ()
-  if TRANSPARENCY then
-    vim.cmd [[ colo gruvbox-baby ]]
-    TRANSPARENCY = false
-    return
-  end
-  vim.cmd [[ hi Normal guibg=None ]]
-  TRANSPARENCY = true
-end
+-- TOGGLE_TRANSPARENCY = function ()
+  -- if TRANSPARENCY then
+    -- vim.cmd [[ colo gruvbox-baby ]]
+    -- TRANSPARENCY = false
+    -- return
+  -- end
+  -- vim.cmd [[ hi Normal guibg=None ]]
+  -- TRANSPARENCY = true
+-- end
 
 -- vim.cmd [[
   -- hi Normal guibg=None

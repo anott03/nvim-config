@@ -88,6 +88,12 @@ function Rust_inlay_hints()
 end
 vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
+-- haskell
+lspconfig.hls.setup({
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    on_attach = on_attach
+})
+
 -- golang
 lspconfig.gopls.setup({
   cmd = {"gopls", "serve"},

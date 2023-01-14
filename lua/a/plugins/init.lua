@@ -1,41 +1,37 @@
-local vim = vim
+require('lazy').setup({
+  'wbthomason/packer.nvim',
 
-local local_plugin = function(name)
-  vim.cmd('set rtp+=$HOME/dev/nvim/' .. name)
-end
+  'lspcontainers/lspcontainers.nvim',
+  'nvim-lua/plenary.nvim',
+  'nvim-lua/popup.nvim',
+  'nvim-treesitter/nvim-treesitter',
 
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  'neovim/nvim-lspconfig',
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-nvim-lsp',
+  'nvim-lua/lsp-status.nvim',
+  'onsails/lspkind-nvim',
+  'L3MON4D3/LuaSnip',
 
-  use 'lspcontainers/lspcontainers.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
+  'simrat39/rust-tools.nvim',
+  'rust-lang/rust.vim',
 
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'onsails/lspkind-nvim'
-  use 'L3MON4D3/LuaSnip'
-  use 'simrat39/rust-tools.nvim'
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-fzy-native.nvim',
+  { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  'kyazdani42/nvim-web-devicons',
+  'preservim/nerdcommenter',
+  'norcalli/nvim-terminal.lua',
+  'tpope/vim-fugitive',
+  'anott03/termight.nvim',
 
-  use 'rust-lang/rust.vim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'kyazdani42/nvim-web-devicons'
-  use 'preservim/nerdcommenter'
-  use 'norcalli/nvim-terminal.lua'
-  use 'tpope/vim-fugitive'
-  use 'anott03/termight.nvim'
-
-  use 'hoob3rt/lualine.nvim'
-  use 'luisiacc/gruvbox-baby'
-  use 'tjdevries/colorbuddy.nvim'
-end)
+  -- 'hoob3rt/lualine.nvim',
+  'luisiacc/gruvbox-baby',
+  'tjdevries/colorbuddy.nvim',
+})
 
 require('a.plugins.telescope').setup()
 require('nvim-treesitter.configs').setup({
@@ -44,8 +40,5 @@ require('nvim-treesitter.configs').setup({
   },
   ensure_installed = "all"
 })
--- require('ayu').setup({
-  -- mirage = true,
-  -- overrides = {},
--- })
+
 RELOAD = require('plenary.reload').reload_module

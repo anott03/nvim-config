@@ -1,11 +1,11 @@
 local vim = vim
 local path = require('plenary.path')
--- local lspstatus = require('lsp-status')
+local lspstatus = require('lsp-status')
 
--- lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
-  -- indicator_hint = '',
-  -- status_symbol = ''
--- })
+lspstatus.config({ indicator_errors = '✗', indicator_warnings = '',
+  indicator_hint = '',
+  status_symbol = ''
+})
 
 Statusline = {}
 local set_hl = function(group, options)
@@ -25,10 +25,11 @@ end
 
 -- Gruvbox
 local highlights = {
-  {'Statusline', { fg = '#3C3836', bg = '#EBDBB2' }},
-  {'StatuslineNC', { fg = '#3C3836', bg = '#928374' }},
-  {'StatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
-  {'StatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
+  {'AStatusline', { bg = '#3C3836', fg = '#EBDBB2' }},
+  {'AStatuslineNC', { fg = '#3C3836', bg = '#928374' }},
+  {'AStatuslineMode', { bg = '#928374', fg = '#1D2021', gui="bold" }},
+  -- {'AStatuslineMode', { bg = '#B16286', fg = '#1D2021', gui="bold" }},
+  {'AStatuslineGit', { bg = '#504945', fg = '#EBDBB2' }},
 }
 
 
@@ -37,10 +38,10 @@ for _, highlight in ipairs(highlights) do
 end
 
 Statusline.colors = {
-  active        = '%#Statusline#',
-  inactive      = '%#StatuslineNC#',
-  mode          = '%#StatuslineMode#',
-  git           = '%#StatuslineGit#',
+  active        = '%#AStatusline#',
+  inactive      = '%#AStatuslineNC#',
+  mode          = '%#AStatuslineMode#',
+  git           = '%#AStatuslineGit#',
 }
 
 Statusline.get_current_mode = function(self)
@@ -96,7 +97,7 @@ Statusline.set_active = function(self)
   local filetype = self:get_filetype()
   return table.concat({
     self.colors.mode, mode, self.colors.active, filename, '%=',
-    -- lspstatus.status(),
+    lspstatus.status(),
     '| ', '%p%% |', self.colors.git, git, self.colors.active
   })
 end
@@ -127,21 +128,21 @@ Statusline.simple_active   = function() return Statusline:_simple_active() end
 Statusline.simple_inactive = function() return Statusline:_simple_inactive() end
 
 -- set statusline
--- vim.cmd [[
-  -- augroup Statusline
-    -- au!
-    -- au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-    -- au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  -- augroup END
--- ]]
-
 vim.cmd [[
   augroup Statusline
     au!
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple_active()
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple_inactive()
+    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
   augroup END
 ]]
+
+-- vim.cmd [[
+  -- augroup Statusline
+    -- au!
+    -- au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.simple_active()
+    -- au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.simple_inactive()
+  -- augroup END
+-- ]]
 
 -- require('lualine').setup({
   -- options = {
@@ -153,8 +154,8 @@ vim.cmd [[
     -- lualine_a = { 'mode' },
     -- lualine_b = { 'branch' },
     -- lualine_c = { function() return Statusline:get_filename() end },
-    -- -- lualine_x = { require('lsp-status').status },
-    -- lualine_x = {nil},
+    -- lualine_x = { function() return require('lsp-status').status() end },
+    -- -- lualine_x = {nil},
     -- lualine_y = { 'filetype' },
     -- lualine_z = { '' },
   -- }

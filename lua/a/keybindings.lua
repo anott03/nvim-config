@@ -51,4 +51,4 @@ remap("n", "<leader>2", "<CMD>OpenTerm 2<CR>")
 remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 
 -- other
-remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
+-- remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
