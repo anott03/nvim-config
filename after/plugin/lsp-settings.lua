@@ -33,6 +33,9 @@ lspconfig.tsserver.setup({
   cmd = require'lspcontainers'.command('tsserver'),
   root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 })
+lspconfig.svelte.setup({
+    on_attach = on_attach
+})
 lspconfig.pylsp.setup({
   cmd = require'lspcontainers'.command('pylsp'),
   on_attach = on_attach
@@ -54,9 +57,14 @@ lspconfig.gopls.setup({
 local rt = require("rust-tools")
 rt.setup({
   server = {
-    on_attach = on_attach
-  },
+    on_attach = on_attach,
+    cmd = {"rustup", "run", "nightly", "rust-analyzer"}
+  }
 })
+function Rust_inlay_hints()
+  rt.inlay_hints.enable()
+end
+vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
 lspconfig.sumneko_lua.setup({
   cmd = lspcontainers.command('sumneko_lua'),
@@ -82,11 +90,9 @@ require'lspconfig'.svelte.setup {
   cmd = lspcontainers.command('svelte'),
   root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 }
--- rust
-function Rust_inlay_hints()
-  require('rust-tools').inlay_hints.enable()
-end
-vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
+
+lspconfig.ltex.setup({on_attach=on_attach})
+lspconfig.texlab.setup({on_attach=on_attach})
 
 -- haskell
 lspconfig.hls.setup({

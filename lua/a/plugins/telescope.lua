@@ -12,6 +12,7 @@ M.setup = function()
   pcall(telescope.load_extension, 'frecency')
   pcall(telescope.load_extension, 'git_worktree')
   pcall(telescope.load_extension, 'ui-select')
+  pcall(telescope.load_extension, 'harpoon')
 
   telescope.setup({
     defaults = {

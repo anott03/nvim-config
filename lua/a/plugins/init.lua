@@ -15,15 +15,22 @@ require('lazy').setup({
   'nvim-lua/lsp-status.nvim',
   'onsails/lspkind-nvim',
   'L3MON4D3/LuaSnip',
+  'numToStr/Comment.nvim',
+  'theprimeagen/harpoon',
 
   'simrat39/rust-tools.nvim',
   'rust-lang/rust.vim',
+
+  'jose-elias-alvarez/null-ls.nvim',
+  'MunifTanjim/eslint.nvim',
+  'MunifTanjim/prettier.nvim',
+
+  'lervag/vimtex',
 
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-fzy-native.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   'kyazdani42/nvim-web-devicons',
-  'preservim/nerdcommenter',
   'norcalli/nvim-terminal.lua',
   'tpope/vim-fugitive',
   'anott03/termight.nvim',
@@ -31,6 +38,8 @@ require('lazy').setup({
   -- 'hoob3rt/lualine.nvim',
   'luisiacc/gruvbox-baby',
   'tjdevries/colorbuddy.nvim',
+
+  {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
 })
 
 require('a.plugins.telescope').setup()

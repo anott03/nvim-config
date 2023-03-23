@@ -21,6 +21,12 @@ remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
 remap("n", "<C-k>", "<CMD>resize +5<CR>")
 remap("n", "<C-j>", "<CMD>resize -5<CR>") -- yank and put
 
+-- commenting
+-- remap("n", "<leader>cc", "<cmd>CommentToggle<cr>")
+-- remap("n", "<leader>cu", "<cmd>CommentToggle<cr>")
+-- remap("v", "<leader>cc", "<cmd>CommentToggle<cr>")
+-- remap("v", "<leader>cu", "<cmd>CommentToggle<cr>")
+
 -- for some reason this works but the same bindings in lua don't
 vim.cmd(
 "nnoremap d \"_d\n" ..
@@ -50,5 +56,15 @@ remap("n", "<leader>1", "<CMD>OpenTerm 1<CR>")
 remap("n", "<leader>2", "<CMD>OpenTerm 2<CR>")
 remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 
+-- harpoon
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+remap("n", "<leader>fq", ui.toggle_quick_menu)
+remap("n", "<leader>fa", mark.add_file)
+remap("n", "<leader>9", function () ui.nav_file(1) end)
+remap("n", "<leader>8", function () ui.nav_file(2) end)
+remap("n", "<leader>7", function () ui.nav_file(3) end)
+
 -- other
--- remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
+remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
