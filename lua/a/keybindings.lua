@@ -12,10 +12,10 @@ require('a.plugins.telescope').mappings()
 remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
 
 -- window movements
-remap("n", "<leader>h", "<CMD>wincmd h<CR>")
-remap("n", "<leader>j", "<CMD>wincmd j<CR>")
-remap("n", "<leader>k", "<CMD>wincmd k<CR>")
-remap("n", "<leader>l", "<CMD>wincmd l<CR>")
+-- remap("n", "<leader>h", "<CMD>wincmd h<CR>")
+-- remap("n", "<leader>j", "<CMD>wincmd j<CR>")
+-- remap("n", "<leader>k", "<CMD>wincmd k<CR>")
+-- remap("n", "<leader>l", "<CMD>wincmd l<CR>")
 remap("n", "<C-h>", "<CMD>vertical resize +5<CR>")
 remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
 remap("n", "<C-k>", "<CMD>resize +5<CR>")
@@ -34,6 +34,7 @@ vim.cmd(
 )
 
 remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
+remap("n", "<C-c>", "<cmd>nohl<cr><C-c>")
 
 -- indenting
 remap("v", "<", "<gv")
@@ -60,11 +61,17 @@ remap("n", "<leader>3", "<CMD>OpenTerm 3<CR>")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
-remap("n", "<leader>fq", ui.toggle_quick_menu)
-remap("n", "<leader>fa", mark.add_file)
+remap("n", "<leader>hq", ui.toggle_quick_menu)
+remap("n", "<leader>ha", mark.add_file)
 remap("n", "<leader>9", function () ui.nav_file(1) end)
 remap("n", "<leader>8", function () ui.nav_file(2) end)
 remap("n", "<leader>7", function () ui.nav_file(3) end)
+
+remap("n", "<leader>f", function () ui.nav_file(1) end)
+remap("n", "<leader>d", function () ui.nav_file(2) end)
+remap("n", "<leader>s", function () ui.nav_file(3) end)
+remap("n", "<leader>a", function () ui.nav_file(4) end)
+
 
 -- other
 remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)

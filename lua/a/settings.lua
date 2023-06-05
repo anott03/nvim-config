@@ -30,7 +30,7 @@ local settings = {
   colorcolumn = '80',
   exrc = true,
   hidden = true,
-  signcolumn = 'no',
+  signcolumn = 'yes',
   -- winbar="%=%m %f",
 }
 
@@ -67,11 +67,19 @@ local globals = {
 apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
+local update_highlights = function ()
+    vim.cmd [[
+        hi Normal guibg=None
+        hi SignColumn guibg=None
+    ]]
+    require('a.statusline')
+end
+
 vim.cmd [[ set laststatus=3 ]]
 vim.cmd [[ colo gruvbox-baby ]]
 
-TRANSPARENCY = false
-vim.cmd [[ hi Normal guibg=None ]]
+TRANSPARENCY = true
+update_highlights()
 
 TOGGLE_TRANSPARENCY = function ()
   if TRANSPARENCY then
@@ -79,7 +87,7 @@ TOGGLE_TRANSPARENCY = function ()
     TRANSPARENCY = false
     return
   end
-  vim.cmd [[ hi Normal guibg=None ]]
+  update_highlights()
   TRANSPARENCY = true
 end
 

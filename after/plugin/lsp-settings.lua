@@ -5,6 +5,13 @@ local lspconfig = require "lspconfig"
 local lspcontainers = require 'lspcontainers'
 require('a.plugins.cmp').setup()
 
+-- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set('n', lhs, rhs, opts or {noremap=true})
 end
@@ -25,6 +32,9 @@ local on_attach = function ()
   nnoremap("<leader>a",  LSP_CODE_ACTIONS)
 end
 
+lspconfig.zls.setup({
+    on_attach = on_attach
+})
 lspconfig.tsserver.setup({
   before_init = function(params)
      params.processId = vim.NIL
@@ -48,6 +58,9 @@ lspconfig.gopls.setup({
   cmd = lspcontainers.command('gopls'),
   on_attach = on_attach
 })
+lspconfig.ocamllsp.setup({
+    on_attach = on_attach
+})
 
 -- lspconfig.rust_analyzer.setup({
   -- -- cmd = lspcontainers.command('rust_analyzer'),
@@ -66,8 +79,8 @@ function Rust_inlay_hints()
 end
 vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
 
-lspconfig.sumneko_lua.setup({
-  cmd = lspcontainers.command('sumneko_lua'),
+lspconfig.lua_ls.setup({
+  -- cmd = lspcontainers.command('sumneko_lua'),
   on_attach = on_attach,
   settings = {
     Lua = {

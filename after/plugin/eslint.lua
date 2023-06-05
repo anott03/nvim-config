@@ -1,1 +1,1 @@
-require('eslint').setup()
+--require('eslint').setup()

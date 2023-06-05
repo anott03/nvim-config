@@ -17,10 +17,10 @@ end
 
 -- My Colorscheme
 -- local highlights = {
-  -- {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
-  -- {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
-  -- {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
-  -- {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+--   {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
+--   {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+--   {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+--   {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
 -- }
 
 -- Gruvbox

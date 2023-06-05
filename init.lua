@@ -20,7 +20,7 @@ require('a.keybindings')
 require('a.autocmds')
 require('a.statusline')
 
-require("sftp-sync").setup({
-  pattern = "*.lua",
-  project_dir = "/home/amitav/dev/nvim/sftp-sync.nvim"
-})
+-- require("sftp-sync").setup({
+--   pattern = "*.lua",
+--   project_dir = "/home/amitav/dev/nvim/sftp-sync.nvim"
+-- })

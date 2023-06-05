@@ -1,6 +1,4 @@
 require('lazy').setup({
-  'wbthomason/packer.nvim',
-
   'lspcontainers/lspcontainers.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-lua/popup.nvim',
@@ -17,6 +15,7 @@ require('lazy').setup({
   'L3MON4D3/LuaSnip',
   'numToStr/Comment.nvim',
   'theprimeagen/harpoon',
+  'ziglang/zig.vim',
 
   'simrat39/rust-tools.nvim',
   'rust-lang/rust.vim',
@@ -33,13 +32,14 @@ require('lazy').setup({
   'kyazdani42/nvim-web-devicons',
   'norcalli/nvim-terminal.lua',
   'tpope/vim-fugitive',
+  'lewis6991/gitsigns.nvim',
   'anott03/termight.nvim',
 
   -- 'hoob3rt/lualine.nvim',
   'luisiacc/gruvbox-baby',
   'tjdevries/colorbuddy.nvim',
 
-  {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
+  -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
 })
 
 require('a.plugins.telescope').setup()
@@ -49,5 +49,6 @@ require('nvim-treesitter.configs').setup({
   },
   ensure_installed = "all"
 })
+require("gitsigns").setup()
 
 RELOAD = require('plenary.reload').reload_module
