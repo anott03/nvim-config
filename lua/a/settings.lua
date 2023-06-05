@@ -73,6 +73,7 @@ local update_highlights = function ()
         hi SignColumn guibg=None
     ]]
     require('a.statusline')
+    require('a.plugins.cmp').custom_highlights()
 end
 
 vim.cmd [[ set laststatus=3 ]]
