@@ -67,37 +67,5 @@ local globals = {
 apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
-local update_highlights = function ()
-    require('a.statusline')
-    require('a.plugins.cmp').custom_highlights()
-end
-
 vim.cmd [[ set laststatus=3 ]]
-vim.cmd [[ colo gruvbox-baby ]]
-
-TOGGLE_TRANSPARENCY = function ()
-  if TRANSPARENCY then
-    vim.cmd [[ colo gruvbox-baby ]]
-    TRANSPARENCY = false
-    update_highlights()
-    return
-  end
-  vim.cmd [[
-      hi Normal guibg=None
-      hi SignColumn guibg=None
-  ]]
-  update_highlights()
-  TRANSPARENCY = true
-end
-
-TRANSPARENCY = false
-TOGGLE_TRANSPARENCY()
-
--- vim.cmd [[
-  -- hi Normal guibg=None
-  -- hi LineNr guifg=#EEBD35
-  -- hi CursorLineNr guifg=#EEBD35
-  -- hi CursorLine guibg=#423f3b
-  -- hi Visual guibg=#423f3b
--- ]]
 vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]

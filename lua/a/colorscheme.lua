@@ -84,3 +84,15 @@ Group.new('rustTSNamespace', colors.blue, nil, nil)
 -- Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
 -- Group.new("CmpItemKind", g.Special)
 -- Group.new("CmpItemMenu", g.NonText)
+
+-- Statusline
+local statusline_highlights = {
+  {'Statusline',   { fg = '#3C3836', bg = '#89AAFF' }},
+  {'StatuslineNC', { fg = '#d0d0d0', bg = '#5c6370' }},
+  {'Mode',         { fg = '#d0d0d0', bg = '#5c6370', gui="bold" }},
+  {'Git',          { fg = '#EBDBB2', bg = '#3e4b59' }},
+}
+
+return {
+    highlights = statusline_highlights
+}

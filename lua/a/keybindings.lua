@@ -74,4 +74,4 @@ remap("n", "<leader>a", function () ui.nav_file(4) end)
 
 
 -- other
-remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
+-- remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)

@@ -19,6 +19,7 @@ require('a.utils')
 require('a.keybindings')
 require('a.autocmds')
 require('a.statusline')
+require('a.highlights');
 
 -- require("sftp-sync").setup({
 --   pattern = "*.lua",

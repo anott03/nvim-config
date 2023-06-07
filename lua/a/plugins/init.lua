@@ -38,6 +38,7 @@ require('lazy').setup({
   -- 'hoob3rt/lualine.nvim',
   'luisiacc/gruvbox-baby',
   'tjdevries/colorbuddy.nvim',
+  { "catppuccin/nvim", name = "catppuccin" },
 
   -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
 })
