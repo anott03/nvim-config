@@ -43,7 +43,7 @@ require('lazy').setup({
   -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
 })
 
-require('a.plugins.telescope').setup()
+-- require('a.plugins.telescope').setup()
 require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,

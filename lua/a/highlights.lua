@@ -1,4 +1,4 @@
-COLORSCHEME = "gruvbox-baby"
+COLORSCHEME = "catppuccin"
 vim.cmd("colo " .. COLORSCHEME)
 
 local set_hl = function(group, options)
@@ -29,7 +29,7 @@ TOGGLE_TRANSPARENCY = function ()
 end
 
 TRANSPARENCY = false
-TOGGLE_TRANSPARENCY()
+-- TOGGLE_TRANSPARENCY()
 
 local remap = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
