@@ -14,6 +14,7 @@ require('eslint').setup({
   diagnostics = {
     enable = true,
     report_unused_disable_directives = false,
-    run_on = "save", -- or `type'
+    -- run_on = "save", -- or `type'
+    run_on = "type", -- or `type'
   },
 })

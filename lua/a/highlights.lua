@@ -1,4 +1,4 @@
-COLORSCHEME = "catppuccin"
+COLORSCHEME = "gruvbox"
 vim.cmd("colo " .. COLORSCHEME)
 
 local set_hl = function(group, options)
@@ -35,3 +35,4 @@ local remap = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
 end
 remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
+update_highlights()
