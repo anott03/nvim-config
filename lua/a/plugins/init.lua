@@ -53,6 +53,7 @@ require('lazy').setup({
 
     -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
     'theprimeagen/vim-be-good',
+    'tjdevries/sponge-bob.nvim',
 })
 
 -- require('a.plugins.telescope').setup()
