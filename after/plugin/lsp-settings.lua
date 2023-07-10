@@ -43,6 +43,12 @@ lspconfig.tsserver.setup({
     cmd = require 'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 })
+lspconfig.astro.setup({
+    on_attach = on_attach
+})
+require 'lspconfig'.svelte.setup({
+    on_attach = on_attach,
+})
 lspconfig.svelte.setup({
     on_attach = on_attach
 })

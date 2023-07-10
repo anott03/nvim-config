@@ -16,11 +16,9 @@ require('lazy').setup({
     'numToStr/Comment.nvim',
     'theprimeagen/harpoon',
     'ziglang/zig.vim',
+    'simrat39/rust-tools.nvim', 'rust-lang/rust.vim',
 
-    'simrat39/rust-tools.nvim',
-    'rust-lang/rust.vim',
-
-    'jose-elias-alvarez/null-ls.nvim',
+    -- 'jose-elias-alvarez/null-ls.nvim',
     'MunifTanjim/eslint.nvim',
     'MunifTanjim/prettier.nvim',
 
@@ -35,6 +33,10 @@ require('lazy').setup({
     },
 
     'lervag/vimtex',
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+    },
 
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
@@ -54,6 +56,15 @@ require('lazy').setup({
     -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
     'theprimeagen/vim-be-good',
     'tjdevries/sponge-bob.nvim',
+
+    -- {
+    -- 	"folke/noice.nvim",
+    -- 	event = "VeryLazy",
+    -- 	dependencies = {
+    -- 		"MunifTanjim/nui.nvim",
+    -- 		"rcarriga/nvim-notify",
+    -- 	}
+    -- }
 })
 
 -- require('a.plugins.telescope').setup()
@@ -64,5 +75,7 @@ require('nvim-treesitter.configs').setup({
     ensure_installed = "all"
 })
 require("gitsigns").setup()
+-- require("a.plugins.noice")
+require("a.plugins.mason")
 
 RELOAD = require('plenary.reload').reload_module
