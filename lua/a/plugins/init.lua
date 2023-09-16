@@ -51,7 +51,7 @@ require('lazy').setup({
     'gruvbox-community/gruvbox',
     'luisiacc/gruvbox-baby',
     'tjdevries/colorbuddy.nvim',
-    { "catppuccin/nvim",                          name = "catppuccin" },
+    { "catppuccin/nvim", name = "catppuccin" },
 
     -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
     'theprimeagen/vim-be-good',
