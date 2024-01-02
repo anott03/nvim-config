@@ -9,7 +9,6 @@ local M = {}
 
 M.setup = function()
   pcall(telescope.load_extension, 'fzy_native')
-  pcall(telescope.load_extension, 'frecency')
   pcall(telescope.load_extension, 'git_worktree')
   pcall(telescope.load_extension, 'ui-select')
   pcall(telescope.load_extension, 'harpoon')
@@ -63,11 +62,6 @@ M.setup = function()
         override_generic_sorter = true,
         override_file_sorter = true,
       },
-      frecency = { workspaces = {
-          ["conf"] = vim.loop.os_homedir() .. "/.config/",
-          ["nvim"] = vim.loop.os_homedir() .. "/dev/nvim/",
-        },
-      },
       ["ui-select"] = {
         themes.get_dropdown {
           winblend = 10,
@@ -76,12 +70,6 @@ M.setup = function()
           shorten_path = false,
         }
       }
-      -- fzf = {
-        -- fuzzy = true,
-        -- override_generic_sorter = false,
-        -- override_file_sorter = true,
-        -- case_mode = "smart_case",
-      -- }
     },
   })
 
@@ -106,20 +94,8 @@ M.files = function()
   }, opts)
 
   local ok = false
-  -- if not git then ok = pcall(telescope.extensions.frecency.frecency, opts) end
-  -- TODO: revisit this https://github.com/nvim-telescope/telescope.nvim/pull/521
-  -- if ok then
-    -- vim.api.nvim_feedkeys(':CWD: ', 'n', false)
-  -- end
   if not ok then ok = pcall(builtin.git_files, _opts) end
   if not ok then builtin.find_files(opts) end
-end
-
-M.frecency = function()
-  local ok = pcall(telescope.extensions.frecency.frecency, opts)
-  if not ok then
-    M.files()
-  end
 end
 
 M.bufs = function()
@@ -141,19 +117,6 @@ M.git_worktree = function()
   telescope.extensions.git_worktree.git_worktrees()
 end
 
-M.dotfiles = function()
-  local _opts = {
-    previewer = false,
-    shorten_path = false,
-    cwd = "~/repos/dotfiles",
-    prompt_title = "Dotfiles",
-    hidden = true,
-  }
-  _opts = _theme(_opts)
-
-  builtin.fd(_opts)
-end
-
 M.nvim = function()
   local _opts = {
     -- previewer = false,
@@ -164,31 +127,6 @@ M.nvim = function()
   }
   _opts = _theme(_opts)
 
-  builtin.fd(_opts)
-end
-
-M.neovim = function()
-  local _opts = {
-    -- previewer = false,
-    shorten_path = false,
-    cwd = "~/repos/neovim",
-    prompt_title = "Local Extensions",
-    hidden = true,
-  }
-  _opts = _theme(_opts)
-
-  builtin.fd(_opts)
-end
-
-M.repos = function()
-  local _opts = {
-    -- previewer = false,
-    shorten_path = false,
-    cwd = "~/repos",
-    prompt_title = "repos",
-    hidden = true,
-  }
-  _opts = _theme(_opts)
   builtin.fd(_opts)
 end
 
@@ -211,7 +149,6 @@ M.mappings = function()
   vim.keymap.set("n", "<leader>b",        generate_telescope_function(M.bufs))
   vim.keymap.set("n", "<leader>ps",       generate_telescope_function(M.grep))
   vim.keymap.set("n", "<leader>nv",       generate_telescope_function(M.nvim))
-  vim.keymap.set("n", "<leader>nn",       generate_telescope_function(M.neovim))
   vim.keymap.set("n", "<leader>ws",       generate_telescope_function(M.workspace_symbols))
   vim.keymap.set("n", "<leader>gw",       generate_telescope_function(M.git_worktree))
 end

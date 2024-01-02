@@ -29,10 +29,6 @@ TOGGLE_TRANSPARENCY = function ()
 end
 
 TRANSPARENCY = false
--- TOGGLE_TRANSPARENCY()
 
-local remap = function(mode, lhs, rhs, opts)
-  vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
-end
-remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)
+REMAP("n", "<leader>vt", TOGGLE_TRANSPARENCY)
 update_highlights()
