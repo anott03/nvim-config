@@ -13,6 +13,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+REMAP = function(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
+end
+
 require('a.plugins')
 require('a.settings')
 require('a.utils')
@@ -20,8 +24,3 @@ require('a.keybindings')
 require('a.autocmds')
 require('a.statusline')
 require('a.highlights');
-
--- require("sftp-sync").setup({
---   pattern = "*.lua",
---   project_dir = "/home/amitav/dev/nvim/sftp-sync.nvim"
--- })

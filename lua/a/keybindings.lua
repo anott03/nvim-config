@@ -1,8 +1,5 @@
 local vim = vim
-
-local remap = function(mode, lhs, rhs, opts)
-  vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
-end
+local remap = REMAP
 
 -- leader key is space
 vim.g.mapleader = ' '
@@ -12,20 +9,10 @@ require('a.plugins.telescope').mappings()
 remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
 
 -- window movements
--- remap("n", "<leader>h", "<CMD>wincmd h<CR>")
--- remap("n", "<leader>j", "<CMD>wincmd j<CR>")
--- remap("n", "<leader>k", "<CMD>wincmd k<CR>")
--- remap("n", "<leader>l", "<CMD>wincmd l<CR>")
 remap("n", "<C-h>", "<CMD>vertical resize +5<CR>")
 remap("n", "<C-l>", "<CMD>vertical resize -5<CR>")
 remap("n", "<C-k>", "<CMD>resize +5<CR>")
 remap("n", "<C-j>", "<CMD>resize -5<CR>") -- yank and put
-
--- commenting
--- remap("n", "<leader>cc", "<cmd>CommentToggle<cr>")
--- remap("n", "<leader>cu", "<cmd>CommentToggle<cr>")
--- remap("v", "<leader>cc", "<cmd>CommentToggle<cr>")
--- remap("v", "<leader>cu", "<cmd>CommentToggle<cr>")
 
 -- for some reason this works but the same bindings in lua don't
 vim.cmd(
@@ -71,7 +58,3 @@ remap("n", "<leader>f", function () ui.nav_file(1) end)
 remap("n", "<leader>d", function () ui.nav_file(2) end)
 remap("n", "<leader>s", function () ui.nav_file(3) end)
 remap("n", "<leader>a", function () ui.nav_file(4) end)
-
-
--- other
--- remap("n", "<leader>vt", TOGGLE_TRANSPARENCY)

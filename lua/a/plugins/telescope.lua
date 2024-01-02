@@ -13,6 +13,7 @@ M.setup = function()
   pcall(telescope.load_extension, 'git_worktree')
   pcall(telescope.load_extension, 'ui-select')
   pcall(telescope.load_extension, 'harpoon')
+  pcall(telescope.load_extension, 'git_worktree')
 
   telescope.setup({
     defaults = {
@@ -207,14 +208,12 @@ end
 
 M.mappings = function()
   vim.keymap.set("n", "<leader><leader>", generate_telescope_function(M.files))
-  -- vim.keymap.set("n", "<leader>fd",       generate_telescope_function(M.dotfiles))
-  -- vim.keymap.set("n", "<leader>ff",       generate_telescope_function(M.frecency))
   vim.keymap.set("n", "<leader>b",        generate_telescope_function(M.bufs))
   vim.keymap.set("n", "<leader>ps",       generate_telescope_function(M.grep))
   vim.keymap.set("n", "<leader>nv",       generate_telescope_function(M.nvim))
   vim.keymap.set("n", "<leader>nn",       generate_telescope_function(M.neovim))
-  -- vim.keymap.set("n", "<leader>fr",       generate_telescope_function(M.repos))
-  vim.keymap.set("n", "<leader>ws",        generate_telescope_function(M.workspace_symbols))
+  vim.keymap.set("n", "<leader>ws",       generate_telescope_function(M.workspace_symbols))
+  vim.keymap.set("n", "<leader>gw",       generate_telescope_function(M.git_worktree))
 end
 
 return M

@@ -16,12 +16,8 @@ require('lazy').setup({
     'numToStr/Comment.nvim',
     'theprimeagen/harpoon',
     'ziglang/zig.vim',
-    'simrat39/rust-tools.nvim', 'rust-lang/rust.vim',
-
-    -- 'jose-elias-alvarez/null-ls.nvim',
-    'MunifTanjim/eslint.nvim',
-    'MunifTanjim/prettier.nvim',
-
+    'simrat39/rust-tools.nvim',
+    'rust-lang/rust.vim',
     {
         'olexsmir/gopher.nvim',
         build = function()
@@ -31,8 +27,11 @@ require('lazy').setup({
             require("gopher").setup()
         end
     },
-
     'lervag/vimtex',
+
+    'MunifTanjim/eslint.nvim',
+    'MunifTanjim/prettier.nvim',
+
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate" -- :MasonUpdate updates registry contents
@@ -44,30 +43,19 @@ require('lazy').setup({
     'kyazdani42/nvim-web-devicons',
     'norcalli/nvim-terminal.lua',
     'tpope/vim-fugitive',
+    'theprimeagen/git-worktree.nvim',
     'lewis6991/gitsigns.nvim',
     'anott03/termight.nvim',
 
-    -- 'hoob3rt/lualine.nvim',
     'gruvbox-community/gruvbox',
     'luisiacc/gruvbox-baby',
     'tjdevries/colorbuddy.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
 
-    -- {dir = '/home/amitav/dev/nvim/sftp-sync.nvim'}
     'theprimeagen/vim-be-good',
     'tjdevries/sponge-bob.nvim',
-
-    -- {
-    -- 	"folke/noice.nvim",
-    -- 	event = "VeryLazy",
-    -- 	dependencies = {
-    -- 		"MunifTanjim/nui.nvim",
-    -- 		"rcarriga/nvim-notify",
-    -- 	}
-    -- }
 })
 
--- require('a.plugins.telescope').setup()
 require('nvim-treesitter.configs').setup({
     highlight = {
         enable = true,
@@ -75,7 +63,6 @@ require('nvim-treesitter.configs').setup({
     ensure_installed = "all"
 })
 require("gitsigns").setup()
--- require("a.plugins.noice")
 require("a.plugins.mason")
 
 RELOAD = require('plenary.reload').reload_module
