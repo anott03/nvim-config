@@ -83,7 +83,7 @@ Statusline.active = function ()
 end
 
 Statusline.inactive = function ()
-  return "%=%F"
+  return "%=%F%="
 end
 
 vim.api.nvim_exec([[
