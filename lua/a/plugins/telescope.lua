@@ -47,7 +47,11 @@ M.setup = function()
         i = {
           ["<C-s>"] = actions.select_horizontal,
           ["<esc>"] = actions.close,
-        }
+          ["<c-t>"] = require("trouble").open_with_trouble,
+        },
+        n = {
+            ["<c-t>"] = require("trouble").open_with_trouble
+        },
       },
 
       file_sorter = sorters.get_fzy_sorter,

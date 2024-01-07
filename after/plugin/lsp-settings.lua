@@ -1,6 +1,10 @@
 local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
+
+-- NOTE THIS MUST HAPPEN BEFORE SETTING UP LSPCONFIG
+require("neodev").setup({})
+
 local lspconfig = require "lspconfig"
 local lspcontainers = require 'lspcontainers'
 require('a.plugins.cmp').setup()
@@ -23,13 +27,16 @@ end
 local on_attach = function()
     nnoremap("gd", vim.lsp.buf.definition)
     nnoremap("gi", vim.lsp.buf.implementation)
-    nnoremap("gr", vim.lsp.buf.references)
+    -- nnoremap("gr", vim.lsp.buf.references)
     nnoremap("K", vim.lsp.buf.hover)
     vnoremap("K", vim.lsp.buf.hover)
     nnoremap("<leader>K", vim.diagnostic.open_float)
     nnoremap("<leader>w", vim.diagnostic.setloclist)
     nnoremap("<leader>rr", LSP_RENAME)
     nnoremap("<leader>a", LSP_CODE_ACTIONS)
+
+    -- trouble.nvim
+    vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
 end
 
 lspconfig.zls.setup({

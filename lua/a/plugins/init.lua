@@ -28,6 +28,12 @@ require('lazy').setup({
         end
     },
     'lervag/vimtex',
+    {
+         "folke/trouble.nvim",
+         dependencies = { "nvim-tree/nvim-web-devicons" },
+         opts = require("a.plugins.trouble")
+     },
+     { "folke/neodev.nvim", opts = {} },
 
     'MunifTanjim/eslint.nvim',
     'MunifTanjim/prettier.nvim',
@@ -54,6 +60,20 @@ require('lazy').setup({
 
     'theprimeagen/vim-be-good',
     'tjdevries/sponge-bob.nvim',
+
+    {
+        "anott03/vimnote",
+        dev = true,
+        config = function()
+            require("vimnote").setup({
+                pdf_reader = "zathura"
+            })
+        end
+    },
+}, {
+    dev = {
+        path = "~/dev"
+    }
 })
 
 require('nvim-treesitter.configs').setup({

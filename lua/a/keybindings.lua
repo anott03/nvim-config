@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 local vim = vim
 local remap = REMAP
 
@@ -22,6 +23,9 @@ vim.cmd(
 
 remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
 remap("n", "<C-c>", "<cmd>nohl<cr><C-c>")
+
+remap("v", "J", ":m '>+1<CR>gv=gv");
+remap("v", "K", ":m '<-2<CR>gv=gv");
 
 -- indenting
 remap("v", "<", "<gv")
@@ -58,3 +62,10 @@ remap("n", "<leader>f", function () ui.nav_file(1) end)
 remap("n", "<leader>d", function () ui.nav_file(2) end)
 remap("n", "<leader>s", function () ui.nav_file(3) end)
 remap("n", "<leader>a", function () ui.nav_file(4) end)
+
+-- trouble.nvim
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
