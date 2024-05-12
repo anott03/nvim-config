@@ -1,3 +1,4 @@
+-- COLORSCHEME = "catppuccin-macchiato"
 COLORSCHEME = "gruvbox"
 vim.cmd("colo " .. COLORSCHEME)
 

@@ -38,7 +38,7 @@ local globals = {
   completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'},
   NERDSpaceDelims = 1,
 
-  gruvbox_contrast_dark = 'hard',
+  gruvbox_contrast_dark = 'soft',
   gruvbox_invert_selection='0',
   gruvbox_baby_function_style = "NONE",
   gruvbox_baby_keyword_style = "italic",

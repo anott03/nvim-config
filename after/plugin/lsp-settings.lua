@@ -29,7 +29,7 @@ local on_attach = function()
     nnoremap("gi", vim.lsp.buf.implementation)
     -- nnoremap("gr", vim.lsp.buf.references)
     nnoremap("K", vim.lsp.buf.hover)
-    vnoremap("K", vim.lsp.buf.hover)
+    -- vnoremap("K", vim.lsp.buf.hover)
     nnoremap("<leader>K", vim.diagnostic.open_float)
     nnoremap("<leader>w", vim.diagnostic.setloclist)
     nnoremap("<leader>rr", LSP_RENAME)
@@ -82,6 +82,7 @@ lspconfig.gopls.setup({
 lspconfig.ocamllsp.setup({
     on_attach = on_attach
 })
+require'lspconfig'.millet.setup{}
 
 -- lspconfig.rust_analyzer.setup({
 -- -- cmd = lspcontainers.command('rust_analyzer'),
@@ -147,6 +148,11 @@ lspconfig.gopls.setup({
             staticcheck = true,
         },
     },
+})
+
+-- gleam
+require'lspconfig'.gleam.setup({
+    on_attach = on_attach
 })
 
 -- vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])

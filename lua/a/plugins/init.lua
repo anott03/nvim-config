@@ -37,6 +37,7 @@ require('lazy').setup({
 
     'MunifTanjim/eslint.nvim',
     'MunifTanjim/prettier.nvim',
+    'gleam-lang/gleam.vim',
 
     {
         "williamboman/mason.nvim",
@@ -60,6 +61,8 @@ require('lazy').setup({
 
     'theprimeagen/vim-be-good',
     'tjdevries/sponge-bob.nvim',
+
+    'coddingtonbear/neomake-platformio',
 
     {
         "anott03/vimnote",
