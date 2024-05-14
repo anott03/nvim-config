@@ -37,6 +37,9 @@ remap("n", "<leader>e", "<CMD>Lex<CR>")
 
 -- LSP related keybindings are in lsp-settings.lua
 
+remap("n", "<leader>fc", "<cmd>foldclose<cr>")
+remap("n", "<leader>fo", "<cmd>foldopen<cr>")
+
 -- git
 remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")
 remap("n", "<leader>gh", "<CMD>diffget //3<CR>")

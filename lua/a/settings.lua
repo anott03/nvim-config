@@ -31,6 +31,7 @@ local settings = {
   exrc = true,
   hidden = true,
   signcolumn = 'yes',
+  foldmethod = 'marker'
   -- winbar="%=%m %f",
 }
 
