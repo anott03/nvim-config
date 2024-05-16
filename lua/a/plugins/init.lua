@@ -34,6 +34,11 @@ require('lazy').setup({
          opts = require("a.plugins.trouble")
      },
      { "folke/neodev.nvim", opts = {} },
+     {
+       'stevearc/oil.nvim',
+       opts = {},
+       dependencies = { "nvim-tree/nvim-web-devicons" },
+     },
 
     'MunifTanjim/eslint.nvim',
     'MunifTanjim/prettier.nvim',
@@ -43,6 +48,10 @@ require('lazy').setup({
         "williamboman/mason.nvim",
         build = ":MasonUpdate" -- :MasonUpdate updates registry contents
     },
+
+    "tpope/vim-dadbod",
+    "kristijanhusak/vim-dadbod-completion",
+    "kristijanhusak/vim-dadbod-ui",
 
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',

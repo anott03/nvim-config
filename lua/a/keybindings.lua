@@ -33,7 +33,8 @@ remap("v", ">", ">gv")
 -- disabling ex mode
 remap("n", "Q", "<nop>")
 -- file tree
-remap("n", "<leader>e", "<CMD>Lex<CR>")
+-- remap("n", "<leader>e", "<CMD>Lex<CR>")
+remap("n", "<leader>e", "<CMD>Oil<CR>")
 
 -- LSP related keybindings are in lsp-settings.lua
 

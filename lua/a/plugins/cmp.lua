@@ -4,7 +4,7 @@ local cmp = require "cmp"
 local lspkind = require "lspkind"
 
 M.setup = function()
-  cmp.setup {
+  cmp.setup({
     mapping = {
       ["<Tab>"] = function(fallback)
         if cmp.visible() then
@@ -78,7 +78,14 @@ M.setup = function()
         side_padding = 0,
       },
     },
-  }
+  })
+
+  cmp.setup.filetype({ "sql" }, {
+      sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+      }
+  })
 end
 
 M.custom_highlights = function ()
