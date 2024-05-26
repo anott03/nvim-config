@@ -1,2 +1,3 @@
 .netrw*
 ./plugin/packer_compiled.vim
+lazy-lock.json

@@ -73,15 +73,15 @@ require('lazy').setup({
 
     'coddingtonbear/neomake-platformio',
 
-    {
-        "anott03/vimnote",
-        dev = true,
-        config = function()
-            require("vimnote").setup({
-                pdf_reader = "zathura"
-            })
-        end
-    },
+    -- {
+    --     "anott03/vimnote",
+    --     dev = true,
+    --     config = function()
+    --         require("vimnote").setup({
+    --             pdf_reader = "zathura"
+    --         })
+    --     end
+    -- },
 }, {
     dev = {
         path = "~/dev"
