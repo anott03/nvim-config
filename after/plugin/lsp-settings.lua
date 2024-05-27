@@ -82,7 +82,11 @@ lspconfig.gopls.setup({
 lspconfig.ocamllsp.setup({
     on_attach = on_attach
 })
-require'lspconfig'.millet.setup{}
+require'lspconfig'.millet.setup{
+    cmd={"millet-ls"},
+    filetypes={"sml", "cm", "mlb" },
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+}
 
 -- lspconfig.rust_analyzer.setup({
 -- -- cmd = lspcontainers.command('rust_analyzer'),
