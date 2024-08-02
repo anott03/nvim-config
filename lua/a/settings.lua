@@ -28,6 +28,7 @@ local settings = {
   termguicolors = true,
   background = 'dark',
   colorcolumn = '80',
+  textwidth = 80,
   exrc = true,
   hidden = true,
   signcolumn = 'yes',

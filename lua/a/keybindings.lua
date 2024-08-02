@@ -38,8 +38,8 @@ remap("n", "<leader>e", "<CMD>Oil<CR>")
 
 -- LSP related keybindings are in lsp-settings.lua
 
-remap("n", "<leader>fc", "<cmd>foldclose<cr>")
-remap("n", "<leader>fo", "<cmd>foldopen<cr>")
+remap("n", "<leader>cf", "<cmd>foldclose<cr>")
+remap("n", "<leader>of", "<cmd>foldopen<cr>")
 
 -- git
 remap("n", "<leader>gb", "<CMD>Telescope git_branches<CR>")

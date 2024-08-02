@@ -1,5 +1,6 @@
+COLORSCHEME = "rose-pine"
 -- COLORSCHEME = "catppuccin-macchiato"
-COLORSCHEME = "gruvbox"
+-- COLORSCHEME = "gruvbox"
 vim.cmd("colo " .. COLORSCHEME)
 
 local update_highlights = function ()

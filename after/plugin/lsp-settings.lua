@@ -61,7 +61,7 @@ lspconfig.svelte.setup({
     on_attach = on_attach
 })
 lspconfig.pylsp.setup({
-    cmd = require 'lspcontainers'.command('pylsp'),
+    -- cmd = require 'lspcontainers'.command('pylsp'),
     on_attach = on_attach
 })
 lspconfig.clangd.setup({
@@ -69,7 +69,7 @@ lspconfig.clangd.setup({
     on_attach = on_attach
 })
 lspconfig.gopls.setup({
-    cmd = lspcontainers.command('gopls'),
+    -- cmd = lspcontainers.command('gopls'),
     on_attach = on_attach,
     root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
     settings = {
@@ -88,10 +88,9 @@ require'lspconfig'.millet.setup{
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 }
 
--- lspconfig.rust_analyzer.setup({
--- -- cmd = lspcontainers.command('rust_analyzer'),
--- on_attach = on_attach
--- })
+require'lspconfig'.arduino_language_server.setup({
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+})
 
 local rt = require("rust-tools")
 rt.setup({
@@ -122,14 +121,14 @@ lspconfig.lua_ls.setup({
         }
     }
 })
-require 'lspconfig'.svelte.setup {
-    before_init = function(params)
-        params.processId = vim.NIL
-    end,
-    on_attach = on_attach,
-    cmd = lspcontainers.command('svelte'),
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-}
+-- require 'lspconfig'.svelte.setup {
+--     before_init = function(params)
+--         params.processId = vim.NIL
+--     end,
+--     on_attach = on_attach,
+--     cmd = lspcontainers.command('svelte'),
+--     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+-- }
 
 lspconfig.ltex.setup({ on_attach = on_attach })
 lspconfig.texlab.setup({ on_attach = on_attach })

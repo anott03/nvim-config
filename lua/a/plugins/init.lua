@@ -67,6 +67,7 @@ require('lazy').setup({
     'luisiacc/gruvbox-baby',
     'tjdevries/colorbuddy.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
+    { "rose-pine/neovim", name = "rose-pine" },
     'RRethy/base16-nvim',
 
     'theprimeagen/vim-be-good',
