@@ -15,7 +15,12 @@ require('lazy').setup({
     'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
     'theprimeagen/harpoon',
-    'ziglang/zig.vim',
+    {
+        'ziglang/zig.vim',
+        config = function()
+            vim.cmd [[let g:zig_fmt_autosave = 0]]
+        end
+    },
     'simrat39/rust-tools.nvim',
     'rust-lang/rust.vim',
     {
@@ -32,13 +37,27 @@ require('lazy').setup({
          "folke/trouble.nvim",
          dependencies = { "nvim-tree/nvim-web-devicons" },
          opts = require("a.plugins.trouble")
-     },
-     { "folke/neodev.nvim", opts = {} },
-     {
-       'stevearc/oil.nvim',
-       opts = {},
-       dependencies = { "nvim-tree/nvim-web-devicons" },
-     },
+    },
+    -- { "folke/neodev.nvim", opts = {} },
+
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 
     'MunifTanjim/eslint.nvim',
     'MunifTanjim/prettier.nvim',

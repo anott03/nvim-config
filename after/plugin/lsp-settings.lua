@@ -2,15 +2,12 @@ local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
 
--- NOTE THIS MUST HAPPEN BEFORE SETTING UP LSPCONFIG
-require("neodev").setup({})
-
 local lspconfig = require "lspconfig"
-local lspcontainers = require 'lspcontainers'
+-- local lspcontainers = require 'lspcontainers'
 require('a.plugins.cmp').setup()
 
--- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -20,16 +17,10 @@ local nnoremap = function(lhs, rhs, opts)
     vim.keymap.set('n', lhs, rhs, opts or { noremap = true })
 end
 
-local vnoremap = function(lhs, rhs, opts)
-    vim.keymap.set('v', lhs, rhs, opts or { noremap = true })
-end
-
 local on_attach = function()
     nnoremap("gd", vim.lsp.buf.definition)
     nnoremap("gi", vim.lsp.buf.implementation)
-    -- nnoremap("gr", vim.lsp.buf.references)
     nnoremap("K", vim.lsp.buf.hover)
-    -- vnoremap("K", vim.lsp.buf.hover)
     nnoremap("<leader>K", vim.diagnostic.open_float)
     nnoremap("<leader>w", vim.diagnostic.setloclist)
     nnoremap("<leader>rr", LSP_RENAME)
@@ -51,6 +42,7 @@ lspconfig.tsserver.setup({
     -- cmd = require 'lspcontainers'.command('tsserver'),
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 })
+require'lspconfig'.tailwindcss.setup{}
 lspconfig.astro.setup({
     on_attach = on_attach
 })
@@ -104,6 +96,10 @@ function Rust_inlay_hints()
 end
 
 vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
+
+lspconfig.elixirls.setup({
+    cmd = {"elixir_language_server"}
+})
 
 lspconfig.lua_ls.setup({
     -- cmd = lspcontainers.command('sumneko_lua'),
@@ -181,13 +177,13 @@ local function lsp_rename()
         borderchars = borderchars,
     })
 
-    api.nvim_win_set_option(
-        win.border.win_id,
+    api.nvim_set_option_value(
         "winhl",
-        "Normal:HarpoonBorder"
+        "Normal:HarpoonBorder",
+        { win = win.border.win_id }
     )
 
-    api.nvim_buf_set_option(bufnr, 'buftype', 'prompt')
+    api.nvim_set_option_value('buftype', 'prompt', { buf = bufnr })
     api.nvim_buf_set_keymap(bufnr, 'i', '<esc>', '<cmd>q!<cr><esc>', { noremap = true })
     api.nvim_buf_set_keymap(bufnr, 'n', '<esc>', '<cmd>q!<cr><esc>', { noremap = true })
 

@@ -2,6 +2,12 @@ local Color, colors, Group, groups, styles = require('colorbuddy').setup()
 local g = require("colorbuddy.group").groups
 local s = require("colorbuddy.style").styles
 
+if Color == nil then return end
+if Group == nil then return end
+if colors == nil then return end
+if groups == nil then return end
+if styles == nil then return end
+
 Color.new('background',     '#282c3e')
 Color.new('red',            '#f07178')
 Color.new('green',          '#c3e88d')

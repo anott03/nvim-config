@@ -17,6 +17,7 @@ TOGGLE_TRANSPARENCY = function ()
   end
   vim.cmd [[
       hi Normal guibg=None
+      hi NormalNC guibg=None
       hi SignColumn guibg=None
   ]]
   update_highlights()

@@ -34,6 +34,7 @@ M.setup = function()
       { name = "nvim_lsp" },
       { name = "path" },
       { name = "buffer", keyword_length = 5 },
+      { name = "lazydev", group_index = 0, },
     },
 
     -- formatting = {

@@ -17,7 +17,8 @@ local settings = {
   softtabstop = 4,
   expandtab = true,
   swapfile = false,
-  showmode = false,
+  showmode = true,
+  modeline = false,
   wrap = false,
   undofile = true,
   undodir = vim.loop.os_homedir() .. '/.local/share/nvim/undodir',
@@ -69,5 +70,5 @@ local globals = {
 apply_options(settings, vim.o)
 apply_options(globals, vim.g)
 
-vim.cmd [[ set laststatus=3 ]]
+vim.cmd [[ set laststatus=0 ]]
 vim.cmd[[set guifont=FiraCode\ Nerd\ Font:h12]]

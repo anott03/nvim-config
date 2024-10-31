@@ -22,5 +22,7 @@ require('a.settings')
 require('a.utils')
 require('a.keybindings')
 require('a.autocmds')
-require('a.statusline')
+-- require('a.statusline')
 require('a.highlights');
+
+-- TOGGLE_TRANSPARENCY()
