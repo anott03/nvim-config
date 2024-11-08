@@ -47,10 +47,7 @@ M.setup = function()
         i = {
           ["<C-s>"] = actions.select_horizontal,
           ["<esc>"] = actions.close,
-          ["<c-t>"] = require("trouble").open_with_trouble,
-        },
-        n = {
-            ["<c-t>"] = require("trouble").open_with_trouble
+          ["<C-t>"] = require("trouble.sources.telescope").open,
         },
       },
 
@@ -153,7 +150,7 @@ M.mappings = function()
   vim.keymap.set("n", "<leader>b",        generate_telescope_function(M.bufs))
   vim.keymap.set("n", "<leader>ps",       generate_telescope_function(M.grep))
   vim.keymap.set("n", "<leader>nv",       generate_telescope_function(M.nvim))
-  vim.keymap.set("n", "<leader>ws",       generate_telescope_function(M.workspace_symbols))
+  --vim.keymap.set("n", "<leader>ws",       generate_telescope_function(M.workspace_symbols))
   vim.keymap.set("n", "<leader>gw",       generate_telescope_function(M.git_worktree))
 end
 

@@ -24,7 +24,7 @@ local function location_window(options)
 
     local bufnr = options.bufnr or api.nvim_create_buf(false, true)
     local win_id = api.nvim_open_win(bufnr, true, options)
-    api.nvim_win_set_option(win_id, 'winhl', 'Normal:Normal')
+    api.nvim_set_option_value('winhl', 'Normal:Normal', { win = win_id })
 
     return {
         bufnr = bufnr,
@@ -133,10 +133,10 @@ function NOTIFICATIONS()
       borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
   })
 
-  vim.api.nvim_win_set_option(
-      win.border.win_id,
+  vim.api.nvim_set_option_value(
       "winhl",
-      "Normal:Normal"
+      "Normal:Normal",
+      { win_id = win.border.win_id }
   )
 
   local lines = {}

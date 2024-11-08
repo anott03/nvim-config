@@ -29,7 +29,7 @@ require('lazy').setup({
             vim.cmd [[silent! GoInstallDeps]]
         end,
         config = function()
-            require("gopher").setup()
+            require("gopher").setup({})
         end
     },
     'lervag/vimtex',
