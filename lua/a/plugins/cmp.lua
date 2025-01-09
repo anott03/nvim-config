@@ -1,7 +1,6 @@
 local M = {}
 
 local cmp = require "cmp"
-local lspkind = require "lspkind"
 
 M.setup = function()
   cmp.setup({
@@ -36,18 +35,6 @@ M.setup = function()
       { name = "buffer", keyword_length = 5 },
       { name = "lazydev", group_index = 0, },
     },
-
-    -- formatting = {
-    --   format = lspkind.cmp_format {
-    --     with_text = true,
-    --     menu = {
-    --       buffer = "[buf]",
-    --       nvim_lsp = "[LSP]",
-    --       nvim_lua = "[api]",
-    --       path = "[path]",
-    --     }
-    --   }
-    -- },
 
     formatting = {
       fields = { "kind", "abbr", "menu" },

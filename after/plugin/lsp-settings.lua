@@ -34,15 +34,12 @@ lspconfig.zls.setup({
     on_attach = on_attach
 })
 lspconfig.vhdl_ls.setup({})
-lspconfig.tsserver.setup({
-    before_init = function(params)
-        params.processId = vim.NIL
-    end,
-    on_attach = on_attach,
-    -- cmd = require 'lspcontainers'.command('tsserver'),
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-})
-require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.ts_ls.setup{
+    on_attach = on_attach
+}
+require'lspconfig'.tailwindcss.setup{
+    on_attach = on_attach
+}
 lspconfig.astro.setup({
     on_attach = on_attach
 })
@@ -57,7 +54,6 @@ lspconfig.pylsp.setup({
     on_attach = on_attach
 })
 lspconfig.clangd.setup({
-    -- cmd = lspcontainers.command('clangd'),
     on_attach = on_attach
 })
 lspconfig.gopls.setup({

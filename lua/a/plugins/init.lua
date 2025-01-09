@@ -38,7 +38,6 @@ require('lazy').setup({
          dependencies = { "nvim-tree/nvim-web-devicons" },
          opts = require("a.plugins.trouble")
     },
-    -- { "folke/neodev.nvim", opts = {} },
 
     {
         "folke/lazydev.nvim",
@@ -91,18 +90,6 @@ require('lazy').setup({
 
     'theprimeagen/vim-be-good',
     'tjdevries/sponge-bob.nvim',
-
-    'coddingtonbear/neomake-platformio',
-
-    -- {
-    --     "anott03/vimnote",
-    --     dev = true,
-    --     config = function()
-    --         require("vimnote").setup({
-    --             pdf_reader = "zathura"
-    --         })
-    --     end
-    -- },
 }, {
     dev = {
         path = "~/dev"
