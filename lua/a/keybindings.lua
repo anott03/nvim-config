@@ -24,8 +24,8 @@ vim.cmd(
 remap("n", "<ESC>", "<CMD>nohl<CR><ESC>")
 remap("n", "<C-c>", "<cmd>nohl<cr><C-c>")
 
-remap("v", "J", ":m '>+1<CR>gv=gv");
-remap("v", "K", ":m '<-2<CR>gv=gv");
+-- remap("v", "J", ":m '>+1<CR>gv=gv");
+-- remap("v", "K", ":m '<-2<CR>gv=gv");
 
 -- indenting
 remap("v", "<", "<gv")

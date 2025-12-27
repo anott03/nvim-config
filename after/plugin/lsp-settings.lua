@@ -1,9 +1,11 @@
+if vim.g.vscode then
+    return
+end
+
 local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
 
-local lspconfig = require "lspconfig"
--- local lspcontainers = require 'lspcontainers'
 require('a.plugins.cmp').setup()
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -17,69 +19,62 @@ local nnoremap = function(lhs, rhs, opts)
     vim.keymap.set('n', lhs, rhs, opts or { noremap = true })
 end
 
+local lsp_hover = function ()
+    vim.lsp.buf.hover({ border="single" })
+end
+
+local lsp_diagnostics = function ()
+    vim.diagnostic.open_float({ border="single" })
+end
+
+-- unmap K so that my custom mapping can take effect
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        -- Unmap K
+        pcall(function () vim.keymap.del('n', 'K', { buffer = args.buf }) end)
+    end,
+})
+
 local on_attach = function()
     nnoremap("gd", vim.lsp.buf.definition)
     nnoremap("gi", vim.lsp.buf.implementation)
-    nnoremap("K", vim.lsp.buf.hover)
-    nnoremap("<leader>K", vim.diagnostic.open_float)
+    nnoremap("K", lsp_hover, { noremap=false, silent=true })
+    nnoremap("<leader>K", lsp_diagnostics)
     nnoremap("<leader>w", vim.diagnostic.setloclist)
     nnoremap("<leader>rr", LSP_RENAME)
-    nnoremap("<leader>a", LSP_CODE_ACTIONS)
+    -- nnoremap("<leader>a", LSP_CODE_ACTIONS)
 
     -- trouble.nvim
     vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
 end
 
-lspconfig.zls.setup({
-    on_attach = on_attach
-})
-lspconfig.vhdl_ls.setup({})
-require'lspconfig'.ts_ls.setup{
-    on_attach = on_attach
-}
-require'lspconfig'.tailwindcss.setup{
-    on_attach = on_attach
-}
-lspconfig.astro.setup({
-    on_attach = on_attach
-})
-require 'lspconfig'.svelte.setup({
-    on_attach = on_attach,
-})
-lspconfig.svelte.setup({
-    on_attach = on_attach
-})
-lspconfig.pylsp.setup({
-    -- cmd = require 'lspcontainers'.command('pylsp'),
-    on_attach = on_attach
-})
-lspconfig.clangd.setup({
-    on_attach = on_attach
-})
-lspconfig.gopls.setup({
-    -- cmd = lspcontainers.command('gopls'),
-    on_attach = on_attach,
-    root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-    settings = {
-        completUnimported = true,
-        analyses = {
-            unusedparams = true,
-        }
-    }
-})
-lspconfig.ocamllsp.setup({
-    on_attach = on_attach
-})
-require'lspconfig'.millet.setup{
-    cmd={"millet-ls"},
-    filetypes={"sml", "cm", "mlb" },
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-}
+vim.lsp.config("*", { on_attach = on_attach })
 
-require'lspconfig'.arduino_language_server.setup({
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-})
+-- typescript {{{
+vim.lsp.enable("ts_ls")
+-- }}}
+-- tailwind {{{
+vim.lsp.enable("tailwindcss")
+-- }}}
+-- svelte {{{
+vim.lsp.enable("svelte")
+-- }}}
+-- astro {{{
+vim.lsp.enable("astro")
+-- }}}
 
+-- clang {{{
+vim.lsp.config("clangd", {
+    cmd={
+        "clangd",
+        "--background-index",
+        "--log=verbose"
+    },
+    on_attach = on_attach
+})
+vim.lsp.enable("clangd")
+-- }}}
+-- rust {{{
 local rt = require("rust-tools")
 rt.setup({
     server = {
@@ -90,14 +85,78 @@ rt.setup({
 function Rust_inlay_hints()
     rt.inlay_hints.enable()
 end
-
 vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
-
-lspconfig.elixirls.setup({
-    cmd = {"elixir_language_server"}
+--- }}}
+-- zig {{{
+vim.lsp.enable("zls")
+-- }}}
+-- arduino {{{
+-- vim.lsp.config("arduino_language_server", {
+--     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+-- })
+-- vim.lsp.enable("arduino_language_server")
+-- }}}
+-- golang {{{
+vim.lsp.config("gopls", {
+    cmd = { "gopls", "serve" },
+    on_attach = on_attach,
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+        },
+    },
 })
+vim.lsp.enable("gopls")
+-- vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
+-- }}}
+-- gleam {{{
+vim.lsp.enable("gleam")
+-- }}}
 
-lspconfig.lua_ls.setup({
+-- ocaml {{{
+vim.lsp.config("ocamllsp", {
+    cmd={"/Users/amitavnott/.opam/default/bin/ocamllsp"},
+    on_attach = on_attach
+})
+vim.lsp.enable("ocamllsp")
+
+vim.lsp.config("millet", {
+    cmd={"millet-ls"},
+    filetypes={"sml", "cm", "mlb" },
+    root_dir = require('lspconfig').util.root_pattern(".git", vim.fn.getcwd()),
+})
+vim.lsp.enable("millet")
+-- }}}
+-- elixir {{{
+vim.lsp.config("elixirls", {
+    cmd = {"elixir-ls"},
+    on_attach=on_attach
+});
+vim.lsp.enable("elixirls")
+-- }}}
+-- erlang {{{
+vim.lsp.enable("erlangls")
+-- }}}
+-- haskell {{{
+vim.lsp.config("hls", {
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    on_attach = on_attach
+})
+vim.lsp.enable("hls")
+-- }}}
+
+-- vhdl {{{
+vim.lsp.enable("vhdl_ls")
+-- }}}
+
+-- python {{{
+vim.lsp.enable("pylsp")
+-- }}}
+-- lua {{{
+vim.lsp.config("lua_ls", {
     -- cmd = lspcontainers.command('sumneko_lua'),
     on_attach = on_attach,
     settings = {
@@ -113,44 +172,17 @@ lspconfig.lua_ls.setup({
         }
     }
 })
--- require 'lspconfig'.svelte.setup {
---     before_init = function(params)
---         params.processId = vim.NIL
---     end,
---     on_attach = on_attach,
---     cmd = lspcontainers.command('svelte'),
---     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
--- }
+vim.lsp.enable("lua_ls")
+-- }}}
 
-lspconfig.ltex.setup({ on_attach = on_attach })
-lspconfig.texlab.setup({ on_attach = on_attach })
+-- latex {{{
+-- lspconfig.texlab.setup({ on_attach = on_attach })
+vim.lsp.enable("ltex")
+-- }}}
+-- typst {{{
+vim.lsp.enable("tinymist")
+-- }}}
 
--- haskell
-lspconfig.hls.setup({
-    filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    on_attach = on_attach
-})
-
--- golang
-lspconfig.gopls.setup({
-    cmd = { "gopls", "serve" },
-    on_attach = on_attach,
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true,
-            },
-            staticcheck = true,
-        },
-    },
-})
-
--- gleam
-require'lspconfig'.gleam.setup({
-    on_attach = on_attach
-})
-
--- vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]])
 vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 
 local function lsp_rename()

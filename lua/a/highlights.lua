@@ -1,5 +1,5 @@
-COLORSCHEME = "rose-pine"
--- COLORSCHEME = "catppuccin-macchiato"
+-- COLORSCHEME = "rose-pine"
+COLORSCHEME = "catppuccin-mocha"
 -- COLORSCHEME = "gruvbox"
 vim.cmd("colo " .. COLORSCHEME)
 
