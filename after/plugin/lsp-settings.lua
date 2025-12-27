@@ -8,13 +8,6 @@ local lsp = vim.lsp
 
 require('a.plugins.cmp').setup()
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
--- local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 local nnoremap = function(lhs, rhs, opts)
     vim.keymap.set('n', lhs, rhs, opts or { noremap = true })
 end
@@ -46,6 +39,17 @@ local on_attach = function()
 
     -- trouble.nvim
     vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
+
+    vim.diagnostic.config({
+        signs = true,
+        virtual_text = true,
+    })
+
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
 end
 
 vim.lsp.config("*", { on_attach = on_attach })

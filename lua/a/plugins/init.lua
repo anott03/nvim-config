@@ -154,12 +154,12 @@ require('lazy').setup({
     }
 })
 
-require('nvim-treesitter.configs').setup({
-    highlight = {
-        enable = true,
-    },
-    ensure_installed = "all"
-})
+-- require('nvim-treesitter.configs').setup({
+--     highlight = {
+--         enable = true,
+--     },
+--     ensure_installed = "all"
+-- })
 require("gitsigns").setup()
 require("a.plugins.mason")
 
