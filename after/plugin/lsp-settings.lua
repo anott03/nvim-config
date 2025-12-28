@@ -79,16 +79,14 @@ vim.lsp.config("clangd", {
 vim.lsp.enable("clangd")
 -- }}}
 -- rust {{{
-vim.lsp.config('rust_analyzer', {
-    settings = {
-        ['rust-analyzer'] = {
-            diagnostics = {
-                enable = false,
-            }
-        }
-    }
-})
-vim.lsp.enable("rust_analyzer")
+vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = { },
+    -- LSP configuration
+    server = {
+        on_attach = on_attach
+    },
+}
 -- }}}
 -- zig {{{
 vim.lsp.enable("zls")

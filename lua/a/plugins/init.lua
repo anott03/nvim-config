@@ -20,11 +20,11 @@ require('lazy').setup({
             vim.cmd [[let g:zig_fmt_autosave = 0]]
         end
     },
-    -- {
-    --     'mrcjkb/rustaceanvim',
-    --     version = '^6', -- Recommended
-    --     lazy = false, -- This plugin is already lazy
-    -- },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
     'rust-lang/rust.vim',
     {
         'olexsmir/gopher.nvim',
