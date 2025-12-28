@@ -20,7 +20,11 @@ require('lazy').setup({
             vim.cmd [[let g:zig_fmt_autosave = 0]]
         end
     },
-    'simrat39/rust-tools.nvim',
+    -- {
+    --     'mrcjkb/rustaceanvim',
+    --     version = '^6', -- Recommended
+    --     lazy = false, -- This plugin is already lazy
+    -- },
     'rust-lang/rust.vim',
     {
         'olexsmir/gopher.nvim',
@@ -63,8 +67,8 @@ require('lazy').setup({
       dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    'MunifTanjim/eslint.nvim',
-    'MunifTanjim/prettier.nvim',
+    -- 'MunifTanjim/eslint.nvim',
+    -- 'MunifTanjim/prettier.nvim',
     'gleam-lang/gleam.vim',
 
     {

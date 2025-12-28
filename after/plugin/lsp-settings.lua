@@ -79,24 +79,23 @@ vim.lsp.config("clangd", {
 vim.lsp.enable("clangd")
 -- }}}
 -- rust {{{
-local rt = require("rust-tools")
-rt.setup({
-    server = {
-        on_attach = on_attach,
-        cmd = { "rustup", "run", "nightly", "rust-analyzer" }
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                enable = false,
+            }
+        }
     }
 })
-function Rust_inlay_hints()
-    rt.inlay_hints.enable()
-end
-vim.cmd("autocmd BufEnter,BufWinEnter,TabEnter *.rs lua Rust_inlay_hints()")
---- }}}
+vim.lsp.enable("rust_analyzer")
+-- }}}
 -- zig {{{
 vim.lsp.enable("zls")
 -- }}}
 -- arduino {{{
 -- vim.lsp.config("arduino_language_server", {
---     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+--     root_markers = { ".git", vim.fn.getcwd() },
 -- })
 -- vim.lsp.enable("arduino_language_server")
 -- }}}
@@ -130,7 +129,7 @@ vim.lsp.enable("ocamllsp")
 vim.lsp.config("millet", {
     cmd={"millet-ls"},
     filetypes={"sml", "cm", "mlb" },
-    root_dir = require('lspconfig').util.root_pattern(".git", vim.fn.getcwd()),
+    root_markers = { ".git", vim.fn.getcwd() },
 })
 vim.lsp.enable("millet")
 -- }}}
@@ -180,7 +179,6 @@ vim.lsp.enable("lua_ls")
 -- }}}
 
 -- latex {{{
--- lspconfig.texlab.setup({ on_attach = on_attach })
 vim.lsp.enable("ltex")
 -- }}}
 -- typst {{{
