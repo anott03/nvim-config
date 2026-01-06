@@ -151,6 +151,12 @@ require('lazy').setup({
             { 'folke/which-key.nvim' },
             { 'nvim-treesitter/nvim-treesitter' }
         },
+    },
+    {
+        "S1M0N38/love2d.nvim",
+        event = "VeryLazy",
+        version = "2.*",
+        opts = {},
     }
 }, {
     dev = {

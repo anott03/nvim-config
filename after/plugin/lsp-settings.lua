@@ -35,7 +35,6 @@ local on_attach = function()
     nnoremap("<leader>K", lsp_diagnostics)
     nnoremap("<leader>w", vim.diagnostic.setloclist)
     nnoremap("<leader>rr", LSP_RENAME)
-    -- nnoremap("<leader>a", LSP_CODE_ACTIONS)
 
     -- trouble.nvim
     vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
