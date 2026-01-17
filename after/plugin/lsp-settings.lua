@@ -147,6 +147,10 @@ vim.lsp.config("hls", {
 })
 vim.lsp.enable("hls")
 -- }}}
+-- scala {{{
+vim.lsp.config("metals", { on_attach=on_attach });
+vim.lsp.enable("metals")
+-- }}}
 
 -- vhdl {{{
 vim.lsp.enable("vhdl_ls")
