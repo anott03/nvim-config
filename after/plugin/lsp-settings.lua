@@ -6,8 +6,6 @@ local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
 
-require('a.plugins.cmp').setup()
-
 local nnoremap = function(lhs, rhs, opts)
     vim.keymap.set('n', lhs, rhs, opts or { noremap = true })
 end

@@ -17,7 +17,15 @@ REMAP = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
 end
 
-require('a.plugins')
+-- require('a.plugins')
+require('lazy').setup({
+    import = "a.plugins"
+}, {
+    dev = { path = "~/dev" }
+})
+require("gitsigns").setup()
+RELOAD = require('plenary.reload').reload_module
+
 require('a.settings')
 require('a.utils')
 require('a.keybindings')

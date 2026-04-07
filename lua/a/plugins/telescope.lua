@@ -1,13 +1,18 @@
 local telescope = require('telescope')
-local builtin = require('telescope.builtin')
-local actions = require('telescope.actions')
-local sorters = require('telescope.sorters')
-local themes = require('telescope.themes')
-local reload = require('plenary.reload').reload_module
+local builtin   = require('telescope.builtin')
+local actions   = require('telescope.actions')
+local sorters   = require('telescope.sorters')
+local themes    = require('telescope.themes')
 
-local M = {}
+local M = {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+        'nvim-telescope/telescope-fzy-native.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    }
+}
 
-M.setup = function()
+M.config = function()
   pcall(telescope.load_extension, 'fzy_native')
   pcall(telescope.load_extension, 'git_worktree')
   pcall(telescope.load_extension, 'ui-select')
@@ -100,7 +105,6 @@ M.files = function()
 end
 
 M.bufs = function()
-  reload('telescope')
   require('telescope.builtin').buffers(_theme())
 end
 
@@ -114,7 +118,6 @@ M.grep = function()
 end
 
 M.git_worktree = function()
-  reload('telescope')
   telescope.extensions.git_worktree.git_worktrees()
 end
 
@@ -135,23 +138,13 @@ M.workspace_symbols = function()
   builtin.lsp_dynamic_workspace_symbols(_theme())
 end
 
-local function generate_telescope_function(func)
-  return function()
-    reload('telescope')
-    reload('a.plugins.telescope')
-    M.setup()
-    M.mappings()
-    func()
-  end
-end
-
 M.mappings = function()
-  vim.keymap.set("n", "<leader><leader>", generate_telescope_function(M.files))
-  vim.keymap.set("n", "<leader>b",        generate_telescope_function(M.bufs))
-  vim.keymap.set("n", "<leader>ps",       generate_telescope_function(M.grep))
-  vim.keymap.set("n", "<leader>nv",       generate_telescope_function(M.nvim))
-  --vim.keymap.set("n", "<leader>ws",       generate_telescope_function(M.workspace_symbols))
-  vim.keymap.set("n", "<leader>gw",       generate_telescope_function(M.git_worktree))
+  vim.keymap.set("n", "<leader><leader>", M.files)
+  vim.keymap.set("n", "<leader>b",        M.bufs)
+  vim.keymap.set("n", "<leader>ps",       M.grep)
+  vim.keymap.set("n", "<leader>nv",       M.nvim)
+  --vim.keymap.set("n", "<leader>ws",       M.workspace_symbols)
+  vim.keymap.set("n", "<leader>gw",       M.git_worktree)
 end
 
 return M

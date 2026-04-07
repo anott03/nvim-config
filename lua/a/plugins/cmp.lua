@@ -1,82 +1,82 @@
-local M = {}
-
-local cmp = require "cmp"
-
-M.setup = function()
-  cmp.setup({
-    mapping = {
-      ["<Tab>"] = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        else
-          fallback()
-        end
-      end,
-
-      ["<S-Tab>"] = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        else
-          fallback()
-        end
-      end,
-
-      ["<c-y>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      },
+local M = {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lua',
+        'hrsh7th/cmp-nvim-lsp',
     },
+    config = function() -- {{{
+        local cmp = require "cmp"
+        cmp.setup({
+            mapping = {
+                ["<Tab>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end,
 
-    sources = {
-      -- ORDER MATTERS (it sets priority)
-      { name = "nvim_lua" },
-      { name = "nvim_lsp" },
-      { name = "path" },
-      { name = "buffer", keyword_length = 5 },
-      { name = "lazydev", group_index = 0, },
-    },
+                ["<S-Tab>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end,
 
-    formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-        local strings = vim.split(kind.kind, "%s", { trimempty = true })
-        kind.kind = " " .. (strings[1] or "") .. " "
-        kind.menu = "    (" .. (strings[2] or "") .. ")"
+                ["<c-y>"] = cmp.mapping.confirm {
+                    behavior = cmp.ConfirmBehavior.Insert,
+                    select = true,
+                },
+            },
 
-        return kind
-      end,
-    },
+            sources = {
+                -- ORDER MATTERS (it sets priority)
+                { name = "nvim_lua" },
+                { name = "nvim_lsp" },
+                { name = "path" },
+                { name = "buffer",  keyword_length = 5 },
+                { name = "lazydev", group_index = 0, },
+            },
 
-    -- snippet = {
-    --   expand = function(args)
-    --     require('luasnip').lsp_expand(args.body)
-    --   end
-    -- },
+            formatting = {
+                fields = { "kind", "abbr", "menu" },
+                format = function(entry, vim_item)
+                    local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                    local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                    kind.kind = " " .. (strings[1] or "") .. " "
+                    kind.menu = "    (" .. (strings[2] or "") .. ")"
 
-    experimental = {
-      native_menu = false,
-      ghost_text = true,
-    },
+                    return kind
+                end,
+            },
 
-    window = {
-      completion = {
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-        col_offset = -3,
-        side_padding = 0,
-      },
-    },
-  })
+            experimental = {
+                native_menu = false,
+                ghost_text = true,
+            },
 
-  cmp.setup.filetype({ "sql" }, {
-      sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-      }
-  })
-end
+            window = {
+                completion = {
+                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                    col_offset = -3,
+                    side_padding = 0,
+                },
+            },
+        })
 
-M.custom_highlights = function ()
+        cmp.setup.filetype({ "sql" }, {
+            sources = {
+                { name = "vim-dadbod-completion" },
+                { name = "buffer" },
+            }
+        })
+    end -- }}}
+}
+
+M.custom_highlights = function () -- {{{
   -- Customization for Pmenu
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
@@ -118,6 +118,6 @@ M.custom_highlights = function ()
   vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
   vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
   vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
-end
+end -- }}}
 
 return M
