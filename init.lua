@@ -17,6 +17,9 @@ REMAP = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts or {noremap = true})
 end
 
+-- leader key is space
+vim.g.mapleader = ' '
+
 -- require('a.plugins')
 require('lazy').setup({
     import = "a.plugins"

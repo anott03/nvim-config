@@ -2,9 +2,6 @@
 local vim = vim
 local remap = REMAP
 
--- leader key is space
-vim.g.mapleader = ' '
-
 -- Telescope Mappings
 require('a.plugins.telescope').mappings()
 remap("n", "<leader>tt", "<CMD>PlenaryBustedDirectory lua/tests/automated/<CR>")
